@@ -1,0 +1,236 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="dev-school-labs-card">
+    <template>
+        <style is="custom-style">
+            :host {
+                @apply(--layout-relative);
+                @apply(--layout-vertical);
+
+                -webkit-flex: 1 0 330px;
+                -ms-flex: 1 0 330px;
+                flex: 1 0 330px;
+
+                margin: 0 16px 16px 0;
+                background-color: #fff;
+                max-width: 330px;
+            }
+
+            /*Not sure if this works from inside here*/
+            :host:nth-of-type(3n) {
+                margin-right: 0;
+            }
+
+            /*Change with iron-icon*/
+            img {
+                margin-right: 4px;
+            }
+
+            .card-header {
+                @apply(--layout);
+                @apply(--layout-justified);
+                @apply(--layout-center);
+                padding: 16px;
+            }
+
+            .card-header .category-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #fff;
+                background-size: 70%;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+            }
+
+            .card-duration {
+                @apply(--layout);
+                @apply(--layout-center);
+                mix-blend-mode: overlay;
+                color: var(--paper-grey-900);
+            }
+
+            .card-author, .card-updated {
+                font-size: 12px;
+                color: var(--paper-grey-400);
+                line-height: 16px;
+                text-align: right;
+            }
+
+            .description {
+                padding: 16px 32px;
+                -webkit-flex: 1 0 auto;
+                -ms-flex: 1 0 auto;
+                flex: 1 0 auto;
+            }
+
+            .card-footer {
+                @apply(--layout);
+                @apply(--layout-center);
+                @apply(--layout-justified);
+                border-top: 1px solid var(--paper-grey-300);
+                padding: 8px 16px;
+            }
+
+            /*Last 2 needed?*/
+            .card-footer paper-button {
+                @apply(--paper-font-button);
+                line-height: 1;
+                letter-spacing: 0.01em;
+            }
+
+            .card-pin {
+                position: absolute;
+                left: 7px;
+                bottom: 14px;
+                width: 15px;
+                height: 20px;
+                background-repeat: no-repeat;
+                background-image: url('data:image/svg+xml;utf8,<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0"/><path fill="#888" d="M13 4V2H5v2h1v5l-1.5 1.5V12H8v4l1 1 1-1v-4h3.5v-1.5L12 9V4"/></g></svg>');
+            }
+
+            /* ***** Responsive ***** */
+            @media (max-width: 767px) {
+                :host {
+                    margin: 0 0 16px;
+                    min-width: 330px;
+                    max-width: 100%;
+                    width: 100%;
+                    -webkit-flex: 1 0 200px;
+                    -ms-flex: 1 0 200px;
+                    flex: 1 0 200px;
+                }
+
+                .card-header {
+                    border-radius: 0;
+                    @apply(--layout-center);
+                }
+
+                .card-header .category-icon {
+                    margin: 0;
+                }
+            }
+
+            @media (min-width: 768px) {
+                :host {
+                    min-height: 250px;
+                }
+            }
+
+            @media (min-width: 767px) and (max-width: 1136px) {
+                :host {
+                    -webkit-flex: 0 0 32%;
+                    -ms-flex: 0 0 32%;
+                    flex: 0 0 32%;
+                    margin: 0 2% 2% 0;
+                    min-height: 200px;
+                }
+            }
+
+            /*To delete*/
+            .default-bg {
+                background-color: #BDBDBD;
+            }
+
+            .default-bg ~ .card-footer paper-button {
+                color: #BDBDBD;
+            }
+
+            .default-bg ~ .card-footer paper-button:hover, .default-bg ~ .card-footer paper-button[focused] {
+                background: rgba(189, 189, 189, 0.1);
+            }
+
+            .about-bg {
+                background-color: #78909C;
+            }
+
+            .about-bg ~ .card-footer paper-button {
+                color: #78909C;
+            }
+
+            .about-bg ~ .card-footer paper-button:hover, .about-bg ~ .card-footer paper-button[focused] {
+                background: rgba(120, 144, 156, 0.1);
+            }
+
+            .web-bg {
+                background-color: #4285f4;
+            }
+
+            .web-bg ~ .card-footer paper-button {
+                color: #4285f4;
+            }
+
+            .web-bg ~ .card-footer paper-button:hover, .web-bg ~ .card-footer paper-button[focused] {
+                background: rgba(66, 133, 244, 0.1);
+            }
+        </style>
+        <div class$="card-header [[_toLowerCase(category)]]-bg">
+            <div id="icon" class$="category-icon [[_toLowerCase(category)]]-icon"></div>
+            <template is="dom-if" if="[[duration]]">
+                <div class="card-duration">
+                    <img src="https://codelabs.developers.google.com/images/schedule.svg">
+                    <span>[[duration]] min</span>
+                </div>
+            </template>
+        </div>
+        <div class="description">[[title]]</div>
+        <div class="card-footer">
+            <paper-button tabindex="0" animated elevation="0">Start</paper-button>
+            <div>
+                <template is="dom-if" if="[[author]]">
+                    <div class="card-author">[[author]]</div>
+                </template>
+                <div class="card-updated">Updated [[_getDateUpdated(updated)]]</div>
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'dev-school-labs-card',
+            properties: {
+                url: {
+                    type: String
+                },
+                category: {
+                    type: String
+                },
+                title: {
+                    type: String
+                },
+                duration: {
+                    type: Number
+                },
+                updated: {
+                    type: String //Date?!?
+                },
+                tags: {
+                    type: String
+                },
+                pin: { //WTF is this?
+                    type: Boolean,
+                    value: true
+                }//,
+//                _category: {
+//                    type: String,
+//                    computed: '_toLowerCase(category)'
+//                }
+            },
+
+            _getDateUpdated: function (date) {
+                var dateUpdated = new Date(date);
+
+                var formatOptions = {year: 'numeric', month: 'short', day: 'numeric'};
+                return dateUpdated.toLocaleDateString('en-US', formatOptions);
+            },
+
+            _toLowerCase: function (value) {
+                return value.toLocaleLowerCase();
+            }
+        });
+    </script>
+</dom-module>

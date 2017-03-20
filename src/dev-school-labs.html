@@ -1,0 +1,309 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/paper-styles/default-theme.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-styles/shadow.html">
+
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="dev-school-labs-card.html">
+
+<dom-module id="dev-school-labs">
+    <template>
+        <style is="custom-style">
+            :host {
+                @apply(--paper-font-subhead);
+            }
+
+            app-header-layout {
+                background-color: var(--paper-blue-grey-50);
+            }
+
+            app-header {
+                background-color: var(--paper-blue-grey-700);
+                color: rgba(255, 255, 255, var(--light-primary-opacity));
+            }
+
+            app-drawer {
+                --app-drawer-content-container: {
+                    @apply(--paper-font-subhead);
+                    background-color: var(--paper-blue-grey-50);
+                    color: rgba(0, 0, 0, var(--dark-primary-opacity));
+                }
+            }
+
+            app-header paper-icon-button {
+                --paper-icon-button-ink-color: white;
+            }
+
+            .site-width {
+                margin: 0 auto;
+                width: 90vw;
+                max-width: 1024px;
+            }
+
+            .content {
+                @apply(--layout-flex);
+            }
+
+            #mainToolbar {
+                @apply(--layout-center);
+                height: 64px;
+                padding: 16px;
+            }
+
+            #mainToolbar paper-icon-button[icon="menu"] {
+                -webkit-flex-shrink: 0;
+                -ms-flex-negative: 0;
+                flex-shrink: 0;
+            }
+
+            #mainToolbar {
+                height: 56px;
+            }
+
+            #mainToolbar paper-icon-button[icon="menu"] {
+                width: 40px;
+                margin-right: 8px;
+            }
+
+            #title {
+                @apply(--paper-font-title);
+            }
+
+            #title a {
+                @apply(--layout-center);
+            }
+
+            #title a, #title a:focus, #title a:visited {
+                outline: 0;
+                text-decoration: none;
+                color: inherit;
+            }
+
+            header {
+                background-color: #fff;
+                color: #5c5c5c;
+                /*color: rgba(92, 92, 92, var(--dark-primary-opacity));*/
+                text-align: justify;
+                padding: 16px 0;
+                line-height: 16px;
+                box-shadow: 0px 3px 6px -3px #BDBDBD;
+            }
+
+            header h2 {
+                @apply(--paper-font-display2);
+                font-size: 7vw;
+                font-weight: 300;
+                margin-bottom: 8px;
+            }
+
+            header p {
+                @apply(--paper-font-subhead);
+            }
+
+            footer {
+                @apply(--paper-font-menu);
+                background-color: var(--paper-blue-grey-100);
+                color: rgba(0, 0, 0, var(--dark-primary-opacity));
+
+                padding: 15px 0;
+            }
+
+            .footer-wrapper {
+                @apply(--layout-horizontal);
+            }
+
+            #card-filter {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                @apply(--layout-justified);
+            }
+
+            #sortby {
+                padding: 24px 0;
+                @apply(--layout-center-justified);
+            }
+
+            #sortby paper-tabs {
+                --paper-tabs-selection-bar-color: #000;
+                color: var(--google-grey-700);
+                text-transform: uppercase;
+            }
+
+            #sortby paper-tab:hover {
+                background-color: var(--paper-blue-grey-100);
+                opacity: 1;
+            }
+
+            #categoryfilter {
+                background-color: #fff;
+                width: 200px;
+
+                --paper-dropdown-menu-input: {
+                    border-bottom: none;
+                };
+
+                --paper-input-container-underline: {
+                    display: none;
+                };
+
+                --paper-input-container-underline-focus: {
+                    display: none;
+                };
+
+                --paper-input-container: {
+                    padding: 8px;
+                }
+            }
+
+            #categoryfilter paper-listbox {
+                width: 200px;
+            }
+
+            paper-listbox {
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            paper-item {
+                position: relative;
+                cursor: pointer;
+                font-weight: 300;
+            }
+
+            paper-item.iron-selected {
+                background-color: #ECEFF1;
+                color: #455a64;
+                font-weight: bold;
+            }
+
+            #cards {
+                @apply(--layout-vertical);
+                @apply(--layout-center);
+            }
+
+            /* Extra small devices (phones, less than 768px) */
+            /* No media query since this is the default */
+            @media (max-width: 768px) {
+
+            }
+
+            /* Small devices (tablets, 768px and up) */
+            @media (min-width: 768px) {
+                #title {
+                    @apply(--layout-horizontal);
+                    @apply(--layout-center-justified);
+                }
+
+                #mainToolbar [icon=menu] {
+                    display: none;
+                }
+
+                header {
+                    padding: 30px 0;
+                }
+
+                header h2 {
+                    @apply(--paper-font-display2);
+                    margin-bottom: 16px;
+                }
+
+                header p {
+                    line-height: 32px;
+                }
+
+                #cards {
+                    @apply(--layout-horizontal);
+                    @apply(--layout-wrap);
+                    @apply(--layout-start);
+                    margin-bottom: 24px;
+                }
+            }
+
+            /* Medium devices (desktops, 992px and up) */
+            @media (min-width: 992px) {
+                #title {
+                    @apply(--paper-font-display1);
+                }
+            }
+
+            /* Large devices (large desktops, 1200px and up) */
+            @media (min-width: 1200px) {
+            }
+        </style>
+        <app-drawer-layout fullbleed force-narrow>
+            <app-drawer swipe-open>
+                drawer-content
+            </app-drawer>
+            <app-header-layout fullbleed>
+                <app-header>
+                    <app-toolbar id="mainToolbar">
+                        <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+                        <div id="title" class="site-width">
+                            <a href="/">&lt;/&gt; Dev{School} Codelabs</a>
+                        </div>
+                    </app-toolbar>
+                </app-header>
+
+                <header>
+                    <div class="site-width">
+                        <h2>Welcome to Codelabs!</h2>
+                        <p>
+                            Dev{School} Codelabs provide a guided, tutorial, hands-on coding experience. Most codelabs
+                            will step you through the process of building a small application, or adding a new feature
+                            to an existing application. They cover a wide range of topics such as HTML, CSS, JavaScript,
+                            AngularJs and Polymer.
+                        </p>
+                    </div>
+                </header>
+
+                <div class="site-width content">
+                    <div id="card-filter" class="site-width">
+                        <div id="sortby">
+                            <paper-tabs selected="0" noink tabindex="0">
+                                <paper-tab noink tabindex="0">A-Z</paper-tab>
+                                <paper-tab noink tabindex="-1">Recent</paper-tab>
+                                <paper-tab noink tabindex="-1">Duration</paper-tab>
+                            </paper-tabs>
+                        </div>
+                        <paper-dropdown-menu id="categoryfilter" label="Category" no-label-float>
+                            <paper-listbox class="dropdown-content">
+                                <paper-item>HTML5</paper-item>
+                                <paper-item>JavaScript</paper-item>
+                                <paper-item>AngularJs</paper-item>
+                                <paper-item>Polymer</paper-item>
+                            </paper-listbox>
+                        </paper-dropdown-menu>
+                    </div>
+                    <div id="cards" class="site-width">
+                        <dev-school-labs-card category="About" title="About Codelabs" updated="2017-01-05T13:42:41Z"></dev-school-labs-card>
+                        <dev-school-labs-card category="Web" title="HTML5 Rocks!!!" updated="2017-01-05T13:42:41Z" author="Radu Enuca" duration="60"></dev-school-labs-card>
+                        <dev-school-labs-card category="Web" title="JavaScript - The Good Parts" updated="2017-01-05T13:42:41Z" duration="240"></dev-school-labs-card>
+                        <dev-school-labs-card category="Web" title="Polymer" updated="2017-01-05T13:42:41Z" duration="12"></dev-school-labs-card>
+                    </div>
+                </div>
+
+                <footer>
+                    <div class="site-width footer-wrapper">
+                        &copy; Radu Enuca 2017
+                    </div>
+                </footer>
+            </app-header-layout>
+        </app-drawer-layout>
+    </template>
+    <script>
+        Polymer({
+            is: 'dev-school-labs'
+        });
+    </script>
+</dom-module>
