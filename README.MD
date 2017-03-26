@@ -8,11 +8,16 @@
 - Cards list
     DONE - KISS: app-grid 3,2,1 colons with sorting and filtering. Done like Google in the end
 - Authentication
-    - GitHub
+    DONE - GitHub
+    DONE - Save user
     - Authorize users
-    - Show picture
+    DONE - Show picture
+    DONE - create login component
+- Labs:
+    - Get Labs from json
+    - Get Labs from firebase
 - Refactor
-    - Use Code labs from my Github (the forked one)
-    - Manifest JSON & stuff
+    DONE - Use Code labs from my Github (the forked one)
+    DONE - Manifest JSON & stuff
     - ...
     

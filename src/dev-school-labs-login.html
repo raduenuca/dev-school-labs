@@ -1,0 +1,102 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-document.html">
+
+<dom-module id="dev-school-labs-login">
+    <style>
+        :host {
+            @apply(--layout-horizontal);
+            @apply(--layout-center-center);
+        }
+
+        :host iron-image {
+            width: 28px;
+            height: 28px;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+
+        :host paper-icon-button {
+            width: 44px;
+            height: 44px;
+        }
+
+        #userName {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            :host iron-image {
+                width: 40px;
+                height: 40px;
+                margin-right: 5px;
+                border-radius: 50%;
+            }
+
+            :host paper-icon-button {
+                width: 56px;
+                height: 56px;
+            }
+        }
+    </style>
+    <template>
+        <firebase-auth
+            id="auth"
+            user="{{user}}"
+            provider="github">
+        </firebase-auth>
+
+        <firebase-document
+            id="userDocument"
+            path="/users/[[user.uid]]/userName"
+            data="{{_userName}}">
+        </firebase-document>
+
+        <iron-ajax id="xhr" on-response="_saveUser"></iron-ajax>
+
+        <template is="dom-if" if="[[!user]]">
+            <paper-icon-button icon="perm-identity" on-tap="_login" title="Login" class="bigger"></paper-icon-button>
+        </template>
+        <template is="dom-if" if="[[user]]">
+            <iron-image src="[[user.photoURL]]" sizing="contain" title$="[[user.displayName]]"></iron-image>
+            <span id="userName">[[user.displayName]]</span>
+            <paper-icon-button icon="exit-to-app" on-tap="_logout" title="Log out"></paper-icon-button>
+            <!--<paper-menu-button>-->
+            <!--<paper-icon-button icon="arrow-drop-down" class="dropdown-trigger"></paper-icon-button>-->
+            <!--<paper-menu class="dropdown-content">-->
+            <!--<paper-item on-tap="logout">Logout</paper-item>-->
+            <!--</paper-menu>-->
+            <!--</paper-menu-button>-->
+        </template>
+    </template>
+    <script>
+        Polymer({
+            is: 'dev-school-labs-login',
+            _login: function () {
+                return this.$.auth.signInWithPopup().then(function(response){
+                    if(typeof this._userName !== 'string') {
+                        this.$.xhr.url = "https://api.github.com/user/" + response.user.providerData[0].uid;
+                        this.$.xhr.generateRequest();
+                    }
+                }.bind(this));
+            },
+            _logout: function () {
+                return this.$.auth.signOut();
+            },
+            _saveUser: function(data){
+                //this.$.userDocument.ref.set()
+                this._userName = data.detail.response.login;
+            }
+        });
+    </script>
+</dom-module>
