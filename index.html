@@ -3,33 +3,39 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
 
         <title>Dev{School} Codelabs</title>
-        <meta name="description" content="Dev{School} Codelabs">
 
-        <!--<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">-->
-        <!--<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">-->
-        <!--<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">-->
-        <!--<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">-->
-        <!--<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">-->
-        <!--<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">-->
-        <!--<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">-->
-        <!--<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">-->
-        <!--<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">-->
-        <!--<link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">-->
-        <!--<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">-->
-        <!--<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">-->
-        <!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
-        <!--<link rel="manifest" href="/manifest.json">-->
-        <!--<meta name="msapplication-TileColor" content="#ffffff">-->
-        <!--<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">-->
-        <!--<meta name="theme-color" content="#ffffff">-->
+        <link rel="shortcut icon" sizes="32x32" href="/images/codelabs-icon-32.png">
 
-        <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+        <meta name="theme-color" content="#fff">
+        <link rel="manifest" href="manifest.json">
+
+        <link rel="import" href="src/dev-school-labs.html" async>
 
         <style>
+            body {
+                margin: 0;
+                font-family: 'Roboto', 'Noto', sans-serif;
+                font-size: 13px;
+                line-height: 1.5;
+                min-height: 100vh;
+            }
+
+            /*!* styling for render while resources are loading *!*/
+            dev-school-labs[unresolved] {
+                display: block;
+                min-height: 101vh;
+                line-height: 68px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3em;
+                color: #202020;
+                padding: 0 16px;
+                overflow: visible;
+            }
+
             * {
                 box-sizing: border-box;
                 margin: 0;
@@ -41,9 +47,26 @@
             }
         </style>
 
-        <link rel="import" href="src/dev-school-labs.html">
+
     </head>
-    <body unresolved>
-        <dev-school-labs></dev-school-labs>
+    <body>
+        <dev-school-labs unresolved>Dev{School} Labs</dev-school-labs>
+
+        <script>
+            Polymer = {lazyRegister: true, dom: 'shadow'};
+
+            (function () {
+                if ('registerElement' in document
+                    && 'import' in document.createElement('link')
+                    && 'content' in document.createElement('template')) {
+                    // platform is good!
+                } else {
+                    // polyfill the platform!
+                    var e = document.createElement('script');
+                    e.src = 'bower_components/webcomponentsjs/webcomponents-lite.min.js';
+                    document.body.appendChild(e);
+                }
+            })();
+        </script>
     </body>
 </html>
