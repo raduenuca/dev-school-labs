@@ -19,6 +19,7 @@
 <link rel="import" href="../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
 <link rel="import" href="dev-school-labs-icon.html">
@@ -268,15 +269,8 @@
             database-url="https://dev-school-labs.firebaseio.com"
             api-key="AIzaSyDZYKDF1nTRl4gq-zLZ7qa_m1Yy2-Lrutk">
         </firebase-app>
-        <firebase-auth
-            id="auth"
-            user="{{user}}"
-            status-known="{{statusKnown}}"
-            provider="github"
-            on-error="showError">
-        </firebase-auth>
 
-        <iron-ajax auto url="../data/codelabs.json" last-response="{{_codeLabs}}"></iron-ajax>
+        <iron-ajax auto url="/data/codelabs.json" last-response="{{_codeLabs}}"></iron-ajax>
 
         <app-drawer-layout fullbleed force-narrow>
             <app-drawer swipe-open>

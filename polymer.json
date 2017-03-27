@@ -1,8 +1,6 @@
 {
     "entrypoint": "index.html",
     "shell": "src/dev-school-labs.html",
-    "fragments": [
-    ],
     "sources": [
         "src/**/*",
         "data/**/*",
@@ -12,18 +10,5 @@
     "extraDependencies": [
         "manifest.json",
         "bower_components/webcomponentsjs/webcomponents-lite.min.js"
-    ],
-    "lint": {
-        "rules": [
-            "polymer-2-hybrid"
-        ]
-    },
-    "builds": [{
-        "name": "bundled",
-        "addServiceWorker": false,
-        "bundle": false,
-        "js": {"minify": true},
-        "css": {"minify": true},
-        "html": {"minify": true}
-    }]
+    ]
 }
