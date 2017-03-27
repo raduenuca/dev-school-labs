@@ -20,4 +20,6 @@
     DONE - Use Code labs from my Github (the forked one)
     DONE - Manifest JSON & stuff
     - ...
+
     
+"swPrecacheConfig": "sw-precache-config.js",
