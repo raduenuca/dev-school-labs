@@ -1,0 +1,431 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/codelab-components/google-codelab-elements.html">
+
+<dom-module id="codelab-front-end-foundations">
+    <template>
+        <google-codelab title="Front-end Foundations"
+                        feedback-link="https://github.com/googlecodelabs"
+                        environment="web"
+                        last-updated="2016-07-18">
+            <google-codelab-step label="Overview" duration="0">
+                <p>Learn the fundamentals of HTML and CSS, while building a strong foundation for more advanced
+                    front-end development.</p>
+            </google-codelab-step>
+            <google-codelab-step label="HTML" duration="20">
+                <h2>HTML tags</h2>
+
+                <p>Copy the following code in an <code>prependers-band.html</code> file and follow the exercises below.</p>
+
+<pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        The Prependers
+
+        Bio
+
+        The Prependers are a quirky four-piece from Orlando, FL.
+        Critics have hailed them as the greatest post-garage-rock
+        band of the last decade.
+
+        They are currently writing a full length album that's a
+        follow-up to their breakout 2011 album, Top Right Bottom Left,
+        and their critically acclaimed EP, Opacity Zero.
+
+        Members
+
+        Jack Smith - Vocals
+        Sarah Quan - Guitar
+        Laverne Butlet - Bass
+        Simon St. Hollister - Drums
+
+        Albums
+
+        Top, Right, Bottom, Left
+
+        Opacity Zero
+
+        Tour Dates
+
+        The Prependers are not currently on tour because they
+        are recording their new album. Check back later!
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3>1.1 Marking Up Headings</h3>
+                <p>We've been hired to create a home page for Open Source Records. They've only got two bands on their roster, but they are growing fast, so let's get started!</p>
+
+                <ol>
+                    <li>On this page, the record label's name - <strong>Open Source Records</strong> - is the most important content, so mark it up with the appropriate tag.</li>
+                    <li>The name of the band - <strong>The Prependers</strong> - is the next most important content, so mark it up with the appropriate tag.</li>
+                    <li>The section titles - <strong>Bio</strong>, <strong>Members</strong>, <strong>Albums</strong> and <strong>Tour Dates</strong> - are of lesser importance than the name of the band, so mark those up with the appropriate tags.</li>
+                    <li>Mark the band's album names - <strong>Top, Right, Bottom, Left</strong>, and <strong>Opacity Zero</strong> - each with the <code>h4</code> tag.</li>
+                    <li>Mark up the two paragraphs of the band's biography with the appropriate tags.</li>
+                    <li>Mark up the band's tour message paragraph with the appropriate tag.</li>
+                </ol>
+
+                <h3>1.2 Marking Up Lists</h3>
+                <p>We just added the band members and song titles to the page. Decide the best tags to mark up that content, and don't forget to nest and indent tags when necessary!</p>
+
+                <ol>
+                    <li>Mark up the list of band members using the appropriate tag(s).</li>
+                    <li>Mark up the song list for the album Opacity Zero using the appropriate tag(s).</li>
+                </ol>
+
+                <h2>Exercise</h2>
+
+                <p>Do your best to format the following HTML. Save it in a file called <code>regular-band.html</code></p>
+
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        Regular Expressions
+
+        Bio
+        Regular Expressionists are a hip-hop trio from New York City.
+
+        Members
+
+        Rekt - Vocals
+        Face-like - Vocals
+        DJ Regex Capture - Decks
+
+        Albums
+
+        This group has no albums released, but they are recording one album right now.
+
+        Tour Dates
+
+        July 16th, 2014 @ 7:00pm
+        House of Blues - Orlando, FL
+
+        July 17th, 2014 @ 7:30pm
+        Jannus Landing - Tampa, FL
+
+        July 19th, 2014 @ 8:00pm
+        The Tabernacle - Atlanta, GA
+
+        July 20th, 2014 @ 7:30pm
+        40 Watt Club - Athens, GA
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h2>HTML links</h2>
+
+                <h3>1.3 Site Menu</h3>
+
+                <ol>
+                    <li>Create an unordered list with three list items: <code>About</code>, <code>Bands</code>, and <code>Contact</code> that is in between the main site name and the band's name (in both files)</li>
+                    <li>Make the text <code>About</code> into a link to the page <code>about.html</code>.</li>
+                    <li>Make the text <code>Bands</code> into a link to the page <code>bands.html</code>.</li>
+                    <li>Make the text <code>Contact</code> into a link to the page <code>contacts.html</code>.</li>
+                </ol>
+
+                <h2>Exercises</h2>
+
+                <ol>
+                    <li>Create the <code>about.html</code>, <code>bands.html</code> and <code>contacts.html</code> pages by saving and formatting the snippets below
+
+                <p><code>about.html</code></p>
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        About
+
+        Open Source Records is a quickly growing record label that
+        brings you the hottest up-and-coming groups.  All of our bands
+        are actively recording and touring, and receive our full support
+        producing, recording, mixing, touring, and promoting their work.
+        At Open Source Records, artists come first.
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <p><code>bands.html</code></p>
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        Bands
+
+        The Prependers
+        Regular Expressionists
+
+        We're always looking for new talent, so Contact us now!
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <p><code>contact.html</code></p>
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        Contact
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </li>
+                    <li>Make sure the site menu you did above is present in all the pages</li>
+                    <li><code>band.html</code> has 3 addiional links. Can you spot them?</li>
+                    <li>Check that you can navigate between all the pages.</li>
+                </ol>
+            </google-codelab-step>
+            <google-codelab-step label="CSS" duration="30">
+                <h2>CSS selectors</h2>
+
+                <h3>2.1 Writing Selectors</h3>
+
+                <p>We've done a good job structuring the content of our page with the right HTML tags, but the way those tags look is pretty boring right now. Let's start fixing that!</p>
+
+                <p>Inside <code>prependers-band.html</code> file:</p>
+                <ol>
+                    <li>Write a CSS rule that selects every <code>a</code> tag and removes the underline from the text using the <code>text-decoration</code> property. Also change their <code>color</code> to <code>darkblue</code>.</li>
+                    <li>Write a CSS rule that selects every <code>p</code> tag and changes the text <code>color</code> to <code>dimgray</code></li>
+                    <li>Write a CSS rule that selects only <code>li</code> tags that are children of an ordered list and make their <code>font-size</code> <code>20px</code>.</li>
+                    <li>Write a CSS rule that selects the <code>h2</code> tag and sets the <code>font-size</code> to <code>28px</code>.</li>
+                    <li>Write a CSS rule that selects all of the <code>h3</code> tags and sets their <code>font-size</code> to <code>26px</code> and their <code>color</code> to <code>darkblue</code>.</li>
+                </ol>
+
+                <h2>Hexadecimal colors</h2>
+
+                <h3>2.2 Changing to Hex Colors</h3>
+                <p>Convert the colors on our page to hex.</p>
+
+                <ol>
+                    <li>Set the color of the <code>h1</code> and <code>h2</code> text to the hexadecimal version of <code>black</code>.</li>
+                    <li>Set the <code>h3</code> tags to a slightly lighter version of black, and the <code>h4</code> tags to an even lighter version than that.</li>
+                    <li>Of the hex colors <code>#112E10</code>, <code>#11EE00</code>, <code>#444444</code>, and <code>#FF0000</code>, set the color for all paragraph text to the one closest to a darkish gray color.</li>
+                    <li>Set the color for all anchor tag text on the page to a dark red hexadecimal color.</li>
+                </ol>
+
+                <h2>The Box Model</h2>
+
+                <h3>2.3 Modifying Box Model Properties</h3>
+                <p>We've gone ahead and reset all of the styles on regular-band.html, and your job is to get the layout back to a good place!</p>
+
+                <p>Copy the <code>style</code> block from the prependers-band.html and add the following at the top</p>
+<pre><code>
+html, body, h1, h2, h3, h4, ul, ol, li, p, a {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}</code></pre>
+
+                <ol>
+                    <li>Adjust the <code>h1</code> tag so there's <code>15px</code> of <code>margin-bottom</code> space between the <strong>Open Source Records</strong> header and the site navigation.</li>
+                    <li>Adjust the <code>h2</code> tag so there's <code>15px</code> of <code>margin-top</code> space between the band's name and site navigation.</li>
+                    <li>Adjust the <code>h3</code> tag so there's <code>15px</code> of <code>margin-top</code> space above the heading text.</li>
+                    <li>Adjust the <code>h3</code> tag again so there's a <code>border-bottom</code> with a value of <code>1px solid #cccccc</code>.</li>
+                    <li>Adjust the <code>ul</code> tag so there's <code>30px</code> of <code>padding-left</code> and the unordered list item bullets will be visible</li>
+                    <li>Adjust the <code>li</code> tag so there's <code>5px</code> of <code>margin-bottom</code> and the text in the list items won't be so close together.</li>
+                    <li>Finally, adjust the <code>body</code> tag so there's <code>15px</code> of <code>padding</code> to create space between the edge of the window and all of the other content on the page.</li>
+                </ol>
+
+                <h3>1.4 Fixing Prependers Styles</h3>
+                <p>Copy the styles you wrote for the Regular Expressionists page over to prependers-band.html, and see some issues popping up. Go through each of these tasks and fix up some of those issues.</p>
+
+                <ol>
+                    <li>
+                        <p>The Bio section the page contains two paragraphs, but they are appearing too close together.</p>
+                        <p>Adjust the <code>p</code> tag so there's <code>10px</code> of <code>margin-bottom</code> space for the bottom of the any paragraphs.</p>
+                    </li>
+                    <li>
+                        <p>In the last challenge, we fixed the <code>ul</code> styles so we could read the bullet points, but that page didn't have any <code>ol</code> tags.</p>
+                        <p>Adjust the <code>ol</code> tag so there's <code>20px</code> of <code>padding-left</code> space and the album track numbers should line up with the album name headings.</p>
+                    </li>
+                    <li>
+                        <p>Our song list items look good now, but there's another problem - we didn't have album names on the page in the last challenge, so our album titles here don't have the correct spacing.</p>
+                        <p>Adjust the <code>h4</code> tag so there's <code>10px</code> of <code>margin</code> space above and below the album name headings.</p>
+                    </li>
+                </ol>
+            </google-codelab-step>
+            <google-codelab-step label="Classes and Layout" duration="40">
+                <h2>The class Attribute</h2>
+
+                <h3>3.1 Separating CSS</h3>
+                <p>We've got some cool CSS and we'd like to make it available to every page on our site. It doesn't make sense to copy that CSS <code>&lt;style&gt;</code> block to every page, because that means we'll have to update all of them individually whenever we make a change.</p>
+                <p>Instead, let's move our CSS to a new file and link that to each page so our CSS is all in one spot.</p>
+
+                <ol>
+                    <li>Move all of the CSS in <code>prependers-band.html</code> over to a new file named <code>main.css</code>.</li>
+                    <li>Replace the <code>style</code> tag in <code>prependers-band.html</code> with a link tag that loads <code>main.css</code>.</li>
+                    <li>Now copy that link tag to the header of all the other <code>html</code> files</li>
+                </ol>
+
+                <h3>3.2 Fixing The Site Navigation</h3>
+                <p>We can use class attributes applied to HTML tags so they can be specifically targeted in CSS.</p>
+                <p>Let's organize our HTML and CSS styles with some classes.</p>
+
+                <ol>
+                    <li>The site navigation is a perfect candidate for adding a class. Add a <code>class</code> attribute to the unordered list, and set the name of it to <code>nav</code>.</li>
+                    <li>Switch to the <code>main.css</code> file, and set the <code>padding</code> for the <code>.nav</code> selector to <code>0</code> in order to remove the space that's appearing before the site navigation.</li>
+                    <li>Set the <code>.nav li</code> items to display horizontally with <code>inline</code> instead of their default block-level appearance.</li>
+                    <li>The <code>.nav li</code> items are appearing a little too close together. Add <code>20px</code> of <code>padding-right</code> space so they have some room to breathe.</li>
+                    <li>
+                        <p>That right padding is being applied to every navigation list item - even the last one on the right, which doesn't need any padding.</p>
+                        <p>Use the <code>:last-child</code> pseudo-selector to set the <code>padding-right</code> value to <code>0</code> to remove the extra space on the last navigation list item.</p>
+                    </li>
+                    <li>Add that nav class to the site navigation in all the pages.</li>
+                </ol>
+
+                <h3>3.3 Styling Tour Dates</h3>
+                <p>In <code>regular-band.html</code>, the tour dates on this page are another great spot to use classes.</p>
+                <p>We don't need to add a class to the <code>&lt;ul&gt;</code> that contains the tour dates, but we do need a way to access the date/time paragraph tag and the concert location paragraph tag separately.</p>
+
+                <ol>
+                    <li>Add a class of <code>day-time</code> to each paragraph tag that contains a date and time.</li>
+                    <li>Add a class of <code>concert-location</code> to each paragraph tag that contains a location.</li>
+                    <li>Use class selectors to change the <code>.day-time</code> class <code>color</code> to <code>#444444</code> and change the <code>.concert-location</code> class <code>color</code> to <code>#888888</code>.</li>
+                    <li>
+                        <p>Let's change the text so that it stands out a little better too.</p>
+                        <p>For both the <code>.day-time</code> and the <code>.concert-location</code>, add a <code>text-decoration</code> of <code>underline</code>.</p>
+                    </li>
+                </ol>
+
+                <h2>divs and Layout</h2>
+
+                <h3>3.4 Page Divisions</h3>
+                <p>t would be great to style the page header differently from the rest of the content, so let's add some divisions and classes to help us do that.</p>
+
+                <ol>
+                    <li>Wrap the <strong>Open Source Records</strong> header and the site navigation inside of a <code>div</code> container, and give that tag a <code>class</code> of <code>header</code>.</li>
+                    <li>Now wrap all of remaining content in the page body inside another <code>div</code> container, and give that tag a <code>class</code> of <code>content-section</code>.</li>
+                    <li>
+                        <p>Now that we have the divisions in place, let's switch over to the <code>main.css</code> file.</p>
+
+                        <p>Before we had separate divisions, we added <code>15px</code> of <code>padding</code> to the entire <code>body</code>.</p>
+
+                        <p>Now, we want our divisions to have better control over the page, so set the <code>padding</code> for the <code>body</code> selector to <code>0</code>.</p>
+
+                        <p>Alternatively, since the <code>padding</code> is already being set by the CSS declaration at the very top, you could remove the <code>body</code> selector from the CSS and that works too.</p>
+                    </li>
+                    <li>
+                        Now we can add <code>15px</code> of <code>padding</code> back to all sides, but this time add it to the <code>header</code> and <code>content-section</code> divisions.
+                    </li>
+                    <li>
+                        For this site, our designers have asked us to make sure the <code>content-section</code> doesn't get bigger than <code>450px</code>, so use that number to set the content section's <code>width</code>.
+                    </li>
+                    <li>Make sure all the pages look the same</li>
+                </ol>
+
+                <h3>3.5 Album Styles</h3>
+                <p>This div-with-a-class thing is pretty useful - and it looks like there's another place we can use it too.</p>
+                <p>Our designers want a <code>dashed</code> border around each of the albums and their track listings, so we need to group the <code>h4</code> and <code>ol</code> tags that contain each album's song list.</p>
+
+                <ol>
+                    <li>
+                        <p>There's information about two albums, and each album consists of an <code>h4</code> tag and an ordered list.</p>
+                        <p>Wrap each album name and track listing in their own divisions, and give those divisions a <code>class</code> attribute with the value <code>album</code>.</p>
+                    </li>
+                    <li>
+                        <p>Now we can switch to <code>main.css</code> and target tags that have an <code>album</code> class in order to style them the way we want.</p>
+                        <p>Use a class selector to add a <code>2px dashed</code> border to the albums. When you're writing the <code>border</code> property, use the single-line version.</p>
+                    </li>
+                    <li>
+                        <p>That border is a little too close to our content, so add <code>10px</code> of space to the <em>top</em> and <em>bottom</em> along with <code>5px</code> of space to the left and right between the content and border.</p>
+                        <p>Use the single-line version of the <code>padding</code> property to add these four values.</p>
+                    </li>
+                    <li>
+                        That's looking better now - but the borders of each album division are touching up together, so add <code>5px</code> of <code>margin</code> spacing between the two album divisions.
+                    </li>
+                </ol>
+
+                <h3>3.6 Centering Content</h3>
+                <p>Right now all of our content is aligned to the left of the screen, but it probably makes sense for some of this stuff to be centered on the page.</p>
+
+                <ol>
+                    <li>Center the <code>content-section</code> division that contains all of the page's main content.</li>
+                    <li>Align <strong>The Prependers</strong> <code>h2</code> to the <code>center</code> inside the main content section.</li>
+                    <li>
+                        <p>Align the <strong>Open Source Records</strong> <code>h1</code> to the <code>center</code> at the top of the page.</p>
+                        <p>Then, align the site navigation <code>.nav</code> to the <code>center</code> as well.</p>
+                    </li>
+                </ol>
+
+                <h3>3.7 Cleaning Up The Bands Page</h3>
+                <p>The band pages are starting to look really good, but we've got a new problem. When we click back over to <code>bands.html</code>, the list of bands doesn't look very good even when we wrap that content in <code>div</code> containers with <code>.header</code> and <code>.content-section</code> classes.</p>
+                <p>This is because most of our layout styles on the band pages were specific to classes that aren't yet on <code>bands.html</code>.</p>
+
+                <ol>
+                    <li>Start by adding a class of <code>bands-list</code> to the unordered list of bands.</li>
+                    <li>
+                        <p>That border underneath the band names looks strange. This is because we have defined a <em>very general</em> rule for that heading tag.</p>
+                        <p>In the <code>main.css</code> file, define a more <em>specific</em> rule to remove the border for <code>h3</code> tags inside of the <code>.bands-list</code>.</p>
+                        <p>Also, set the <code>margin</code> to <code>0</code> inside that same CSS selector</p>
+                    </li>
+                    <li>
+                        <p>Next, select the <code>.bands-list</code> and remove the default bullet points with the <code>list-style-type</code> property.</p>
+                        <p>Also, set the <code>padding-left</code> to <code>0</code> in order to remove the extra space before the band names.</p>
+                    </li>
+                    <li>
+                        <p>Select only <code>a</code> tags that are children of the <code>.bands-list</code> and remove their underlines with the <code>text-decoration</code> property.</p>
+
+                        <p>Also, change their <code>color</code> to <code>#ff2244</code>.</p>
+                    </li>
+                    <li>
+                        Finally, add a <code>1px solid #555555</code> for the <code>border</code> around each of the <code>li</code> items in the <code>.bands-list</code>.
+                    </li>
+                </ol>
+            </google-codelab-step>
+            <google-codelab-step label="Images" duration="0">
+                <h2>Content Images</h2>
+
+                <h3>4.1 Adding Content Images</h3>
+                <h3>4.3 Updating The Site Logo</h3>
+                <h3>4.3 Fixing The Heading Tags</h3>
+
+                <h2>Background Images</h2>
+
+                <h3>4.4 Styling CSS Backgrounds</h3>
+                <h3>4.5 Adding CSS Backgrounds</h3>
+                <h3>4.6 Writing Text on CSS Backgrounds</h3>
+                <h3>4.6 Bordered Background Images</h3>
+
+                <h2>Floating Images</h2>
+
+                <h3>4.7 Floating Images 1</h3>
+                <h3>4.8 Floating Images 2</h3>
+            </google-codelab-step>
+            <google-codelab-step label="Fonts and Forms" duration="0">
+                <h2>Adjusting font styles</h2>
+
+                <h3>5.1 Font Family 1</h3>
+                <h3>5.2 Font Family 2</h3>
+                <h3>5.3 Font Family 3</h3>
+                <h3>5.4 Setting Font Styles</h3>
+                <h3>5.5 Fixing Font Sizes</h3>
+                <h3>5.6 Adjusting Line Height</h3>
+
+                <h2>Creating web forms</h2>
+
+                <h3>5.7 A Basic Form</h3>
+                <h3>5.8 Other Inputs</h3>
+                <h3>5.8 Styling Forms</h3>
+                <h3>5.8 Attribute Selectors</h3>
+            </google-codelab-step>
+        </google-codelab>
+    </template>
+    <script>
+        Polymer({
+            is: 'codelab-front-end-foundations'
+        });
+    </script>
+</dom-module>

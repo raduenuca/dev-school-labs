@@ -1,0 +1,59 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+
+<link rel="import" href="dev-school-labs-dashboard.html">
+<link rel="import" href="dev-school-labs-detail.html">
+
+<dom-module id="dev-school-labs-app">
+    <template>
+        <firebase-app
+            auth-domain="dev-school-labs.firebaseapp.com"
+            database-url="https://dev-school-labs.firebaseio.com"
+            api-key="AIzaSyDZYKDF1nTRl4gq-zLZ7qa_m1Yy2-Lrutk">
+        </firebase-app>
+
+        <app-location route="{{route}}"></app-location>
+        <app-route
+            route="{{route}}"
+            pattern="/:page"
+            data="{{routeData}}"
+            tail="{{subRoute}}">
+        </app-route>
+
+        <iron-pages selected=[[page]] attr-for-selected="name">
+            <dev-school-labs-dashboard name="dashboard" route="{{subRoute}}"></dev-school-labs-dashboard>
+            <dev-school-labs-detail name="codelabs" route="{{subRoute}}"></dev-school-labs-detail>
+        </iron-pages>
+    </template>
+    <script>
+        Polymer({
+            is: 'dev-school-labs-app',
+
+            properties: {
+                page: {
+                    type: String,
+                    reflectToAttribute: true
+                }
+            },
+
+            observers: [
+                '_routePageChanged(routeData.page)'
+            ],
+
+            created: function () {
+                this.removeAttribute('unresolved');
+            },
+
+            _routePageChanged: function (page) {
+                this.page = page || 'dashboard';
+            }
+        });
+    </script>
+</dom-module>

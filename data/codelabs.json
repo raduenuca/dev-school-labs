@@ -3,16 +3,16 @@
         "category": "About",
         "slug": "about",
         "title": "About Codelabs",
-        "updated": "2017-01-05T13:42:41Z",
+        "updated": "2017-03-27T23:35:41Z",
         "author": "Radu Enuca",
         "duration": 0,
         "tags": ""
     },
     {
         "category": "Web",
-        "slug": "html5-rocks",
-        "title": "HTML5 Rocks!!!",
-        "updated": "2017-01-05T13:42:41Z",
+        "slug": "front-end-foundations",
+        "title": "Front-end Foundations",
+        "updated": "2017-03-27T23:40:00Z",
         "author": "Radu Enuca",
         "duration": 60
     },

@@ -29,7 +29,7 @@
         <!--<meta name="msapplication-TileImage" content="images/codelabs-icon-128.png">-->
 
 
-        <link rel="import" href="src/dev-school-labs.html" async>
+        <link rel="import" href="/src/dev-school-labs-app.html" async>
 
         <style>
             body {
@@ -42,7 +42,7 @@
             }
 
             /*!* styling for render while resources are loading *!*/
-            dev-school-labs[unresolved] {
+            dev-school-labs-app[unresolved] {
                 display: block;
                 min-height: 101vh;
                 line-height: 68px;
@@ -134,12 +134,12 @@
         </style>
     </head>
     <body>
-        <dev-school-labs unresolved>
+        <dev-school-labs-app unresolved>
             <div id="loaderwrap">
                 <div>Dev{School} Labs</div>
                 <div class="loader"></div>
             </div>
-        </dev-school-labs>
+        </dev-school-labs-app>
 
         <script>
             Polymer = {lazyRegister: true, dom: 'shadow'};

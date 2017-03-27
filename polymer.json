@@ -1,6 +1,6 @@
 {
     "entrypoint": "index.html",
-    "shell": "src/dev-school-labs.html",
+    "shell": "src/dev-school-labs-app.html",
     "sources": [
         "src/**/*",
         "data/**/*",

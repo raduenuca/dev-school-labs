@@ -19,14 +19,11 @@
 <link rel="import" href="../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 
-<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
-<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
-
 <link rel="import" href="dev-school-labs-icon.html">
 <link rel="import" href="dev-school-labs-login.html">
 <link rel="import" href="dev-school-labs-card.html">
 
-<dom-module id="dev-school-labs">
+<dom-module id="dev-school-labs-dashboard">
     <template>
         <style is="custom-style">
             :host {
@@ -264,12 +261,6 @@
             /*}*/
         </style>
 
-        <firebase-app
-            auth-domain="dev-school-labs.firebaseapp.com"
-            database-url="https://dev-school-labs.firebaseio.com"
-            api-key="AIzaSyDZYKDF1nTRl4gq-zLZ7qa_m1Yy2-Lrutk">
-        </firebase-app>
-
         <iron-ajax auto url="/data/codelabs.json" last-response="{{_codeLabs}}"></iron-ajax>
 
         <app-drawer-layout fullbleed force-narrow>
@@ -348,10 +339,7 @@
     </template>
     <script>
         Polymer({
-            is: 'dev-school-labs',
-            created: function () {
-                this.removeAttribute('unresolved');
-            }
+            is: 'dev-school-labs-dashboard'
         });
     </script>
 </dom-module>

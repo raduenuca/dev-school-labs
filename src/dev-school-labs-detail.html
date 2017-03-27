@@ -1,0 +1,37 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="labs/about/about.html">
+<link rel="import" href="labs/front-end-foundations/front-end-foundations.html">
+
+<dom-module id="dev-school-labs-detail">
+    <template>
+        <style></style>
+        <app-route
+            route="{{route}}"
+            pattern="/:codelab"
+            data="{{routeData}}">
+        </app-route>
+
+        <iron-pages selected=[[routeData.codelab]] attr-for-selected="name" fallback-selection="404">
+            <div name="404">Mai baga o fisa</div>
+            <codelab-about name="about"></codelab-about>
+            <codelab-front-end-foundations name="front-end-foundations"></codelab-front-end-foundations>
+            <div name="javascript-the-good-parts">The Good, the Bad and the Ugly</div>
+            <div name="polymer">New kid in town</div>
+        </iron-pages>
+    </template>
+    <script>
+        Polymer({
+            is: 'dev-school-labs-detail',
+            properties: {
+                route: {
+                    type: Object
+                }
+            }
+        });
+    </script>
+</dom-module>

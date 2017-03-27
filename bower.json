@@ -1,6 +1,6 @@
 {
   "name": "dev-school-labs",
-  "verion": "0.0.4",
+  "verion": "0.0.5",
   "description": "Code labs project for DevSchool",
   "main": "index.html",
   "homepage": "https://github.com/raduenuca/dev-school-labs",
@@ -36,6 +36,8 @@
     "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^1.1.0",
     "iron-image": "PolymerElements/iron-image#^1.2.5",
     "paper-menu-button": "PolymerElements/paper-menu-button#^1.5.2",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3"
+    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.8",
+    "app-route": "PolymerElements/app-route#^0.9.3"
   }
 }
