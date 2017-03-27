@@ -11,6 +11,7 @@
     ],
     "extraDependencies": [
         "manifest.json",
+        "sw-precache-config.js",
         "bower_components/webcomponentsjs/webcomponents-lite.min.js"
     ],
     "lint": {
