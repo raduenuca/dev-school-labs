@@ -14,7 +14,7 @@
     DONE - Show picture
     DONE - create login component
 - Labs:
-    - Get Labs from json
+    DONE - Get Labs from json
     - Get Labs from firebase
 - Refactor
     DONE - Use Code labs from my Github (the forked one)

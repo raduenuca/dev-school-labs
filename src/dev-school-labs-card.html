@@ -23,12 +23,17 @@
 
             /*Not sure if this works from inside here*/
             /*:host:nth-of-type(3n) {*/
-                /*margin-right: 0;*/
+            /*margin-right: 0;*/
             /*}*/
 
             /*Change with iron-icon*/
             img {
                 margin-right: 4px;
+            }
+
+            a {
+                text-decoration: none;
+                color: currentcolor;
             }
 
             .card-header {
@@ -117,9 +122,9 @@
             }
 
             /*@media (min-width: 768px) {*/
-                /*:host {*/
-                    /*min-height: 250px;*/
-                /*}*/
+            /*:host {*/
+            /*min-height: 250px;*/
+            /*}*/
             /*}*/
 
             @media (min-width: 768px) {
@@ -180,7 +185,9 @@
         </div>
         <div class="description">[[title]]</div>
         <div class="card-footer">
-            <paper-button tabindex="0" animated elevation="0">Start</paper-button>
+            <a href$="[[url]]" tabindex="-1">
+                <paper-button tabindex="0" animated elevation="0">Start</paper-button>
+            </a>
             <div>
                 <template is="dom-if" if="[[author]]">
                     <div class="card-author">[[author]]</div>
@@ -188,6 +195,7 @@
                 <div class="card-updated">Updated [[_getDateUpdated(updated)]]</div>
             </div>
         </div>
+        </a>
     </template>
     <script>
         Polymer({

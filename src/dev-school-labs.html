@@ -9,6 +9,7 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
@@ -275,6 +276,8 @@
             on-error="showError">
         </firebase-auth>
 
+        <iron-ajax auto url="../data/codelabs.json" last-response="{{_codeLabs}}"></iron-ajax>
+
         <app-drawer-layout fullbleed force-narrow>
             <app-drawer swipe-open>
                 drawer-content
@@ -327,14 +330,17 @@
                         </paper-dropdown-menu>
                     </div>
                     <div id="cards" class="site-width">
-                        <dev-school-labs-card category="About" title="About Codelabs"
-                                              updated="2017-01-05T13:42:41Z"></dev-school-labs-card>
-                        <dev-school-labs-card category="Web" title="HTML5 Rocks!!!" updated="2017-01-05T13:42:41Z"
-                                              author="Radu Enuca" duration="60"></dev-school-labs-card>
-                        <dev-school-labs-card category="Web" title="JavaScript - The Good Parts"
-                                              updated="2017-01-05T13:42:41Z" duration="240"></dev-school-labs-card>
-                        <dev-school-labs-card category="Web" title="Polymer" updated="2017-01-05T13:42:41Z"
-                                              duration="12"></dev-school-labs-card>
+                        <template is="dom-repeat" items="[[_codeLabs]]" as="codeLab">
+                            <dev-school-labs-card
+                                url="/codelabs/[[codeLab.slug]]"
+                                category="[[codeLab.category]]"
+                                title="[[codeLab.title]]"
+                                updated="[[codeLab.updated]]"
+                                author="[[codeLab.author]]"
+                                tags="[[codeLab.tags]]"
+                                duration="[[codeLab.duration]]">
+                            </dev-school-labs-card>
+                        </template>
                     </div>
                 </div>
 
