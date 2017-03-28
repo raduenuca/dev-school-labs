@@ -7,9 +7,9 @@
 <dom-module id="codelab-front-end-foundations">
     <template>
         <google-codelab title="Front-end Foundations"
-                        feedback-link="https://github.com/googlecodelabs"
+                        feedback-link="https://gitter.im/devschool-ing/devschool-2017"
                         environment="web"
-                        last-updated="2016-07-18">
+                        last-updated="2017-03-28">
             <google-codelab-step label="Overview" duration="0">
                 <p>Learn the fundamentals of HTML and CSS, while building a strong foundation for more advanced
                     front-end development.</p>
@@ -61,6 +61,8 @@
                 <h3>1.1 Marking Up Headings</h3>
                 <p>We've been hired to create a home page for Open Source Records. They've only got two bands on their roster, but they are growing fast, so let's get started!</p>
 
+                <h4>Task</h4>
+
                 <ol>
                     <li>On this page, the record label's name - <strong>Open Source Records</strong> - is the most important content, so mark it up with the appropriate tag.</li>
                     <li>The name of the band - <strong>The Prependers</strong> - is the next most important content, so mark it up with the appropriate tag.</li>
@@ -72,6 +74,8 @@
 
                 <h3>1.2 Marking Up Lists</h3>
                 <p>We just added the band members and song titles to the page. Decide the best tags to mark up that content, and don't forget to nest and indent tags when necessary!</p>
+
+                <h4>Task</h4>
 
                 <ol>
                     <li>Mark up the list of band members using the appropriate tag(s).</li>
@@ -123,6 +127,8 @@
                 <h2>HTML links</h2>
 
                 <h3>1.3 Site Menu</h3>
+
+                <h4>Task</h4>
 
                 <ol>
                     <li>Create an unordered list with three list items: <code>About</code>, <code>Bands</code>, and <code>Contact</code> that is in between the main site name and the band's name (in both files)</li>
@@ -195,6 +201,8 @@
 
                 <p>We've done a good job structuring the content of our page with the right HTML tags, but the way those tags look is pretty boring right now. Let's start fixing that!</p>
 
+                <h4>Task</h4>
+
                 <p>Inside <code>prependers-band.html</code> file:</p>
                 <ol>
                     <li>Write a CSS rule that selects every <code>a</code> tag and removes the underline from the text using the <code>text-decoration</code> property. Also change their <code>color</code> to <code>darkblue</code>.</li>
@@ -208,6 +216,8 @@
 
                 <h3>2.2 Changing to Hex Colors</h3>
                 <p>Convert the colors on our page to hex.</p>
+
+                <h4>Task</h4>
 
                 <ol>
                     <li>Set the color of the <code>h1</code> and <code>h2</code> text to the hexadecimal version of <code>black</code>.</li>
@@ -229,6 +239,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
     margin: 0;
 }</code></pre>
 
+                <h4>Task</h4>
+
                 <ol>
                     <li>Adjust the <code>h1</code> tag so there's <code>15px</code> of <code>margin-bottom</code> space between the <strong>Open Source Records</strong> header and the site navigation.</li>
                     <li>Adjust the <code>h2</code> tag so there's <code>15px</code> of <code>margin-top</code> space between the band's name and site navigation.</li>
@@ -241,6 +253,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
 
                 <h3>1.4 Fixing Prependers Styles</h3>
                 <p>Copy the styles you wrote for the Regular Expressionists page over to prependers-band.html, and see some issues popping up. Go through each of these tasks and fix up some of those issues.</p>
+
+                <h4>Task</h4>
 
                 <ol>
                     <li>
@@ -264,6 +278,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
                 <p>We've got some cool CSS and we'd like to make it available to every page on our site. It doesn't make sense to copy that CSS <code>&lt;style&gt;</code> block to every page, because that means we'll have to update all of them individually whenever we make a change.</p>
                 <p>Instead, let's move our CSS to a new file and link that to each page so our CSS is all in one spot.</p>
 
+                <h4>Task</h4>
+
                 <ol>
                     <li>Move all of the CSS in <code>prependers-band.html</code> over to a new file named <code>main.css</code>.</li>
                     <li>Replace the <code>style</code> tag in <code>prependers-band.html</code> with a link tag that loads <code>main.css</code>.</li>
@@ -273,6 +289,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
                 <h3>3.2 Fixing The Site Navigation</h3>
                 <p>We can use class attributes applied to HTML tags so they can be specifically targeted in CSS.</p>
                 <p>Let's organize our HTML and CSS styles with some classes.</p>
+
+                <h4>Task</h4>
 
                 <ol>
                     <li>The site navigation is a perfect candidate for adding a class. Add a <code>class</code> attribute to the unordered list, and set the name of it to <code>nav</code>.</li>
@@ -290,6 +308,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
                 <p>In <code>regular-band.html</code>, the tour dates on this page are another great spot to use classes.</p>
                 <p>We don't need to add a class to the <code>&lt;ul&gt;</code> that contains the tour dates, but we do need a way to access the date/time paragraph tag and the concert location paragraph tag separately.</p>
 
+                <h4>Task</h4>
+
                 <ol>
                     <li>Add a class of <code>day-time</code> to each paragraph tag that contains a date and time.</li>
                     <li>Add a class of <code>concert-location</code> to each paragraph tag that contains a location.</li>
@@ -304,6 +324,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
 
                 <h3>3.4 Page Divisions</h3>
                 <p>t would be great to style the page header differently from the rest of the content, so let's add some divisions and classes to help us do that.</p>
+
+                <h4>Task</h4>
 
                 <ol>
                     <li>Wrap the <strong>Open Source Records</strong> header and the site navigation inside of a <code>div</code> container, and give that tag a <code>class</code> of <code>header</code>.</li>
@@ -330,6 +352,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
                 <p>This div-with-a-class thing is pretty useful - and it looks like there's another place we can use it too.</p>
                 <p>Our designers want a <code>dashed</code> border around each of the albums and their track listings, so we need to group the <code>h4</code> and <code>ol</code> tags that contain each album's song list.</p>
 
+                <h4>Task</h4>
+
                 <ol>
                     <li>
                         <p>There's information about two albums, and each album consists of an <code>h4</code> tag and an ordered list.</p>
@@ -351,6 +375,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
                 <h3>3.6 Centering Content</h3>
                 <p>Right now all of our content is aligned to the left of the screen, but it probably makes sense for some of this stuff to be centered on the page.</p>
 
+                <h4>Task</h4>
+
                 <ol>
                     <li>Center the <code>content-section</code> division that contains all of the page's main content.</li>
                     <li>Align <strong>The Prependers</strong> <code>h2</code> to the <code>center</code> inside the main content section.</li>
@@ -363,6 +389,8 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
                 <h3>3.7 Cleaning Up The Bands Page</h3>
                 <p>The band pages are starting to look really good, but we've got a new problem. When we click back over to <code>bands.html</code>, the list of bands doesn't look very good even when we wrap that content in <code>div</code> containers with <code>.header</code> and <code>.content-section</code> classes.</p>
                 <p>This is because most of our layout styles on the band pages were specific to classes that aren't yet on <code>bands.html</code>.</p>
+
+                <h4>Task</h4>
 
                 <ol>
                     <li>Start by adding a class of <code>bands-list</code> to the unordered list of bands.</li>
@@ -385,24 +413,190 @@ html, body, h1, h2, h3, h4, ul, ol, li, p, a {
                     </li>
                 </ol>
             </google-codelab-step>
-            <google-codelab-step label="Images" duration="0">
+            <google-codelab-step label="Images" duration="30">
                 <h2>Content Images</h2>
 
                 <h3>4.1 Adding Content Images</h3>
+                <p>Let's update The Prependers page to include images for their album covers.</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>
+                        <p>Create an image element in between the <em>album name</em> and <em>song list</em> for the <strong>Top, Right, Bottom, Left</strong> album.</p>
+                        <p>Make sure the image has an <code>alt</code> attribute with this text: <code>"Top, Right, Bottom, Left album cover"</code>.</p>
+                        <p style="display:flex; justify-content: center; align-items: center;"><img src="/images/labs/front-end-foundations/top-right-bottom-left.jpg" style="width:120px; height:120px"></p>
+                    </li>
+                    <li>
+                        <p>Create an image element in between the album name and song list for the <strong>Opacity Zero</strong> album.</p>
+                        <p>Make sure the image has an <code>alt</code> attribute with this text: <code>"Opacity Zero album cover"</code>.</p>
+                        <p style="display:flex; justify-content: center; align-items: center;"><img src="/images/labs/front-end-foundations/opacity-zero.jpg" style="width:120px; height:120px;"></p>
+                    </li>
+                    <li>
+                        <p>While we're adding content images, let's go ahead and add band images to the <code>bands.html</code> page. Insert the images before the heading tags inside of each list item for <strong>The Prependers</strong> and <strong>Regular Expressionists</strong>.</p>
+                        <p>Each band has their own image that is located in the <code>images</code> folder - and don't forget to add an <code>alt</code> description for each image!</p>
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img src="/images/labs/front-end-foundations/prependers-logo.jpg" style="width:120px; height:120px; margin-right:10px;">
+                            <img src="/images/labs/front-end-foundations/regular-logo.jpg" style="width:120px; height:120px;">
+                        </p>
+                    </li>
+                </ol>
+
                 <h3>4.3 Updating The Site Logo</h3>
+                <p>Our designers sent over a new <strong>Open Source Records logo</strong>, so instead of just writing the record label name with simple text, let's replace that text with an image.</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>
+                        <p>Replace the <code>h1</code> tag with an image element that displays <code>osr-logo.png</code>. And don't forget to add an alt attribute to specify some alternate text too.</p>
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img src="/images/labs/front-end-foundations/osr-logo.png" style="width:350px; height:125px;">
+                        </p>
+                    </li>
+                    <li>
+                        <p>Removing that <code>h1</code> tag and replacing it with a single image is what we wanted to do, but we've created several problems that will require us to modify our HTML and CSS.</p>
+
+                        <p>First, our logo text was centered, but our logo image is not. That's because our <code>h1</code> heading tag was block-level, but our <code>img</code> tag is inline-level.</p>
+
+                        <p>Update the <code>main.css</code> file by adding a CSS selector for our <code>.header img</code> and set the <code>display</code> property to <code>block</code>.</p>
+                    </li>
+                    <li>
+                        Now that our image is a block-level tag, we can center it by using auto margins on the left and right sides. Set the <code>margin</code> property to <code>0 auto 15px auto</code>, which will also add <code>15px</code> of space between the logo and the site navigation.
+                    </li>
+                </ol>
+
                 <h3>4.3 Fixing The Heading Tags</h3>
+                <p>The next problem is a trickier one. In the last challenge, we removed the <code>h1</code> tag and replaced it with an <code>img</code> tag. That's fine, but it also means that our highest level heading right now is an <code>h2</code> tag, which isn't OK.</p>
+
+                <p>Each page should have one <code>h1</code> tag, and the rest of the content should be organized with <code>h2</code> and <code>h3</code> tags. That means we need to shift our existing heading tag numbers down by one, and then update our CSS selectors to reflect that shift.</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>Start the fix off in <code>bands.html</code>. Change any <code>h2</code> tags to <code>h1</code>, and any <code>h3</code> tags to <code>h2</code>.</li>
+                    <li>
+                        <p>Do the same thing for the heading tags on <code>prependers-band.html</code>.</p>
+                        <p>The band's name should be marked up with the <code>h1</code> tag, followed by the page sections with <code>h2</code> tags, and then the album names with <code>h3</code> tags.</p>
+                    </li>
+                    <li>
+                        <p>Fix <code>regular-band.html</code>, <code>about.html</code> and <code>contact.html</code>, also make the heading shift in your CSS. Remember, what was an <code>h2</code> is now an <code>h1</code>, and so on.</p>
+
+                        <p>Delete the existing <code>h1</code> selector and rules, and then update the CSS selectors in <code>main.css</code> to reflect the new heading tag organization.</p>
+                    </li>
+                </ol>
 
                 <h2>Background Images</h2>
 
-                <h3>4.4 Styling CSS Backgrounds</h3>
-                <h3>4.5 Adding CSS Backgrounds</h3>
-                <h3>4.6 Writing Text on CSS Backgrounds</h3>
+                <h3>4.4 Adding CSS Backgrounds</h3>
+                <p>
+                    Now we're going to really spruce up the <strong>Open Source Records</strong> site by adding backgrounds with CSS.
+                </p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>
+                        <p>Let's start by adding a background to the body of the page.</p>
+                        <p>For the <code>body</code> selector, use the CSS shorthand <code>background</code> property to set the following value: <code>#555555 url(images/bg-tile.png)</code></p>
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img src="/images/labs/front-end-foundations/bg-tile.png" style="width:320px; height:320px;">
+                        </p>
+                        <p>We're using the default values for position and repeat, so we don't need to set those separately.</p>
+                    </li>
+                    <li>
+                        <p>Next, let's add a background to the header section.</p>
+                        <p>For the <code>.header</code> selector, use the CSS shorthand <code>background</code> property to set the following value: <code>#242424 url(images/bg-header.png) top center no-repeat</code></p>
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img src="/images/labs/front-end-foundations/bg-header.png" style="width:480px; height:188px;">
+                        </p>
+                    </li>
+                    <li>
+                        <p>Next, let's add a background to the main content section of the page.</p>
+                        <p>For the <code>.content-section</code> selector, use the CSS shorthand <code>background</code> property to set the following value: <code>#dddddd url(images/bg-content.png)</code></p>
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img src="/images/labs/front-end-foundations/bg-content.png" style="width:50px; height:50px;">
+                        </p>
+                        <p>We're using the default values for position and repeat, so we don't need to set those separately.</p>
+                    </li>
+                    <li>
+                        <p>Now our links are too hard to read with the darker background.</p>
+                        <p>For the <code>.nav</code> a selector, use the CSS <code>color</code> property to set the following value: <code>#ee932a</code></p>
+                    </li>
+                </ol>
+
+                <h3>4.5 Writing Text on CSS Backgrounds</h3>
+                <p>
+                    <strong>The Prependers</strong> are putting out a new album soon, and <strong>Open Source Records</strong> wants to feature them on the <strong>About</strong> page. We'll do that with a container that shows a background image.
+                </p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>
+                        Under the paragraph in the content section, add an empty <code>&lt;div&gt;</code> container and give it a class of <code>recording-now</code>.
+                    </li>
+                    <li>
+                        Switch over to <code>main.css</code> and select the new container with the <code>.recording-now</code> class selector. Set the dimensions of that container with a <code>width</code> of <code>440px</code> and a <code>height</code> of <code>200px</code>.
+                    </li>
+                    <li>
+                        <p>Now, add a <code>background</code> to that container with the following value: <code>#ffffff url(images/prependers-recording.jpg) top left no-repeat</code></p>
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img src="/images/labs/front-end-foundations/prependers-recording.jpg" style="width:440px; height:201px;">
+                        </p>
+                    </li>
+                    <li>
+                        In the <code>about.html</code> file, create a <code>&lt;p&gt;</code> tag inside of that <code>.recording-now</code> container with the text <code>Recording Album Now!</code>.
+                    </li>
+                    <li>
+                        Finally, select the <code>.recording-now p</code> and set the <code>font-size</code> to <code>28px</code>. You can also experiment with different <code>color</code> values and see the changes in the Preview section.
+                    </li>
+                </ol>
+
                 <h3>4.6 Bordered Background Images</h3>
+                <p>Our "recording now" image is showing up, but it feels a little out of place. Maybe it will look a little better if we add a border.</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>For the <code>.recording-now</code> selector, add a <code>border</code> with a <code>1px solid</code> value.</li>
+                    <li>Now, think about what property you can use to put <code>4px</code> of space between the border and the content.</li>
+                    <li>
+                        <p>Much better, but our image isn't centered inside of the container anymore. As a result, the border is showing up on the right and bottom, but not at the top and left.</p>
+                        <p>Adjust the <code>background</code> property so that it's set to <code>center center</code> instead of <code>top left</code>, and our image should appear directly in the center of the container.</p>
+                    </li>
+                </ol>
 
                 <h2>Floating Images</h2>
 
                 <h3>4.7 Floating Images 1</h3>
+                <p>If we look back at <code>bands.html</code>, it's a little annoying that the band image appears above the band name. Ideally we want the band image to appear directly to the left of the band name.</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>Use the <code>.bands-list img</code> selector to float the images so the <em>band image</em> appears to the <code>left</code> of the <em>band name</em>.</li>
+                    <li>
+                        <p>Uh oh - that doesn't look right. The <code>float</code> is working, but the display isn't what we expected.</p>
+                        <p>To start fixing this, let's put some padding between the image and the band name.</p>
+                        <p>For the <code>.bands-list img</code> selector, add a <code>padding-right</code> property with a value of <code>15px</code>.</p>
+                    </li>
+                    <li>
+                        <p>To finish fixing this, the band list item height needs to be set to at least the height of the floated image.</p>
+                        <p>In this case, the floated images are <code>120px</code> high, so update the <code>.bands-list li</code> selector to have a <code>height</code> with a value of <code>120px</code>.</p>
+                    </li>
+                </ol>
+
                 <h3>4.8 Floating Images 2</h3>
+                <p>This <code>float</code> thing is pretty cool, and it seems like we can use it on <code>prependers-band.html</code> to put each album image on the same line as the album name.</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>
+                        Write a selector that targets any <code>img</code> elements in the <code>album</code> container, and <code>float</code> them so the <em>album image</em> appears to the <code>right</code> of the album name.
+                    </li>
+                </ol>
             </google-codelab-step>
             <google-codelab-step label="Fonts and Forms" duration="0">
                 <h2>Adjusting font styles</h2>
