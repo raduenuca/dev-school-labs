@@ -14,22 +14,6 @@
         "title": "Front-end Foundations",
         "updated": "2017-03-27T23:40:00Z",
         "author": "Radu Enuca",
-        "duration": 60
-    },
-    {
-        "category": "Web",
-        "slug": "javascript-the-good-parts",
-        "title": "JavaScript - The Good Parts",
-        "updated": "2017-01-05T13:42:41Z",
-        "author": "Radu Enuca",
-        "duration": 240
-    },
-    {
-        "category": "Web",
-        "slug": "polymer",
-        "title": "Polymer",
-        "updated": "2017-01-05T13:42:41Z",
-        "author": "Radu Enuca",
-        "duration": 12
+        "duration": 150
     }
 ]
