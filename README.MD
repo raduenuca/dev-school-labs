@@ -20,6 +20,10 @@
     DONE - Use Code labs from my Github (the forked one)
     DONE - Manifest JSON & stuff
     - ...
-
+- Fix
+    - Fix 3.3 and 3.7
+- Proiect (event planner):
+    - AngularJs
+    - Polymer
     
 "swPrecacheConfig": "sw-precache-config.js",
