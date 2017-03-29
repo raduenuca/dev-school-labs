@@ -2,28 +2,30 @@
 
 ##TODO
 
-- Create app layout:
-    DONE - Use app-drawer-layout open on big screens and closed on small screens
-    DONE - Header and footer
-- Cards list
-    DONE - KISS: app-grid 3,2,1 colons with sorting and filtering. Done like Google in the end
-- Authentication
-    DONE - GitHub
-    DONE - Save user
+- UI:
+    - Define a json with categories
+    DONE - Add icons for categories
+    - Make images part of the lab (base64 or inside the folder)
+- Filtering & sorting
+    DONE - Implement sorting
+    - Implement filtering
+- Authentication & Authorization
     - Authorize users
-    DONE - Show picture
-    DONE - create login component
 - Labs:
-    DONE - Get Labs from json
     - Get Labs from firebase
 - Refactor
-    DONE - Use Code labs from my Github (the forked one)
-    DONE - Manifest JSON & stuff
     - ...
-- Fix
-    - Fix 3.3 and 3.7
+- Issues
+    - Fix 3.3 and 3.7 & 4.4.4?
 - Proiect (event planner):
     - AngularJs
     - Polymer
-    
-"swPrecacheConfig": "sw-precache-config.js",
+- Next labs:
+    - Package managers:
+        - Nodejs and NPM
+        - Bower
+    - Task runners: Gulp
+    - Egghead one (AngularJs)
+    - ToDo List (AngularJs):
+        - The old todo list but as a lab
+    - ECMA Script 2015/2016 ?!? 

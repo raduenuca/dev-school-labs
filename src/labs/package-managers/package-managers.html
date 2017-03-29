@@ -1,0 +1,578 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/codelab-components/google-codelab-elements.html">
+
+<dom-module id="codelab-package-managers">
+    <template>
+        <google-codelab title="Package Managers"
+                        feedback-link="https://gitter.im/devschool-ing/devschool-2017"
+                        environment="web"
+                        last-updated="2017-03-29">
+            <google-codelab-step label="Overview" duration="0">
+                <p>
+                    Package managers simplify installing and updating project dependencies, which are libraries that an
+                    web application uses: Bootstrap, AngularJs, Polymer, everything that is used on your site and isn't
+                    written by you.
+                </p>
+                <p>
+                    Browsing all the library websites, downloading and unpacking the archives, copying files into the
+                    projects — all of this is replaced with a few commands in the terminal.
+                </p>
+            </google-codelab-step>
+            <google-codelab-step label="NodeJs" duration="10">
+                <h2>About</h2>
+                <p>
+                    Node.js makes it possible to write applications in JavaScript on the server. It’s built on the V8
+                    JavaScript runtime and written in C++ — so it’s fast. Originally, it was intended as a server
+                    environment for applications, but developers started using it to create tools to aid them in local
+                    task automation. Since then, a whole new ecosystem of Node-based tools (such as Grunt and Gulp) has
+                    evolved to transform the face of front-end development.
+                </p>
+
+                <p>
+                    To make use of these tools (or packages) in Node.js we need to be able to install and manage them in
+                    a useful way. This is where npm, the node package manager, comes in. It installs the packages you
+                    want to use and provides a useful interface to work with them. But before we can start using npm, we
+                    first have to install Node.js on our system.
+                </p>
+
+                <h2>Installation</h2>
+                <p>
+                    Head to the Node.js <a href="https://nodejs.org/en/download/">download page</a> and grab the version
+                    you need. There are Windows and Mac installers available, as well as pre-compiled Linux binaries and
+                    source code. For Linux, you can also install Node via the package manager.
+                </p>
+
+                <p>
+                    For this code lab we are going to use version: v6.10.x.
+                </p>
+
+                <p>Let’s see where node was installed and check the version.</p>
+
+                <pre>
+$ node --version
+v6.10.1</pre>
+
+                <p>To verify that your installation was successful let’s give Node’s REPL a try.</p>
+
+                <pre>
+$ node
+> 1 + 1
+2
+> console.log('Node is running');
+Node is running
+undefined
+> .help
+.break    Sometimes you get stuck, this gets you out
+.clear    Alias for .break
+.editor   Enter editor mode
+.exit     Exit the repl
+.help     Print this help message
+.load     Load JS from a file into the REPL session
+.save     Save all evaluated commands in this REPL session to a file
+> .exit</pre>
+            </google-codelab-step>
+            <google-codelab-step label="NPM" duration="20">
+                <h2>About</h2>
+                <p>
+                    <code>npm</code> is the package manager for JavaScript and the world’s largest software registry.
+                </p>
+
+                <p>
+                    <code>npm</code> can install packages in local or global mode. In local mode it installs the package
+                    in a node_modules folder in your parent working directory
+                </p>
+
+                <h2>Installation</h2>
+                <p>
+                    <code>npm</code> comes installed with NodeJs by default, unless you installed the stand alone
+                    version
+                </p>
+
+                <p>Let’s the version.</p>
+
+                <pre>
+$ npm --version
+v3.10.10</pre>
+
+                <h2>Installing Packages in Global Mode</h2>
+
+                <p>
+                    At the moment we only have one package installed globally — that is the
+                    <node>npm</node>
+                    package itself. So let’s change that and install <a
+                    href="https://www.npmjs.com/package/live-server">live-server</a> (a little development server with
+                    live reload capability). We use the --global flag, but this can be abbreviated to -g.
+                </p>
+
+                <pre>
+$ npm install live-server --global
+`-- live-server@1.2.0
+  +-- chokidar@1.6.1
+  | +-- anymatch@1.3.0
+  | | +-- arrify@1.0.1
+  | | `-- micromatch@2.3.11
+  | |   +-- arr-diff@2.0.0
+  | |   | `-- arr-flatten@1.0.1
+  | |   +-- array-unique@0.2.1
+  | |   +-- braces@1.8.5
+  | |   | +-- expand-range@1.8.2
+  | |   | | `-- fill-range@2.2.3
+  | |   | |   +-- is-number@2.1.0
+  | |   | |   +-- isobject@2.1.0
+  | |   | |   +-- randomatic@1.1.6
+  | |   | |   `-- repeat-string@1.6.1
+  | |   | +-- preserve@0.2.0
+  | |   | `-- repeat-element@1.1.2
+  | |   +-- expand-brackets@0.1.5
+  | |   | `-- is-posix-bracket@0.1.1
+  | |   +-- extglob@0.3.2
+  | |   +-- filename-regex@2.0.0
+  | |   +-- kind-of@3.1.0
+  | |   | `-- is-buffer@1.1.5
+  | |   +-- normalize-path@2.1.0
+  | |   | `-- remove-trailing-separator@1.0.1
+  | |   +-- object.omit@2.0.1
+  | |   | +-- for-own@0.1.5
+  | |   | | `-- for-in@1.0.2
+  | |   | `-- is-extendable@0.1.1
+  | |   +-- parse-glob@3.0.4
+  | |   | +-- glob-base@0.3.0
+  | |   | `-- is-dotfile@1.0.2
+  | |   `-- regex-cache@0.4.3
+  | |     +-- is-equal-shallow@0.1.3
+  | |     `-- is-primitive@2.0.0
+  | +-- async-each@1.0.1
+  | +-- glob-parent@2.0.0
+  | +-- inherits@2.0.3
+  | +-- is-binary-path@1.0.1
+  | | `-- binary-extensions@1.8.0
+  | +-- is-glob@2.0.1
+  | | `-- is-extglob@1.0.0
+  | +-- path-is-absolute@1.0.1
+  | `-- readdirp@2.1.0
+  |   +-- graceful-fs@4.1.11
+  |   +-- minimatch@3.0.3
+  |   | `-- brace-expansion@1.1.6
+  |   |   +-- balanced-match@0.4.2
+  |   |   `-- concat-map@0.0.1
+  |   +-- readable-stream@2.2.6
+  |   | +-- buffer-shims@1.0.0
+  |   | +-- core-util-is@1.0.2
+  |   | +-- isarray@1.0.0
+  |   | +-- process-nextick-args@1.0.7
+  |   | +-- string_decoder@0.10.31
+  |   | `-- util-deprecate@1.0.2
+  |   `-- set-immediate-shim@1.0.1
+  +-- colors@1.1.2
+  +-- connect@3.5.1
+  | +-- debug@2.2.0
+  | | `-- ms@0.7.1
+  | +-- finalhandler@0.5.1
+  | | `-- unpipe@1.0.0
+  | +-- parseurl@1.3.1
+  | `-- utils-merge@1.0.0
+  +-- cors@2.8.2
+  | `-- vary@1.1.1
+  +-- event-stream@3.3.4
+  | +-- duplexer@0.1.1
+  | +-- from@0.1.7
+  | +-- map-stream@0.1.0
+  | +-- pause-stream@0.0.11
+  | +-- split@0.3.3
+  | +-- stream-combiner@0.0.4
+  | `-- through@2.3.8
+  +-- faye-websocket@0.11.1
+  | `-- websocket-driver@0.6.5
+  |   `-- websocket-extensions@0.1.1
+  +-- http-auth@3.1.3
+  | +-- apache-crypt@1.2.1
+  | | `-- unix-crypt-td-js@1.0.0
+  | +-- apache-md5@1.1.2
+  | +-- bcryptjs@2.4.3
+  | `-- uuid@3.0.1
+  +-- morgan@1.8.1
+  | +-- basic-auth@1.1.0
+  | +-- debug@2.6.1
+  | | `-- ms@0.7.2
+  | +-- depd@1.1.0
+  | +-- on-finished@2.3.0
+  | | `-- ee-first@1.1.1
+  | `-- on-headers@1.0.1
+  +-- object-assign@4.1.1
+  +-- opn@4.0.2
+  | `-- pinkie-promise@2.0.1
+  |   `-- pinkie@2.0.4
+  +-- proxy-middleware@0.15.0
+  +-- send@0.15.1
+  | +-- debug@2.6.1
+  | +-- destroy@1.0.4
+  | +-- encodeurl@1.0.1
+  | +-- escape-html@1.0.3
+  | +-- etag@1.8.0
+  | +-- fresh@0.5.0
+  | +-- http-errors@1.6.1
+  | | `-- setprototypeof@1.0.3
+  | +-- mime@1.3.4
+  | +-- ms@0.7.2
+  | +-- range-parser@1.2.0
+  | `-- statuses@1.3.1
+  `-- serve-index@1.8.0
+    +-- accepts@1.3.3
+    | `-- negotiator@0.6.1
+    +-- batch@0.5.3
+    +-- http-errors@1.5.1
+    | `-- setprototypeof@1.0.2
+    `-- mime-types@2.1.15
+      `-- mime-db@1.27.0
+</pre>
+                <p>
+                    As you can see from the output, additional packages are installed — these are
+                    <code>live-server</code>’ dependencies.
+                </p>
+
+                <h2>Listing Global Packages</h2>
+
+                <p>
+                    We can list the global packages we have installed with the <code>npm list</code> command.
+                </p>
+
+                <pre>
+$ npm list --global
+`-- npm@3.7.5
+  +-- .........
+ -- live-server@1.2.0
+  +-- chokidar@1.6.1
+  | +-- anymatch@1.3.0
+  | | +-- arrify@1.0.1
+  | | `-- micromatch@2.3.11
+</pre>
+
+                <p>
+                    The output however, is rather verbose. We can change that with the <code>--depth=0</code> option.
+                </p>
+
+                <pre>
+$ npm list --g --depth=0
++-- live-server@1.2.0
++-- npm@3.10.10
+</pre>
+                <p>That’s better — just the packages we have installed along with their version numbers</p>
+
+                <p>You can install multiple packages at the same time by listing them with a space between them</p>
+
+                <pre>
+$ npm install -g package1 package2 ... packageN
+</pre>
+
+                <h2>Updating Packages</h2>
+
+                <p>The <code>npm</code> package is a little bit old.</p>
+                <p>We can update a package with the same command we used to install it</p>
+
+                <pre>
+$ npm install npm -g
+...
+$ npm --version
+4.0.5
+</pre>
+
+                <h2>Installing Packages in Local Mode</h2>
+                <p>
+                    Installing packages in local mode is done without the <code>--global</code> flag. The package will
+                    be installed in your parent working directory in a <code>node_modules</code> folder. Let’s create a
+                    project folder in our home directory:
+                </p>
+
+                <pre>
+$ mkdir project && cd project
+$ npm install underscore
+`-- underscore@1.8.3
+$ ls
+node_modules
+$ ls node_modules
+underscore
+</pre>
+                <h2>Listing Local Packages</h2>
+
+                <p>
+                    Just like global packages we can list local packages with the <code>npm list</code> command.
+                </p>
+
+                <pre>
+$ npm list
+`-- underscore@1.8.3
+</pre>
+                <p>As you can see we are able to install local packages wherever we want. This also means that we can
+                    create another directory and install a different version of underscore.</p>
+
+                <h2>Uninstalling Local Packages</h2>
+                <p><code>npm</code> is a package manager so it must be able to remove a package. Let’s assume that the
+                    current underscore package is causing us compatibility problems. We can remove the package and
+                    install an older version, like so:</p>
+
+                <pre>
+$ npm uninstall underscore
+- underscore@1.8.3 node_modules\underscore
+$ npm list
+C:\project
+`-- (empty)
+</pre>
+
+                <h2>Installing a Specific Version of a Package</h2>
+                <p>We can now install the underscore package in the version we want. We do that by using the
+                    <code>@</code> sign to append a version number.</p>
+
+                <pre>
+$ npm install underscore@1.8.2
+C:\project
+`-- underscore@1.8.2
+$ npm list
+C:\project
+`-- underscore@1.8.2
+</pre>
+
+                <h2>Searching for Packages</h2>
+                <p>We’ve used the <code>mkdir</code> command a couple of times in this tutorial. Is there a node package
+                    that does the same?</p>
+
+                <pre>
+$ npm search mkdir
+npm WARN Failed to read search cache. Rebuilding
+npm WARN Building the local index for the first time, please be patient
+NAME     | DESCRIPTION           | AUTHOR           | DATE       | VERSION  | KEYWORDS
+mkdir    | Directory creation…   | =joehewitt       | 2012-04-17 | 0.0.2    |
+fs-extra | fs-extra contains…    | =jprichardson…   | 2017-03-16 | 2.1.2    |
+mkpath   | Make all…             | =jrajav          | 2015-10-30 | 1.0.0    |
+mkdirp   | Recursively mkdir,…   | =substack        | 2015-05-14 | 0.5.1    |
+</pre>
+
+                <p>There is (<a href="https://www.npmjs.com/package/mkdirp">mkdirp</a>). Let’s install it.</p>
+
+                <pre>
+$ npm install mkdirp
+C:\project
+`-- mkdirp@0.5.1
+  `-- minimist@0.0.8
+</pre>
+
+                <p>Now create a file <code>mkdir.js</code>:</p>
+
+                <pre><code language="JavaScript">
+var mkdirp = require('node_modules/mkdirp');
+mkdirp('foo', function (err) {
+    if (err) console.error(err)
+    else console.log('Directory created!')
+});
+</code></pre>
+
+                <p>And run it from the terminal:</p>
+
+                <pre>
+$ node mkdir.js
+Directory created!
+$ ls
+foo/  mkdir.js  node_modules/
+</pre>
+
+                <h2>Managing Dependencies</h2>
+                <p>At the moment we only have two packages installed in our project directory, but that can grow very
+                    quickly. Installing dependencies by hand is unwieldy, so we can use a <code>package.json</code> file
+                    in our project directory to manage them instead. This can be created with the command <code>npm
+                        init</code></p>
+
+                <pre>
+λ npm init
+This utility will walk you through creating a package.json file.
+Press ^C at any time to quit.
+name: (project) demo
+version: (1.0.0)
+description: Demo of package.json
+entry point: (index.js) main.js
+test command:
+git repository:
+keywords:
+author: Radu Enuca
+license: (ISC)
+</pre>
+                <p>This creates the following file in our project root:</p>
+
+                <pre><code language="JavaScript">
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "Demo of package.json",
+  "main": "main.js",
+  "dependencies": {
+    "underscore": "^1.8.3",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Radu Enuca",
+  "license": "ISC"
+}
+</code></pre>
+
+                <p>If you want a quicker way to generate a <code>package.json</code> file use the following:</p>
+
+                <pre>$ npm init --yes</pre>
+
+                <p>A <code>package.json</code> file will be created and the name of your directory will be used for the
+                    name property.</p>
+
+                <p>You can also add <code>private: true</code> to prevent accidental publication of private repositories
+                    as well as suppressing any warnings generated when running <code>npm install</code>. Let’s create a
+                    new directory and use our <code>package.json</code> file to install our dependencies.</p>
+
+                <pre>
+$ mkdir demo
+$ cp package.json demo
+$ cd demo
+$ npm install
+$ npm list
+C:\project\demo
++-- mkdirp@0.5.1
+| `-- minimist@0.0.8
+`-- underscore@1.8.3
+</pre>
+
+                <p>
+                    That showed how easily we can install the packages we need in another directory based on our <code>package.json</code>
+                    file. But how do we keep it up to date when we install new packages? Well, we can use the <code>--save</code>
+                    flag.
+                </p>
+
+                <pre>
+$ npm install request --save
+$ npm list --depth=0
+C:\project\demo
++-- mkdirp@0.5.1
++-- request@2.81.0
+`-- underscore@1.8.3
+</pre>
+            </google-codelab-step>
+            <google-codelab-step label="Bower" duration="10">
+                <h2>About</h2>
+                <p>
+                    Bower is not the standard package manager for client-side JavaScript, but the most popular one:
+                    currently there are more than sixteen thousand packages.
+                </p>
+
+                <p>
+                    Bower doesn't prescribe to the user its own build system, or to the developer a method of including
+                    libraries (AMD, CommonJS, etc.) All Bower does is install the right versions of the packages that
+                    the project needs and their dependencies. In other words: it downloads source files for the right
+                    libraries and everything they need into a special folder. Everything else is up to the developer.
+                </p>
+
+                <h2>Installing Bower</h2>
+                <p>To work with Bower you'll need Node.js and git. Installation:</p>
+
+                <pre>$ npm install -g bower</pre>
+
+                <h2>Working with Packages</h2>
+                <p>Let's try to install something, for example AngularJs:</p>
+
+                <pre>
+$ bower install --save angular
+bower angular#*             not-cached https://github.com/angular/bower-angular.git#*
+bower angular#*                resolve https://github.com/angular/bower-angular.git#*
+bower angular#*               download https://github.com/angular/bower-angular/archive/v1.6.3.tar.gz
+bower angular#*                extract archive.tar.gz
+bower angular#*               resolved https://github.com/angular/bower-angular.git#1.6.3
+bower angular#^1.6.3           install angular#1.6.3
+bower                          no-json No bower.json file to save to, use bower init to create one
+
+angular#1.6.3 bower_components\angular</pre>
+
+                <p>This command will download the latest version of <code>AngularJs</code> into the <code>bower_components\angular</code>
+                    folder.</p>
+
+                <p>The <code>--save</code> flag tells Bower that it should save the package name and its version into
+                    the <code>bower.json</code> manifest file. In this file is a list of all dependencies of the project
+                    (packages installed with Bower) and other metadata required for creation of your own packages (more
+                    on this at the end of the article). With the package names it's possible to specify the version with
+                    which your project is guaranteed to work.</p>
+
+                <p>We don't have a file like that yet, which is what the line <code>No bower.json file to save to, use
+                    bower init to create one</code> in the log is about. Let's create it:</p>
+
+                <pre>$ bower init</pre>
+
+                <p>Bower will ask many questions, but until we want to register our package, answers to most of them
+                    don't matter, you can just press Enter.</p>
+
+                <p>The question
+                <p>set currently installed components as dependencies?</p> should be answered with <code>yes</code> —
+                all previously installed components (in our case it's jQuery) will be automatically placed in the
+                created JSON file. The question "would you like to mark this package as private which prevents it from
+                being accidentally published to the registry?" should also be answered "yes" — this will prevent
+                accidental publication of the package into the Bower registry.</p>
+                <pre>
+? name demo
+? description Demo of package.json
+? main file main.js
+? keywords
+? authors Radu Enuca
+? license ISC
+? homepage
+? set currently installed components as dependencies? Yes
+? add commonly ignored files to ignore list? Yes
+? would you like to mark this package as private which prevents it from being accidentally published to the registry? Yes</pre>
+
+                <p>It will create the following <code>bower.json</code> file in our project root folder</p>
+
+                <pre><code language="JavaScript">
+{
+  name: 'demo',
+  description: 'Demo of package.json',
+  main: 'main.js',
+  authors: [
+    'Radu Enuca'
+  ],
+  license: 'ISC',
+  homepage: '',
+  private: true,
+  ignore: [
+    '**/.*',
+    'node_modules',
+    'bower_components',
+    'test',
+    'tests'
+  ],
+  dependencies: {
+    angular: '^1.6.3'
+  }
+}
+</code></pre>
+
+                <p>Let's install another package:</p>
+
+                <pre>$ bower install --save bootstrap</pre>
+
+                <p>The <code>bower list</code> command shows a list of all installed packages.</p>
+
+<pre>
+$ bower list
+bower check-new     Checking for new versions of the project dependencies...
+demo C:\project\demo
+├── angular#1.6.3 (1.6.4-build.5345+sha.f403925 available)
+└─┬ bootstrap#3.3.7 extraneous (latest is 4.0.0-alpha.6)
+  └── jquery#3.2.1
+</pre>
+
+                <p>For uninstalling packages the <code>bower uninstall</code> command is used</p>
+            </google-codelab-step>
+        </google-codelab>
+    </template>
+    <script>
+        Polymer({
+            is: 'codelab-package-managers'
+        });
+    </script>
+</dom-module>

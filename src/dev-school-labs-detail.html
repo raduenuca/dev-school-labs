@@ -6,6 +6,9 @@
 
 <link rel="import" href="labs/about/about.html">
 <link rel="import" href="labs/front-end-foundations/front-end-foundations.html">
+<link rel="import" href="labs/package-managers/package-managers.html">
+<link rel="import" href="labs/gulp-introduction/gulp-introduction.html">
+<link rel="import" href="labs/todo-angularjs/todo-angularjs.html">
 
 <dom-module id="dev-school-labs-detail">
     <template>
@@ -16,12 +19,12 @@
             data="{{routeData}}">
         </app-route>
 
-        <iron-pages selected=[[routeData.codelab]] attr-for-selected="name" fallback-selection="404">
-            <div name="404">Mai baga o fisa</div>
+        <iron-pages selected=[[routeData.codelab]] attr-for-selected="name" fallback-selection="about">
             <codelab-about name="about"></codelab-about>
             <codelab-front-end-foundations name="front-end-foundations"></codelab-front-end-foundations>
-            <div name="javascript-the-good-parts">The Good, the Bad and the Ugly</div>
-            <div name="polymer">New kid in town</div>
+            <codelab-package-managers name="package-managers"></codelab-package-managers>
+            <codelab-todo-angularjs name="todo-angularjs"></codelab-todo-angularjs>
+            <codelab-gulp-introduction name="gulp-introduction"></codelab-gulp-introduction>
         </iron-pages>
     </template>
     <script>

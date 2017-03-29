@@ -9,11 +9,35 @@
         "tags": ""
     },
     {
-        "category": "Web",
+        "category": "HTML",
         "slug": "front-end-foundations",
         "title": "Front-end Foundations",
         "updated": "2017-03-27T23:40:00Z",
         "author": "Radu Enuca",
         "duration": 120
+    },
+    {
+        "category": "JavaScript",
+        "slug": "package-managers",
+        "title": "Package Managers",
+        "updated": "2017-03-29T17:05:00Z",
+        "author": "Radu Enuca",
+        "duration": 40
+    },
+    {
+        "category": "JavaScript",
+        "slug": "gulp-introduction",
+        "title": "Gulp Introduction",
+        "updated": "2017-03-29T17:30:00Z",
+        "author": "Radu Enuca",
+        "duration": 30
+    },
+    {
+        "category": "AngularJs",
+        "slug": "todo-angularjs",
+        "title": "ToDo App - AngularJs",
+        "updated": "2017-03-29T17:32:00Z",
+        "author": "Radu Enuca",
+        "duration": 60
     }
 ]

@@ -1,0 +1,222 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/codelab-components/google-codelab-elements.html">
+
+<dom-module id="codelab-todo-angularjs">
+    <template>
+        <google-codelab title="ToDo App - AngularJs"
+                        feedback-link="https://gitter.im/devschool-ing/devschool-2017"
+                        environment="web"
+                        last-updated="2017-03-29">
+            <google-codelab-step label="Overview" duration="0">
+                <p>
+                    Package managers simplify installing and updating project dependencies, which are libraries that an web application uses: Bootstrap, AngularJs, Polymer, everything that is used on your site and isn't written by you.
+                </p>
+                <p>
+                    Browsing all the library websites, downloading and unpacking the archives, copying files into the projects — all of this is replaced with a few commands in the terminal.
+                </p>
+            </google-codelab-step>
+            <google-codelab-step label="HTML" duration="20">
+                <h2>HTML tags</h2>
+
+                <p>Copy the following code in an <code>prependers-band.html</code> file and follow the exercises below.</p>
+
+<pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        The Prependers
+
+        Bio
+
+        The Prependers are a quirky four-piece from Orlando, FL.
+        Critics have hailed them as the greatest post-garage-rock
+        band of the last decade.
+
+        They are currently writing a full length album that's a
+        follow-up to their breakout 2011 album, Top Right Bottom Left,
+        and their critically acclaimed EP, Opacity Zero.
+
+        Members
+
+        Jack Smith - Vocals
+        Sarah Quan - Guitar
+        Laverne Butlet - Bass
+        Simon St. Hollister - Drums
+
+        Albums
+
+        Top, Right, Bottom, Left
+
+        The Last
+        Downtown
+        Yellow Carpet
+        Rocket to Mars
+        Walk, not Run
+        Design
+        Shopping Cart
+        Our Gift to You
+
+        Opacity Zero
+
+        Visible/Invisible
+        Car Trip
+        AFK
+        Up and Up
+
+        Tour Dates
+
+        The Prependers are not currently on tour because they
+        are recording their new album. Check back later!
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3>1.1 Marking Up Headings</h3>
+                <p>We've been hired to create a home page for Open Source Records. They've only got two bands on their roster, but they are growing fast, so let's get started!</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>On this page, the record label's name - <strong>Open Source Records</strong> - is the most important content, so mark it up with the appropriate tag.</li>
+                    <li>The name of the band - <strong>The Prependers</strong> - is the next most important content, so mark it up with the appropriate tag.</li>
+                    <li>The section titles - <strong>Bio</strong>, <strong>Members</strong>, <strong>Albums</strong> and <strong>Tour Dates</strong> - are of lesser importance than the name of the band, so mark those up with the appropriate tags.</li>
+                    <li>Mark the band's album names - <strong>Top, Right, Bottom, Left</strong>, and <strong>Opacity Zero</strong> - each with the <code>h4</code> tag.</li>
+                    <li>Mark up the two paragraphs of the band's biography with the appropriate tags.</li>
+                    <li>Mark up the band's tour message paragraph with the appropriate tag.</li>
+                </ol>
+
+                <h3>1.2 Marking Up Lists</h3>
+                <p>We just added the band members and song titles to the page. Decide the best tags to mark up that content, and don't forget to nest and indent tags when necessary!</p>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>Mark up the list of band members using the appropriate tag(s).</li>
+                    <li>Mark up the song list for the album Opacity Zero using the appropriate tag(s).</li>
+                </ol>
+
+                <h2>Exercise</h2>
+
+                <p>Do your best to format the following HTML. Save it in a file called <code>regular-band.html</code></p>
+
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        Regular Expressions
+
+        Bio
+        Regular Expressionists are a hip-hop trio from New York City.
+
+        Members
+
+        Rekt - Vocals
+        Face-like - Vocals
+        DJ Regex Capture - Decks
+
+        Albums
+
+        This group has no albums released, but they are recording one album right now.
+
+        Tour Dates
+
+        July 16th, 2014 @ 7:00pm
+        House of Blues - Orlando, FL
+
+        July 17th, 2014 @ 7:30pm
+        Jannus Landing - Tampa, FL
+
+        July 19th, 2014 @ 8:00pm
+        The Tabernacle - Atlanta, GA
+
+        July 20th, 2014 @ 7:30pm
+        40 Watt Club - Athens, GA
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h2>HTML links</h2>
+
+                <h3>1.3 Site Menu</h3>
+
+                <h4>Task</h4>
+
+                <ol>
+                    <li>Create an unordered list with three list items: <code>About</code>, <code>Bands</code>, and <code>Contact</code> that is in between the main site name and the band's name (in both files)</li>
+                    <li>Make the text <code>About</code> into a link to the page <code>about.html</code>.</li>
+                    <li>Make the text <code>Bands</code> into a link to the page <code>bands.html</code>.</li>
+                    <li>Make the text <code>Contact</code> into a link to the page <code>contacts.html</code>.</li>
+                </ol>
+
+                <h2>Exercises</h2>
+
+                <ol>
+                    <li>Create the <code>about.html</code>, <code>bands.html</code> and <code>contacts.html</code> pages by saving and formatting the snippets below
+
+                <p><code>about.html</code></p>
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        About
+
+        Open Source Records is a quickly growing record label that
+        brings you the hottest up-and-coming groups.  All of our bands
+        are actively recording and touring, and receive our full support
+        producing, recording, mixing, touring, and promoting their work.
+        At Open Source Records, artists come first.
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <p><code>bands.html</code></p>
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        Bands
+
+        The Prependers
+        Regular Expressionists
+
+        We're always looking for new talent, so Contact us now!
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <p><code>contact.html</code></p>
+                <pre><code language="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Open Source Records
+
+        Contact
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </li>
+                    <li>Make sure the site menu you did above is present in all the pages</li>
+                    <li><code>band.html</code> has 3 addiional links. Can you spot them?</li>
+                    <li>Check that you can navigate between all the pages.</li>
+                </ol>
+            </google-codelab-step>
+        </google-codelab>
+    </template>
+    <script>
+        Polymer({
+            is: 'codelab-todo-angularjs'
+        });
+    </script>
+</dom-module>

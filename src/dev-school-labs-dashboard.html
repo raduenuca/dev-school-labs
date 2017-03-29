@@ -105,7 +105,6 @@
                 padding: 16px 0;
                 line-height: 16px;
                 box-shadow: 0px 3px 6px -3px #BDBDBD;
-                height: 100%;
             }
 
             header h2 {
@@ -299,23 +298,31 @@
                 <div class="site-width content">
                     <div id="card-filter" class="site-width">
                         <div id="sortby">
-                            <paper-tabs selected="0" noink tabindex="0">
-                                <paper-tab noink tabindex="0">A-Z</paper-tab>
-                                <paper-tab noink tabindex="-1">Recent</paper-tab>
-                                <paper-tab noink tabindex="-1">Duration</paper-tab>
+                            <paper-tabs selected="{{_sortOrder}}"
+                                        noink
+                                        tabindex="0"
+                                        attr-for-selected="sort-order"
+                                        fallback-selection="alphabetical">
+                                <paper-tab noink tabindex="0" sort-order="alphabetical">A-Z</paper-tab>
+                                <paper-tab noink tabindex="-1" sort-order="recent">Recent</paper-tab>
+                                <paper-tab noink tabindex="-1" sort-order="duration">Duration</paper-tab>
                             </paper-tabs>
                         </div>
                         <paper-dropdown-menu id="categoryfilter" label="Category" no-label-float>
-                            <paper-listbox class="dropdown-content">
-                                <paper-item>HTML5</paper-item>
-                                <paper-item>JavaScript</paper-item>
-                                <paper-item>AngularJs</paper-item>
-                                <paper-item>Polymer</paper-item>
+                            <paper-listbox class="dropdown-content" selected="{{_currentCategory}}"
+                                           attr-for-selected="category">
+                                <paper-item category="html">HTML</paper-item>
+                                <paper-item category="javascript">JavaScript</paper-item>
+                                <paper-item category="angularjs">AngularJs</paper-item>
+                                <paper-item category="polymer">Polymer</paper-item>
                             </paper-listbox>
                         </paper-dropdown-menu>
                     </div>
                     <div id="cards" class="site-width">
-                        <template is="dom-repeat" items="[[_codeLabs]]" as="codeLab">
+                        <template is="dom-repeat"
+                                  items="[[_codeLabs]]" as="codeLab"
+                                  sort="[[_sort(_sortOrder)]]"
+                                  filter="[[_filter(_currentCategory)]]">
                             <dev-school-labs-card
                                 url="/codelabs/[[codeLab.slug]]"
                                 category="[[codeLab.category]]"
@@ -339,7 +346,67 @@
     </template>
     <script>
         Polymer({
-            is: 'dev-school-labs-dashboard'
+            is: 'dev-school-labs-dashboard',
+
+            properties: {
+//                _sortOrder: {
+//                    type: String,
+//                    value: 'alphabetical'
+//                }
+            },
+
+            _filter: function (category) {
+                return function (codeLab) {
+                    if (!category) {
+                        return true;
+                    }
+
+                    if (!codeLab) {
+                        return false;
+                    }
+
+                    return codeLab.category.toLowerCase() === category;
+                };
+            },
+
+            _sort: function (sortOrder) {
+                //TODO: Improve this
+                var sortFunction;
+                switch (sortOrder) {
+                    case 'alphabetical':
+                        sortFunction = function (a, b) {
+                            if (a.title === b.title) {
+                                return 0;
+                            }
+
+                            return a.title < b.title ? -1 : 1;
+                        };
+                        break;
+                    case 'recent':
+                        sortFunction = function (a, b) {
+                            var aDate = +new Date(a.updated);
+                            var bDate = +new Date(b.updated);
+
+                            if (aDate === bDate) {
+                                return 0;
+                            }
+
+                            return aDate > bDate ? -1 : 1;
+                        };
+                        break;
+                    case 'duration':
+                        sortFunction = function (a, b) {
+                            if (a.duration === b.duration) {
+                                return 0;
+                            }
+
+                            return a.duration < b.duration ? -1 : 1;
+                        };
+                        break;
+                }
+
+                return sortFunction;
+            }
         });
     </script>
 </dom-module>
