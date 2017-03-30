@@ -8,7 +8,7 @@
     - Make images part of the lab (base64 or inside the folder)
 - Filtering & sorting
     DONE - Implement sorting
-    - Implement filtering
+    DONE - Implement filtering
 - Authentication & Authorization
     - Authorize users
 - Labs:
@@ -17,16 +17,18 @@
     - ...
 - Issues
     - Fix 3.3 and 3.7 & 4.4.4?
+    - Package managers - be more explicit with folder creations
+    - AngularJs Todo - input-group breaks the site
 - Proiect (event planner):
     - AngularJs
     - Polymer
 - Next labs:
     - Package managers:
-        - Nodejs and NPM
-        - Bower
+        DONE - Nodejs and NPM
+        DONE - Bower
     - Task runners: Gulp
     - Egghead one (AngularJs)
-    - ToDo List (AngularJs):
+    -DONE  ToDo List (AngularJs):
         - The old todo list but as a lab
     - ECMA Script 2015/2016 ?!? 
 

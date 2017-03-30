@@ -156,16 +156,15 @@ vm.addNewItem = function (actionText) {
 &lt;/span&gt;</code></pre>
                     </li>
                     <li>Clicking the <code>Add</code> button should add items to the list</li>
-                    <li>Adding duplicate items breaks the application. Fix it by adding <code>track by $index</code> at the and of the <code>ng-repeat</code> directive value.</li>
                 </ul>
             </google-codelab-step>
             <google-codelab-step label="Styling" duration="10">
-                <h2>Add <a href="http://getbootstrap.com/css/" title="Bootstrap">Boostrap</a></h2>
+                <h2>Add <a href="http://getbootstrap.com/css/" title="Bootstrap">Bootstrap</a></h2>
                 <p>The application looks pretty bad and for sure by now some of you started to improve it :)</p>
 
                 <ul>
-                    <li>Use <code>bower</code> to install and save the <code>boostrap-css</code> dependency</li>
-                    <li>Reference the <code>css</code> file inside the <code>head</code> tag</li>
+                    <li>Use <code>bower</code> to install and save the <code>bootstrap-css</code> dependency</li>
+                    <li>Reference the <code>bootstrap.css</code> and <code>bootstrap-theme.css</code> files inside the <code>head</code> tag</li>
                     <li>Refresh the page and see the changes. It should already look better just by adding <code>Bootstrap</code></li>
                 </ul>
 
@@ -200,13 +199,13 @@ vm.addNewItem = function (actionText) {
 
                 <p>Change the <code>ng-repeat</code> directive to look like this:</p>
 
-                <pre>item in vm.todo.items | filter: {done: false} track by $index</pre>
+                <pre>item in vm.todo.items | filter: {done: false}</pre>
 
                 <h2>Sorting</h2>
 
                 <p>Change the <code>ng-repeat</code> directive again by adding an <code>orderBy</code> filter:</p>
 
-                <pre>item in vm.todo.items | filter: {done: false} | orderBy: 'action' track by $index</pre>
+                <pre>item in vm.todo.items | filter: {done: false} | orderBy: 'action'</pre>
 
                 <h2>Creating a custom filter</h2>
                 <p>Let's create a custom filter that will allow us to show completed todos</p>
@@ -238,7 +237,7 @@ vm.addNewItem = function (actionText) {
                     <li>Don't forget to reference the new file inside <code>index.html</code></li>
                     <li>
                         Change again the <code>ng-repeat</code> directive to look like this
-                        <pre>item in vm.todo.items | checkedItems: showComplete | orderBy: 'action' track by $index</pre>
+                        <pre>item in vm.todo.items | checkedItems: showComplete | orderBy: 'action'</pre>
                     </li>
                     <li>
                         After the <code>table</code> add the following <code>html</code> snippet
