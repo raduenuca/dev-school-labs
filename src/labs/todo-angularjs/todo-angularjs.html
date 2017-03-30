@@ -287,7 +287,112 @@ vm.warningLevel = function () {
                 </ul>
             </google-codelab-step>
             <google-codelab-step label="Services" duration="15">
+                <h2>Creating services</h2>
 
+                <p>It is time to get rid of the <code>todos</code> from the controller and obtain them from a service</p>
+
+                <ul>
+                    <li>Create a file named <code>app.service.js</code> inside the src folder</li>
+                    <li>
+                        Use the following content for the file
+                        <pre>
+<code language="JavaScript">(function (module) {
+
+    var toDoService = function () {
+
+        var getItems = function () {
+            return [
+                {"action": "Make slides", "done": false},
+                {"action": "Travel to ING", "done": false},
+                {"action": "Prepare room", "done": false},
+                {"action": "Order pizza", "done": false}
+            ];
+        };
+
+        return {
+            getItems: getItems
+        };
+    };
+
+    module.factory("toDoService", toDoService);
+}(angular.module("toDoApp")));</code></pre>
+                    </li>
+                    <li>
+                        Remove the <code>items</code> property from the <code>vm.todo</code> object inside the <code>controller</code>
+                    </li>
+                    <li>
+                        Add the <code>toDoService</code> as a dependency to the <code>controller</code>. It is just a parameter in the <code>controller</code> function
+                    </li>
+                    <li>
+                        At the following line <code language="JavaScript">vm.todo.items = toDoService.getItems();</code> as the list line inside the <code>controller</code> function
+                    </li>
+                    <li>
+                        Make sure you reference the <code>service</code> file (find the correct position) inside <code>index.html</code>.
+                    </li>
+                    <li>Refresh the page and you should have the same functionality</li>
+                </ul>
+
+                <h2>Using AJAX</h2>
+                <p>Next, let's read the todo items from a <code>json</code> file using the <code>$http</code> service</p>
+
+                <p>The <code>$http</code> service is a core AngularJS service that facilitates communication with the remote HTTP servers via the browser's <code>XMLHttpRequest</code> object or via <code>JSONP</code>.</p>
+
+                <ul>
+                    <li>
+                        Create a <code>data</code> folder in the project root folder
+                    </li>
+                    <li>
+                        Create a <code>todos.json</code> file with the following content
+                        <pre>
+<code language="JavaScript">
+[
+    {"action": "Make slides", "done": false},
+    {"action": "Travel to ING", "done": false},
+    {"action": "Prepare room", "done": false},
+    {"action": "Order pizza", "done": false}
+]
+</code></pre>
+                    </li>
+                    <li>
+                        Add the <code>$http</code> service as a dependency to the <code>toDoService</code>
+                    </li>
+                    <li>
+                        Change the <code>getItems</code> service
+                        <pre>
+<code>
+var getItems = function () {
+    return $http.get("/data/todos.json");
+};
+</code></pre>
+                    </li>
+                    <li>
+                        The service returns a <code>prommise</code> now so we need to change something in the <code>controller</code>
+                    </li>
+                    <li>
+                        Replace the last line added with:
+                        <pre>
+<code language="JavaScript">
+toDoService.getItems().success(function (data) {
+    vm.todo.items = data;
+});
+</code>
+                        </pre>
+                    </li>
+                    <li>
+                        <p>Refreshing the page will not work now. We need serve the site from an web server</p>
+
+                        <p>
+                            From <code>command line</code> start <code>live-server</code>
+                            <pre>
+$ live-server
+Serving "..." at http://127.0.0.1:8080
+Ready for changes</pre>
+                        </p>
+                    </li>
+                    <li>
+                        The site is now live at <code>http://127.0.0.1:8080</code>
+                    </li>
+                </ul>
             </google-codelab-step>
         </google-codelab>
     </template>
