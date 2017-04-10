@@ -33,11 +33,4 @@
     - ECMA Script 2015/2016 ?!? 
 
 
-//    {
-//        "category": "JavaScript",
-//        "slug": "gulp-introduction",
-//        "title": "Gulp Introduction",
-//        "updated": "2017-03-29T17:30:00Z",
-//        "author": "Radu Enuca",
-//        "duration": 30
-//    },
+

@@ -371,8 +371,8 @@ var getItems = function () {
                         Replace the last line added with:
                         <pre>
 <code language="JavaScript">
-toDoService.getItems().success(function (data) {
-    vm.todo.items = data;
+toDoService.getItems().then(function (response) {
+    vm.todo.items = response.data;
 });
 </code>
                         </pre>

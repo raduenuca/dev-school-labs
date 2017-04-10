@@ -12,205 +12,434 @@
                         last-updated="2017-03-29">
             <google-codelab-step label="Overview" duration="0">
                 <p>
-                    Package managers simplify installing and updating project dependencies, which are libraries that an web application uses: Bootstrap, AngularJs, Polymer, everything that is used on your site and isn't written by you.
+                    Gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something.
                 </p>
                 <p>
-                    Browsing all the library websites, downloading and unpacking the archives, copying files into the projects — all of this is replaced with a few commands in the terminal.
+                    <strong>For this code lab use the project from the <a href="/codelabs/todo-angularjs">ToDo App - AngularJs</a> codelab</strong>
                 </p>
             </google-codelab-step>
-            <google-codelab-step label="HTML" duration="20">
-                <h2>HTML tags</h2>
+            <google-codelab-step label="Installation" duration="5">
+                <h2>Install globally</h2>
+                <pre>$ npm install gulp-cli -g</pre>
 
-                <p>Copy the following code in an <code>prependers-band.html</code> file and follow the exercises below.</p>
+                <h2>Install locally</h2>
+                <pre>$ npm install gulp --save-dev</pre>
 
-<pre><code language="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        Open Source Records
+                <h2>Install gulp plugin loader</h2>
+                <pre>$ npm install gulp-load-plugins --save-dev</pre>
 
-        The Prependers
+                <p>This is not required but it will help to write less code</p>
+            </google-codelab-step>
+            <google-codelab-step label="Hello Task" duration="5">
+                <h2>Create the gulp file inside the root folder</h2>
+                <pre>$ touch gulpfile.js</pre>
 
-        Bio
+                <h2>Require the gulp plugin</h2>
+                <pre><code language="JavaScript">var gulp = require('gulp');</code></pre>
 
-        The Prependers are a quirky four-piece from Orlando, FL.
-        Critics have hailed them as the greatest post-garage-rock
-        band of the last decade.
+                <h2>Create a task</h2>
+                <pre>
+<code language="JavaScript">
+gulp.task('hello-task', function(){
+    console.log('Our first gulp task');
+});
+</code></pre>
 
-        They are currently writing a full length album that's a
-        follow-up to their breakout 2011 album, Top Right Bottom Left,
-        and their critically acclaimed EP, Opacity Zero.
+                <h2>Run the task</h2>
+                <pre>$ gulp hello-task</pre>
+            </google-codelab-step>
+            <google-codelab-step label="Code Analysis" duration="30">
+                <h2>JSHint</h2>
+                <p>JSHint is a program that flags suspicious usage in programs written in JavaScript. The core project consists of a library itself as well as a CLI program distributed as a Node module.</p>
 
-        Members
+                <h3>Installation</h3>
 
-        Jack Smith - Vocals
-        Sarah Quan - Guitar
-        Laverne Butlet - Bass
-        Simon St. Hollister - Drums
+                <pre>$ npm install jshint gulp-jshint --save-dev</pre>
 
-        Albums
-
-        Top, Right, Bottom, Left
-
-        The Last
-        Downtown
-        Yellow Carpet
-        Rocket to Mars
-        Walk, not Run
-        Design
-        Shopping Cart
-        Our Gift to You
-
-        Opacity Zero
-
-        Visible/Invisible
-        Car Trip
-        AFK
-        Up and Up
-
-        Tour Dates
-
-        The Prependers are not currently on tour because they
-        are recording their new album. Check back later!
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-                <h3>1.1 Marking Up Headings</h3>
-                <p>We've been hired to create a home page for Open Source Records. They've only got two bands on their roster, but they are growing fast, so let's get started!</p>
-
-                <h4>Task</h4>
+                <h3>Configuration</h3>
 
                 <ol>
-                    <li>On this page, the record label's name - <strong>Open Source Records</strong> - is the most important content, so mark it up with the appropriate tag.</li>
-                    <li>The name of the band - <strong>The Prependers</strong> - is the next most important content, so mark it up with the appropriate tag.</li>
-                    <li>The section titles - <strong>Bio</strong>, <strong>Members</strong>, <strong>Albums</strong> and <strong>Tour Dates</strong> - are of lesser importance than the name of the band, so mark those up with the appropriate tags.</li>
-                    <li>Mark the band's album names - <strong>Top, Right, Bottom, Left</strong>, and <strong>Opacity Zero</strong> - each with the <code>h4</code> tag.</li>
-                    <li>Mark up the two paragraphs of the band's biography with the appropriate tags.</li>
-                    <li>Mark up the band's tour message paragraph with the appropriate tag.</li>
-                </ol>
+                    <li>Create a file named <code>.jshintrc</code></li>
+                    <li>
+                        <pre>
+<code language="JavaScript">
+{
+  // JSHint Default Configuration File (as on JSHint website)
+  // See http://jshint.com/docs/ for more details
 
-                <h3>1.2 Marking Up Lists</h3>
-                <p>We just added the band members and song titles to the page. Decide the best tags to mark up that content, and don't forget to nest and indent tags when necessary!</p>
+  "maxerr"        : 50,       // {int} Maximum error before stopping
 
-                <h4>Task</h4>
+  // Enforcing
+  "bitwise"       : true,     // true: Prohibit bitwise operators (&, |, ^, etc.)
+  "camelcase"     : false,    // true: Identifiers must be in camelCase
+  "curly"         : true,     // true: Require {} for every new block or scope
+  "eqeqeq"        : true,     // true: Require triple equals (===) for comparison
+  "forin"         : true,     // true: Require filtering for..in loops with obj.hasOwnProperty()
+  "freeze"        : true,     // true: prohibits overwriting prototypes of native objects such as Array, Date etc.
+  "immed"         : false,    // true: Require immediate invocations to be wrapped in parens e.g. `(function () { } ());`
+  "latedef"       : false,    // true: Require variables/functions to be defined before being used
+  "newcap"        : false,    // true: Require capitalization of all constructor functions e.g. `new F()`
+  "noarg"         : true,     // true: Prohibit use of `arguments.caller` and `arguments.callee`
+  "noempty"       : true,     // true: Prohibit use of empty blocks
+  "nonbsp"        : true,     // true: Prohibit "non-breaking whitespace" characters.
+  "nonew"         : false,    // true: Prohibit use of constructors for side-effects (without assignment)
+  "plusplus"      : false,    // true: Prohibit use of `++` and `--`
+  "quotmark"      : false,    // Quotation mark consistency:
+  //   false    : do nothing (default)
+  //   true     : ensure whatever is used is consistent
+  //   "single" : require single quotes
+  //   "double" : require double quotes
+  "undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
+  "unused"        : true,     // Unused variables:
+  //   true     : all variables, last function parameter
+  //   "vars"   : all variables only
+  //   "strict" : all variables, all function parameters
+  "strict"        : true,     // true: Requires all functions run in ES5 Strict Mode
+  "maxparams"     : false,    // {int} Max number of formal params allowed per function
+  "maxdepth"      : false,    // {int} Max depth of nested blocks (within functions)
+  "maxstatements" : false,    // {int} Max number statements per function
+  "maxcomplexity" : false,    // {int} Max cyclomatic complexity per function
+  "maxlen"        : false,    // {int} Max number of characters per line
+  "varstmt"       : false,    // true: Disallow any var statements. Only `let` and `const` are allowed.
 
-                <ol>
-                    <li>Mark up the list of band members using the appropriate tag(s).</li>
-                    <li>Mark up the song list for the album Opacity Zero using the appropriate tag(s).</li>
-                </ol>
+  // Relaxing
+  "asi"           : false,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
+  "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
+  "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
+  "eqnull"        : false,     // true: Tolerate use of `== null`
+  "esversion"     : 5,         // {int} Specify the ECMAScript version to which the code must adhere.
+  "moz"           : false,     // true: Allow Mozilla specific syntax (extends and overrides esnext features)
+  // (ex: `for each`, multiple try/catch, function expression…)
+  "evil"          : false,     // true: Tolerate use of `eval` and `new Function()`
+  "expr"          : false,     // true: Tolerate `ExpressionStatement` as Programs
+  "funcscope"     : false,     // true: Tolerate defining variables inside control statements
+  "globalstrict"  : false,     // true: Allow global "use strict" (also enables 'strict')
+  "iterator"      : false,     // true: Tolerate using the `__iterator__` property
+  "lastsemic"     : false,     // true: Tolerate omitting a semicolon for the last statement of a 1-line block
+  "laxbreak"      : false,     // true: Tolerate possibly unsafe line breakings
+  "laxcomma"      : false,     // true: Tolerate comma-first style coding
+  "loopfunc"      : false,     // true: Tolerate functions being defined in loops
+  "multistr"      : false,     // true: Tolerate multi-line strings
+  "noyield"       : false,     // true: Tolerate generator functions with no yield statement in them.
+  "notypeof"      : false,     // true: Tolerate invalid typeof operator values
+  "proto"         : false,     // true: Tolerate using the `__proto__` property
+  "scripturl"     : false,     // true: Tolerate script-targeted URLs
+  "shadow"        : false,     // true: Allows re-define variables later in code e.g. `var x=1; x=2;`
+  "sub"           : false,     // true: Tolerate using `[]` notation when it can still be expressed in dot notation
+  "supernew"      : false,     // true: Tolerate `new function () { ... };` and `new Object;`
+  "validthis"     : false,     // true: Tolerate using this in a non-constructor function
 
-                <h2>Exercise</h2>
+  // Environments
+  "browser"       : true,     // Web Browser (window, document, etc)
 
-                <p>Do your best to format the following HTML. Save it in a file called <code>regular-band.html</code></p>
+  // Custom Globals
+  "globals"       : {}        // additional predefined global variables
+}
 
-                <pre><code language="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        Open Source Records
-
-        Regular Expressions
-
-        Bio
-        Regular Expressionists are a hip-hop trio from New York City.
-
-        Members
-
-        Rekt - Vocals
-        Face-like - Vocals
-        DJ Regex Capture - Decks
-
-        Albums
-
-        This group has no albums released, but they are recording one album right now.
-
-        Tour Dates
-
-        July 16th, 2014 @ 7:00pm
-        House of Blues - Orlando, FL
-
-        July 17th, 2014 @ 7:30pm
-        Jannus Landing - Tampa, FL
-
-        July 19th, 2014 @ 8:00pm
-        The Tabernacle - Atlanta, GA
-
-        July 20th, 2014 @ 7:30pm
-        40 Watt Club - Athens, GA
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-                <h2>HTML links</h2>
-
-                <h3>1.3 Site Menu</h3>
-
-                <h4>Task</h4>
-
-                <ol>
-                    <li>Create an unordered list with three list items: <code>About</code>, <code>Bands</code>, and <code>Contact</code> that is in between the main site name and the band's name (in both files)</li>
-                    <li>Make the text <code>About</code> into a link to the page <code>about.html</code>.</li>
-                    <li>Make the text <code>Bands</code> into a link to the page <code>bands.html</code>.</li>
-                    <li>Make the text <code>Contact</code> into a link to the page <code>contacts.html</code>.</li>
-                </ol>
-
-                <h2>Exercises</h2>
-
-                <ol>
-                    <li>Create the <code>about.html</code>, <code>bands.html</code> and <code>contacts.html</code> pages by saving and formatting the snippets below
-
-                <p><code>about.html</code></p>
-                <pre><code language="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        Open Source Records
-
-        About
-
-        Open Source Records is a quickly growing record label that
-        brings you the hottest up-and-coming groups.  All of our bands
-        are actively recording and touring, and receive our full support
-        producing, recording, mixing, touring, and promoting their work.
-        At Open Source Records, artists come first.
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-                <p><code>bands.html</code></p>
-                <pre><code language="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        Open Source Records
-
-        Bands
-
-        The Prependers
-        Regular Expressionists
-
-        We're always looking for new talent, so Contact us now!
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-                <p><code>contact.html</code></p>
-                <pre><code language="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        Open Source Records
-
-        Contact
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+</code></pre>
                     </li>
-                    <li>Make sure the site menu you did above is present in all the pages</li>
-                    <li><code>band.html</code> has 3 addiional links. Can you spot them?</li>
-                    <li>Check that you can navigate between all the pages.</li>
                 </ol>
+
+                <h2>JSCS</h2>
+                <p>JSCS is a code style linter and formatter for your style guide</p>
+
+                <pre>$ npm install gulp-jscs --save-dev</pre>
+
+                <h3>Configuration</h3>
+
+                <ol>
+                    <li>Create a file named <code>.jscsrc</code></li>
+                    <li>
+                        <pre>
+<code language="JavaScript">
+{
+  "requireCurlyBraces": [ "if", "else", "for", "while", "do" ],
+  "requireSpaceAfterKeywords": [ "if", "else", "for", "while", "do", "switch", "return" ],
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "disallowSpacesInFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
+  "requireMultipleVarDecl": true,
+  "requireSpacesInsideObjectBrackets": "all",
+  "requireSpacesInsideArrayBrackets": "all",
+  "requireSpaceBeforeBinaryOperators": ["+", "-", "/", "*", "=", "==", "===", "!=", "!=="],
+  "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-"],
+  "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
+  "disallowKeywords": [ "with" ],
+  "disallowMultipleLineBreaks": true,
+  "disallowKeywordsOnNewLine": [ "else" ],
+  "requireLineFeedAtFileEnd": true,
+  "disallowSpaceAfterObjectKeys": true,
+  "validateLineBreaks": "CRLF"
+}
+</code></pre>
+                    </li>
+                </ol>
+
+                <h2>Create the analyze task</h2>
+
+                <ol>
+                    <li>Remove the <code>hello-task</code> task</li>
+                    <li>
+                        Require the <code>gulp plugin loader</code>
+                        <pre><code language="JavaScript">var $ = require('gulp-load-plugins')();</code></pre>
+                    </li>
+                    <li>
+                        Create the <code>analyze</code> task
+                        <pre>
+<code>
+gulp.task('analyze', function(){
+    gulp.src(['src/**/*.js', 'gulpfile.js', '!src/bower_components/**/*.js'])
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('default'))
+        .pipe($.jshint.reporter('fail'))
+        .pipe($.jscs())
+        .pipe($.jscs.reporter())
+        .pipe($.jscs.reporter('fail'));
+});
+</code></pre>
+                    </li>
+                    <li>
+                        Run the task
+                        <pre>$ gulp analyze</pre>
+                    </li>
+                </ol>
+
+                <h2>Fixing the errors</h2>
+                <p>More than sure you have a lot of errors. Here is a hint to fix some of them</p>
+
+                <ol>
+                    <li>
+                        In <code>.jshintrc</code> in the <code>Enviroment section</code> add
+                        <pre><code language="JavaScript">"node" : true, // Node.js</code></pre>
+                    </li>
+                    <li>
+                        In <code>.jshintrc</code> in the <code>globals</code> object add
+                        <pre>
+<code language="JavaScript">
+  "globals"       : {         // additional predefined global variables
+    "angular"     : true
+  }
+</code></pre>
+                    </li>
+                    <li><strong>Fix the rest as an exercise</strong></li>
+                </ol>
+            </google-codelab-step>
+            <google-codelab-step label="HTML Injection" duration="20">
+                <h2>Install dependencies</h2>
+
+                <pre>$ npm install wiredep gulp-inject gulp-angular-filesort --save-dev</pre>
+
+                <h2>Add injection rules in html</h2>
+
+                <p>Inside <code>index.html</code></p>
+                <ol>
+                    <li>
+                        Replace the <code>css</code> references with
+                        <pre>
+<code>
+&lt;!-- bower:css --&gt;
+&lt;!-- endbower --&gt;
+
+&lt;!-- inject:css -->
+&lt;!-- endinject -->
+</code></pre>
+                    </li>
+                    <li>
+                        Replace the <code>javascript</code> references with
+                        <pre>
+<code>
+&lt;!-- bower:js --&gt;
+&lt;!-- endbower --&gt;
+
+&lt;!-- inject:js --&gt;
+&lt;!-- endinject --&gt;
+</code></pre>
+                    </li>
+                </ol>
+
+                <h2>Create the <code>inject</code> task</h2>
+
+                <p>Inside <code>gulpfile.js</code></p>
+
+                <ol>
+                    <li>
+                        Require <code>wiredep</code>
+                        <pre><code language="JavaScript">var wiredep = require('wiredep').stream;</code></pre>
+                    </li>
+                    <li>
+                        Add the task
+                        <pre>
+<code language="JavaScript">
+gulp.task('inject', function(){
+    return gulp.src('index.html')
+           .pipe(wiredep({exclude: [/jQuery/, /\/bootstrap-css\/.*\.js$/]}))
+           .pipe($.inject(gulp.src('src/**/*.js')))
+           .pipe($.inject(gulp.src('src/**/*.css')))
+           .pipe(gulp.dest(''));
+});
+</code></pre>
+                    </li>
+                    <li>
+                        Run the <code>task</code>
+                        <pre>$ gulp inject</pre>
+                    </li>
+                    <li>
+                        Refresh the application. Does it still work?
+                    </li>
+                    <li>
+                        Have a look inside the <code>index.html</code> and try to see what is wrong
+                    </li>
+                </ol>
+
+                <h2>Make the application great again</h2>
+
+                <p>There are 2 problems</p>
+
+                <ol>
+                    <li>The angular dependencies are out of order</li>
+                    <li>Only one <code>css</code> dependency is referenced</li>
+                </ol>
+
+                <h3>Sort angular files</h3>
+
+                <p>Change the <code>inject</code> task</p>
+
+                <pre>
+<code language="JavaScript">
+gulp.task('inject', function(){
+    var injectCss = gulp.src('src/*.css'),
+        injectJs = gulp.src('src/**/*.js')
+        .pipe($.angularFilesort());
+
+    return gulp.src('index.html')
+        .pipe(wiredep({exclude: [/jQuery/, /\/bootstrap-css\/.*\.js$/]}))
+        .pipe($.inject(injectJs, {relative: true}))
+        .pipe($.inject(injectCss, {relative: true}))
+        .pipe(gulp.dest(''));
+});
+</code></pre>
+
+                <p>Refresh the page and the application should work</p>
+
+                <h3>Reference <code>bower</code> dependencies correctly</h3>
+
+                <p>Some <code>bower</code> dependencies are not written correctly and they need a little correction inside the <code>bower.json</code> file</p>
+
+                <p>Just after the <code>dependencies</code> block, add</p>
+
+                <pre>
+<code language="JavaScript">
+"overrides": {
+    "bootstrap-css": {
+        "main": ["css/bootstrap.css", "css/bootstrap-theme.css"]
+    }
+}
+</code></pre>
+            </google-codelab-step>
+            <google-codelab-step label="Live reload" duration="20">
+                <p>Having <code>live-server</code> is nice but it doesn't run our <code>gulp</code> tasks when the code changes.</p>
+                <p>In order to achieve this we have to create another task</p>
+
+                <h2>Install dependencies</h2>
+
+                <pre>$ npm install gulp-server-livereload --save-dev</pre>
+
+                <h2>Restructure the application</h2>
+
+                <p>Before doing anything else, restructure the application by doing the following</p>
+
+                <ol>
+                    <li>Create a folder <code>app</code> inside the <code>src</code> folder</li>
+                    <li>Move all the files from <code>src</code> to <code>app</code></li>
+                    <li>Move the <code>data</code> folder inside the <code>src</code> folder</li>
+                    <li>Move the <code>index.html</code> file inside the <code>src</code> folder</li>
+                    <li>
+                        Create a <code>.bowerrc</code> file
+                        <pre>
+<code language="JavaScript">
+{
+  "directory": "src/vendor"
+}
+</code></pre>
+                    </li>
+                    <li>
+                        Delete the <code>bower_components</code> folder and run
+                        <pre>$ bower install</pre>
+                    </li>
+                    <li>
+                        Make sure you reflect the changes inside the <code>gulpfile.js</code> file
+
+                        <pre>
+<code language="JavaScript">
+"use strict";
+
+var gulp = require('gulp'),
+    wiredep = require('wiredep').stream,
+    $ = require('gulp-load-plugins')();
+
+gulp.task('analyze', function() {
+    gulp.src([ 'src/**/*.js', 'gulpfile.js', '!src/vendor/**/*.js' ])
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('default'))
+        .pipe($.jshint.reporter('fail'))
+        .pipe($.jscs())
+        .pipe($.jscs.reporter())
+        .pipe($.jscs.reporter('fail'));
+});
+
+gulp.task('inject', function() {
+    var injectCss = gulp.src('src/*.css'),
+        injectJs = gulp.src('src/app/**/*.js')
+        .pipe($.angularFilesort());
+
+    return gulp.src('src/index.html'    )
+        .pipe(wiredep({ exclude: [ /jQuery/, /\/bootstrap-css\/.*\.js$/ ] }))
+        .pipe($.inject(injectJs, { relative: true }))
+        .pipe($.inject(injectCss, { relative: true }))
+        .pipe(gulp.dest('src'));
+});
+</code></pre>
+                    </li>
+                </ol>
+
+                <h2>Create the <code>serve</code> task</h2>
+
+                <pre>
+<code language="JavaScript">
+gulp.task('serve', [ 'analyze', 'inject' ] , function() {
+    gulp.src('src')
+        .pipe($.serverLivereload({
+            livereload: true,
+            open: true
+        }));
+});
+</code></pre>
+
+                <h2>Run the task</h2>
+
+                <pre>$ gulp serve</pre>
+
+                <p>As an exercise add a file named <code>app.css</code> inside the <code>src</code> folder</p>
+
+                <pre>
+<code>
+h1 {
+    color:red;
+}
+</code></pre>
+
+                <p>Add more rules and watch what happens in the browser</p>
+            </google-codelab-step>
+            <google-codelab-step label="Build" duration="20">
+                <h2>Concatenate files</h2>
+
+                <h2>Minifying</h2>
+
+                <h2>Angular Dependency Injection</h2>
+
             </google-codelab-step>
         </google-codelab>
     </template>
