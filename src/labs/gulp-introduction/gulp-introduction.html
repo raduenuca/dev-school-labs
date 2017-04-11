@@ -436,10 +436,117 @@ h1 {
             <google-codelab-step label="Build" duration="30">
                 <h2>Concatenate files</h2>
 
+                <h3>Install dependencies</h3>
+
+                <pre>$ npm install gulp-useref del --save-dev</pre>
+
+                <h3>Create the <code>build</code> task</h3>
+
+                <pre>
+<code language="JavaScript">
+gulp.task('build', ['inject', 'analyze'], function(){
+    return gulp.src('src/index.html')
+        .pipe($.useref())
+        .pipe(gulp.dest('build'));
+});
+</code></pre>
+
+                <h3>Create build templates</h3>
+                <p>Adapt the inject templates from <code>index.html</code> by wrapping them in build templates</p>
+
+                <pre>
+<code>
+&lt;!-- build:css css/vendor.css --&gt;
+&lt;!-- bower:css --&gt;
+&lt;!-- endbower --&gt;
+&lt;!-- endbuild --&gt;
+
+&lt;!-- build:css css/app.css --&gt;
+&lt;!-- inject:css --&gt;
+&lt;!-- endinject --&gt;
+&lt;!-- endbuild --&gt;
+
+&lt;!-- build:js js/vendor.js --&gt;
+&lt;!-- bower:js --&gt;
+&lt;!-- endbower --&gt;
+&lt;!-- endbuild --&gt;
+
+&lt;!-- build:js js/app.js --&gt;
+&lt;!-- inject:js --&gt;
+&lt;!-- endinject --&gt;
+&lt;!-- endbuild --&gt;
+</code></pre>
+
+                <h3>Create a task to copy the data folder</h3>
+
+                <pre>
+<code language="JavaScript">
+gulp.task('other', function() {
+    var fileFilter = $.filter(function (file) {
+        return file.stat.isFile();
+    });
+
+    return gulp.src([ 'src/**/*', '!src/**/*.{html,css,js}' ])
+        .pipe(fileFilter)
+        .pipe(gulp.dest('build'));
+});
+</code></pre>
+
+                <h3>Exercise</h3>
+
+                <ol>
+                    <li>
+                        The <code>other</code> task depends on <code>gulp-filter</code> package. Make sure it is present
+                    </li>
+                    <li>
+                        You need to call the <code>other</code> task from the <code>build</code> task.
+                    </li>
+                    <li>
+                        After the <code>build</code> is done test the result.
+                    </li>
+                </ol>
+
                 <h2>Minifying</h2>
+
+                <h3>Install dependencies</h3>
+
+                <p>We need <code>gulp-if</code>, <code>gulp-uglify</code> and <code>gulp-clean-css</code></p>
+
+                <h3>Modify the <code>build</code> task</h3>
+
+                <pre>
+<code language="JavaScript">
+gulp.task('build', ['inject', 'analyze'], function(){
+    return gulp.src('src/index.html')
+        .pipe($.useref())
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.css', $.cleanCss()))
+        .pipe(gulp.dest('build'));
+});
+</code></pre>
+
+                <p>Observe the result. Is the app still working?</p>
 
                 <h2>Angular Dependency Injection</h2>
 
+                <h3>Exercise</h3>
+
+                <ol>
+                    <li>
+                        Install <code>gulp-ng-annotate</code>
+                    </li>
+                    <li>
+                        Add inside the <code>build</code> task
+                        <pre><code language="JavaScript">.pipe($.if('*.js', $.ngAnnotate()))</code></pre>
+                        Can you guess where?
+                    </li>
+                    <li>
+                        Build an retry
+                    </li>
+                    <li>
+                        Create a task that allows you to <code>serve</code> the application from the build folder
+                    </li>
+                </ol>
             </google-codelab-step>
         </google-codelab>
     </template>
