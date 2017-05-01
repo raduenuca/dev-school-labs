@@ -39,5 +39,13 @@
         "updated": "2017-04-11T01:20:00Z",
         "author": "Radu Enuca",
         "duration": 120
+    },
+    {
+        "category": "AngularJs",
+        "slug": "angularjs-form-validation",
+        "title": "Form Validation",
+        "updated": "2017-05-01T10:12:00Z",
+        "author": "Raluca Lupu",
+        "duration": 90
     }
 ]
