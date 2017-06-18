@@ -214,6 +214,22 @@
             .angularjs-icon {
                 background-image: url("../images/categories/angularjs.svg");
             }
+
+            .polymer-bg {
+                background-color: #616CA3;
+            }
+
+            .polymer-bg ~ .card-footer paper-button {
+                color: #616CA3;
+            }
+
+            .polymer-bg ~ .card-footer paper-button:hover, .polymer-bg ~ .card-footer paper-button[focused] {
+                background: rgba(97, 108, 163, 0.1);
+            }
+
+            .polymer-icon {
+                background-image: url("../images/categories/polymer.png");
+            }
         </style>
         <div class$="card-header [[_toLowerCase(category)]]-bg">
             <div id="icon" class$="category-icon [[_toLowerCase(category)]]-icon"></div>

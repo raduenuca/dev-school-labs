@@ -1,0 +1,329 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/codelab-components/google-codelab-elements.html">
+
+<dom-module id="codelab-polymer-lego-for-the-web">
+    <template>
+        <google-codelab title="Polymer - Lego for the Web"
+                        feedback-link="https://gitter.im/devschool-ing/devschool-2017"
+                        environment="web"
+                        last-updated="2017-03-28">
+            <google-codelab-step label="Overview" duration="1">
+                <p style="display:flex; justify-content: center; align-items: center;"><img src="/images/labs/polymer-lego-for-the-web/end-result.png"></p>
+
+                <p>In this code lab, we will create a fully working Google Maps app using elements in Polymer's <a href="https://elements.polymer-project.org/browse?package=google-web-components" target="_blank">Google Web Components</a> collection. The app will be responsive and will include driving directions and transit mode. Along the way, you'll also learn about Polymer's data-binding features and <a href="https://www.webcomponents.org/element/PolymerElements/iron-ajax" target="_blank">iron ajax</a> element.</p>
+
+                <h3 class="checklist">What you'll learn</h3>
+
+                <ul class="checklist">
+                    <li>How to start a new Polymer-based project using an editor of your choice</li>
+                    <li>How to use elements in Polymer's iron, paper, and Google Web Component sets.</li>
+                    <li>How to use Polymer's data binding features to reduce boilerplate code.</li>
+                </ul>
+
+                <h3>What you'll need</h3>
+
+                <ul>
+                    <li>Basic understanding of HTML, CSS, and web development.</li>
+                    <li>An editor of choice.</li>
+                </ul>
+            </google-codelab-step>
+            <google-codelab-step label="Project set up" duration="14">
+                <h2>Create a new project</h2>
+
+                <p>Fire up a code editor, start a new project and make sure your folder structure should look like this</p>
+
+                <pre>
+<code>
+IngAtmsCodeLab/
+    data/      &lt;!-- will hold the data for our application --&gt;
+    images/    &lt;!-- will hold the images for our application --&gt;
+    src/       &lt;!-- will hold the elements for our application --&gt;
+    bower.json &lt;!-- Bower metadata files used for managing dependencies --&gt;
+    index.html &lt;!-- our application main entry point --&gt;
+</code></pre>
+
+                <h2>Dependencies</h2>
+
+                <aside class="special">
+                    <p>This codelab uses <strong>Bower</strong> and <strong>NPM</strong> package managers</p>
+
+                    <p>To learn more about package mangers you can follow the <a href="/codelabs/package-managers" target="_blank">Package Managers</a> code lab.</p>
+                </aside>
+
+                <p>Install Polymer and web components polyfill</p>
+
+                <pre>
+<code>
+$ bower install --save Polymer/polymer#1.9.2
+$ bower install --save webcomponentsjs#0.7.24
+</code></pre>
+
+                <p>Also install <code>polymer-cli</code> as a global <code>Node</code> package</p>
+
+                <pre>
+<code>
+$ npm install -g polymer-cli
+</code></pre>
+
+                <h2>index.html</h2>
+
+                <p>Start with a minimal HTML5 document</p>
+
+                <pre>
+<code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+        &lt;title>ING ATMs&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+                <p>then add the reference to the <code>webcomponents-lite.min.js</code> polyfill inside the <code>head</code> tag</p>
+
+                <h2>Create the <code>ing-atms</code> element</h2>
+
+                <p>Inside the <code>src</code> folder create an html file named <code>ing-atms.html</code>. Use the following element template:</p>
+
+                <pre>
+<code>
+&lt;link rel="import" href="../bower_components/polymer/polymer.html"&gt;
+
+&lt;dom-module id="ing-atms"&gt;
+    &lt;template&gt;
+        &lt;style&gt;
+        &lt;/style&gt;
+        &lt;h1&gt;Hello World from Polymer!&lt;/h1&gt;
+    &lt;/template&gt;
+
+    &lt;script&gt;
+        Polymer({
+            is: 'ing-atms'
+        });
+    &lt;/script&gt;
+&lt;/dom-module&gt;
+</code></pre>
+
+                <h2>Use the <code>ing-atms</code> element</h2>
+
+                <p>To employ <code>&lt;ing-atms&gt;</code>, you need to:</p>
+
+                <ol type="1" start="1">
+                    <li>Use an <a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/" target="_blank">HTML Import</a> to load it in <code>index.html</code>.</li>
+                    <li>Declare an instance of the element insde the <code>body</code>.</li>
+                </ol>
+
+                <aside class="warning">
+                    <p><strong>Important</strong>: the import needs to come <strong>after </strong><code>webcomponents-lite.min.js</code> so the polyfill can properly load them.</p>
+                </aside>
+
+                <h2>Preview the app</h2>
+
+                <p>From command line run (insde the application folder</p>
+
+                <pre>
+<code>
+$ polymer serve -o
+</code></pre>
+
+                <p>If everything went well you shall see a nice greeting</p>
+            </google-codelab-step>
+            <google-codelab-step label="Showing a map" duration="10">
+                <p>The <a href="https://elements.polymer-project.org/browse?package=google-web-components" target="_blank">Google Web Components</a> collection provides the <code>&lt;google-map&gt;</code> element for declaratively rendering a Google Map. To use it, you first need to install it using Bower.</p>
+
+                <h2>Install the google-map element</h2>
+
+                <pre>
+<code>
+$ bower install --save GoogleWebComponents/google-map
+</code></pre>
+
+                <p>The download may take a few seconds. You can verify that <code>&lt;google-map&gt;</code> (and any dependencies) was installed by checking that <code>bower_components/google-map/</code> was created and populated.</p>
+
+                <h2>Obtain a Maps API key</h2>
+
+                <p>To use the map element, you'll need to obtain an API key for the Google Maps API. Visit <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com/maps/documentation/javascript/get-api-key</a> and copy your key. We'll use it in the next step.</p>
+
+                <h2>Use the google-map element</h2>
+
+                <p>To employ <code>&lt;google-map&gt;</code>, you need to:</p>
+
+                <ol type="1" start="1">
+                    <li>
+                        Use an <code>HTML Import</code> to load it inside <code>ing-atms.html</code>.
+                        <pre>
+<code>
+&lt;link rel="import" href="../bower_components/google-map/google-map.html"&gt;
+</code></pre>
+                    </li>
+                    <li>
+                        Declare an instance of the element on the <code>ing-atms.html</code>'s template (replace the <code>h1</code> tag).
+                        <pre>
+<code>
+&lt;google-map api-key="YOUR_KEY" disable-default-ui zoom="15"&gt;
+&lt;/google-map&gt;
+</code></pre>
+                    </li>
+                </ol>
+
+                <h3>Style the map</h3>
+
+                <p>If you run the app right now, nothing will display. In order for the map to properly display itself, you need to set its container (in this case, <code>&lt;ing-atms&gt;</code>) to have a fixed height.</p>
+
+                <p>For this we are going to use a component <code>iron-flex-layout</code></p>
+
+                <ol type="1" start="1">
+                    <li>
+                        Install the component.
+                        <pre>
+<code>
+$ bower install --save PolymerElements/iron-flex-layout
+</code></pre>
+                    </li>
+                    <li>
+                        Use an <code>HTML Import</code> to load it inside <code>ing-atms.html</code>.
+                        <pre>
+<code>
+&lt;link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html"&gt;
+</code></pre>
+                    </li>
+                    <li>
+                        Style the <code>:host</code> pseudoselector inside the <code>style</code> tag
+                        <pre>
+<code>
+:host {
+    @apply --layout-fit;
+}
+</code></pre>
+                    </li>
+                </ol>
+
+                <h2>Run the app</h2>
+
+                <p>If you haven't already done so, refresh the page. At this point, you should see a map that takes up the entire viewport.</p>
+            </google-codelab-step>
+            <google-codelab-step label="Using geolocation" duration="10">
+                <p>The application will be useful if the map will be centered to our location.</p>
+
+                <h2>Install the geo-location element</h2>
+
+                <pre>
+<code>
+$ bower install --save ebidel/geo-location
+</code></pre>
+
+                <h2>Use the geo-location element</h2>
+
+                <p>To employ <code>&lt;geo-location&gt;</code>, you need to:</p>
+
+                <ol type="1" start="1">
+                    <li>
+                        Use an <code>HTML Import</code> to load it inside <code>ing-atms.html</code>.
+                        <pre>
+<code>
+&lt;link rel="import" href="../bower_components/geo-location/geo-location.html"&gt;
+</code></pre>
+                    </li>
+                    <li>
+                        Declare an instance of the element on the <code>ing-atms.html</code>'s template.
+                        <pre>
+<code>
+&lt;geo-location watch-pos high-accuracy latitude="[[_twoWayBinding('lat')]]" longitude="[[_twoWayBinding('lng')]]"&gt;&lt;/geo-location&gt;
+</code></pre>
+                    </li>
+                </ol>
+
+                <p>
+                    The <code>geo-location</code> component will provide the <code>latitude</code> and <code>longitude</code> every time our position changes.
+                    We used two way binding to bind them to our <code>lat</code> and <code>lng</code> properties.
+                </p>
+
+                <h2>Center the map to our location</h2>
+
+                <p>Update the <code>google-map</code> to use the new properties</p>
+
+                <pre>
+<code>
+&lt;google-map
+    api-key="YOUR_KEY"
+    latitude="[[_oneWayBinding('lat')]]" longitude="[[_oneWayBinding('lng')]]"
+    disable-default-ui zoom="15"&gt;
+&lt;/google-map&gt;
+</code></pre>
+
+                <p>Refreshing the page will center the map to our position (a permission to use the location will be asked).</p>
+
+                <h2>Pin the location</h2>
+
+                <p>Will be nice if our location will be clearly marked on the map by a pin</p>
+
+                <h3>Using <code>google-map-marker</code></h3>
+
+                <p>The <code>google-map-marker</code> comes with the <code>google-map</code> component and it is used to display a marker on the map, but first we have to import the component.</p>
+
+                <pre>
+<code>
+&lt;link rel="import" href="../bower_components/google-map/google-map-marker.html"&gt;
+</code></pre>
+
+                <p>In order to use it we have to declare it inside the <code>google-map</code> component and use the same <code>lat</code> and <code>lng</code> properties for its position</p>
+
+                <pre>
+<code>
+&lt;google-map
+    api-key="YOUR_KEY"
+    latitude="[[_oneWayBinding('lat')]]" longitude="[[_oneWayBinding('lng')]]"
+    disable-default-ui zoom="15"&gt;
+    &lt;google-map-marker
+        latitude="[[_oneWayBinding('lat')]]"
+        longitude="[[_oneWayBinding('lng')]]"&gt;
+    &lt;/google-map-marker&gt;
+&lt;/google-map&gt;
+</code></pre>
+
+                <h3>Style the marker</h3>
+
+                <p>At this point we have a default marker showing our position but we can change the icon and even add some content that shows up when we click the marker.</p>
+
+                <ol type="1" start="1">
+                    <li>
+                        Add the following inside the marker
+                        <pre><code>&lt;h2&gt;You are here&lt;/h2&gt;</code></pre>
+                    </li>
+                    <li>
+                        Download the following image inside the <code>images</code> folder
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img style="width:48px; height:48px" src="/images/labs/polymer-lego-for-the-web/my-location.png">
+                        </p>
+                        and update the <code>google-map-marker</code> by adding the attribute <code>icon="images/my-location.png"</code>
+                    </li>
+                </ol>
+            </google-codelab-step>
+            <google-codelab-step label="Adding ATMs" duration="8"></google-codelab-step>
+            <google-codelab-step label="Showing directions" duration="8"></google-codelab-step>
+            <google-codelab-step label="Switching travel mode" duration="8"></google-codelab-step>
+            <google-codelab-step label="Summary" duration="8"></google-codelab-step>
+        </google-codelab>
+    </template>
+    <script>
+        Polymer({
+            is: 'codelab-polymer-lego-for-the-web',
+
+            _twoWayBinding: function(value){
+                return '{{' + value + "}}";
+            },
+
+            _oneWayBinding: function(value){
+                return '[[' + value + "]]";
+            }
+        });
+    </script>
+</dom-module>

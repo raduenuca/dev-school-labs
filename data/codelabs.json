@@ -47,5 +47,13 @@
         "updated": "2017-05-01T10:12:00Z",
         "author": "Raluca Lupu",
         "duration": 90
+    },
+    {
+        "category": "Polymer",
+        "slug": "polymer-lego-for-the-web",
+        "title": "Polymer - Lego for the Web",
+        "updated": "2017-06-18T10:12:00Z",
+        "author": "Radu Enuca",
+        "duration": 90
     }
 ]
