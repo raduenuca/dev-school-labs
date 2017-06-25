@@ -1,6 +1,6 @@
 {
     "name": "dev-school-labs",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "description": "Code labs project for DevSchool",
     "main": "index.html",
     "homepage": "https://github.com/raduenuca/dev-school-labs#readme",
@@ -10,7 +10,7 @@
     ],
     "scripts": {
         "start": "polymer serve -o",
-        "deploy": "polymer build && firebase deploy"
+        "deploy": "polymer build --bundle && firebase deploy"
     },
     "repository": {
         "type": "git",
