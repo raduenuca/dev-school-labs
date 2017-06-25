@@ -11,9 +11,15 @@
                         environment="web"
                         last-updated="2017-03-28">
             <google-codelab-step label="Overview" duration="1">
-                <p style="display:flex; justify-content: center; align-items: center;"><img src="/images/labs/polymer-lego-for-the-web/end-result.png"></p>
+                <p style="display:flex; justify-content: center; align-items: center;"><img
+                    src="/images/labs/polymer-lego-for-the-web/end-result.png"></p>
 
-                <p>In this code lab, we will create a fully working Google Maps app using elements in Polymer's <a href="https://elements.polymer-project.org/browse?package=google-web-components" target="_blank">Google Web Components</a> collection. The app will be responsive and will include driving directions and transit mode. Along the way, you'll also learn about Polymer's data-binding features and <a href="https://www.webcomponents.org/element/PolymerElements/iron-ajax" target="_blank">iron ajax</a> element.</p>
+                <p>In this code lab, we will create a fully working Google Maps app using elements in Polymer's <a
+                    href="https://elements.polymer-project.org/browse?package=google-web-components" target="_blank">Google
+                    Web Components</a> collection. The app will be responsive and will include driving directions and
+                    transit mode. Along the way, you'll also learn about Polymer's data-binding features and <a
+                        href="https://www.webcomponents.org/element/PolymerElements/iron-ajax" target="_blank">iron
+                        ajax</a> element.</p>
 
                 <h3 class="checklist">What you'll learn</h3>
 
@@ -30,10 +36,11 @@
                     <li>An editor of choice.</li>
                 </ul>
             </google-codelab-step>
-            <google-codelab-step label="Project set up" duration="14">
+            <google-codelab-step label="Project set up" duration="12">
                 <h2>Create a new project</h2>
 
-                <p>Fire up a code editor, start a new project and make sure your folder structure should look like this</p>
+                <p>Fire up a code editor, start a new project and make sure your folder structure should look like
+                    this</p>
 
                 <pre>
 <code>
@@ -50,7 +57,9 @@ IngAtmsCodeLab/
                 <aside class="special">
                     <p>This codelab uses <strong>Bower</strong> and <strong>NPM</strong> package managers</p>
 
-                    <p>To learn more about package mangers you can follow the <a href="/codelabs/package-managers" target="_blank">Package Managers</a> code lab.</p>
+                    <p>To learn more about package mangers you can follow the <a href="/codelabs/package-managers"
+                                                                                 target="_blank">Package Managers</a>
+                        code lab.</p>
                 </aside>
 
                 <p>Install Polymer and web components polyfill</p>
@@ -87,11 +96,13 @@ $ npm install -g polymer-cli
 &lt;/html&gt;
 </code></pre>
 
-                <p>then add the reference to the <code>webcomponents-lite.min.js</code> polyfill inside the <code>head</code> tag</p>
+                <p>then add the reference to the <code>webcomponents-lite.min.js</code> polyfill inside the
+                    <code>head</code> tag</p>
 
                 <h2>Create the <code>ing-atms</code> element</h2>
 
-                <p>Inside the <code>src</code> folder create an html file named <code>ing-atms.html</code>. Use the following element template:</p>
+                <p>Inside the <code>src</code> folder create an html file named <code>ing-atms.html</code>. Use the
+                    following element template:</p>
 
                 <pre>
 <code>
@@ -117,12 +128,15 @@ $ npm install -g polymer-cli
                 <p>To employ <code>&lt;ing-atms&gt;</code>, you need to:</p>
 
                 <ol type="1" start="1">
-                    <li>Use an <a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/" target="_blank">HTML Import</a> to load it in <code>index.html</code>.</li>
+                    <li>Use an <a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/" target="_blank">HTML
+                        Import</a> to load it in <code>index.html</code>.
+                    </li>
                     <li>Declare an instance of the element insde the <code>body</code>.</li>
                 </ol>
 
                 <aside class="warning">
-                    <p><strong>Important</strong>: the import needs to come <strong>after </strong><code>webcomponents-lite.min.js</code> so the polyfill can properly load them.</p>
+                    <p><strong>Important</strong>: the import needs to come <strong>after </strong><code>webcomponents-lite.min.js</code>
+                        so the polyfill can properly load them.</p>
                 </aside>
 
                 <h2>Preview the app</h2>
@@ -136,8 +150,11 @@ $ polymer serve -o
 
                 <p>If everything went well you shall see a nice greeting</p>
             </google-codelab-step>
-            <google-codelab-step label="Showing a map" duration="10">
-                <p>The <a href="https://elements.polymer-project.org/browse?package=google-web-components" target="_blank">Google Web Components</a> collection provides the <code>&lt;google-map&gt;</code> element for declaratively rendering a Google Map. To use it, you first need to install it using Bower.</p>
+            <google-codelab-step label="Showing a map" duration="8">
+                <p>The <a href="https://elements.polymer-project.org/browse?package=google-web-components"
+                          target="_blank">Google Web Components</a> collection provides the
+                    <code>&lt;google-map&gt;</code> element for declaratively rendering a Google Map. To use it, you
+                    first need to install it using Bower.</p>
 
                 <h2>Install the google-map element</h2>
 
@@ -146,11 +163,15 @@ $ polymer serve -o
 $ bower install --save GoogleWebComponents/google-map
 </code></pre>
 
-                <p>The download may take a few seconds. You can verify that <code>&lt;google-map&gt;</code> (and any dependencies) was installed by checking that <code>bower_components/google-map/</code> was created and populated.</p>
+                <p>The download may take a few seconds. You can verify that <code>&lt;google-map&gt;</code> (and any
+                    dependencies) was installed by checking that <code>bower_components/google-map/</code> was created
+                    and populated.</p>
 
                 <h2>Obtain a Maps API key</h2>
 
-                <p>To use the map element, you'll need to obtain an API key for the Google Maps API. Visit <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com/maps/documentation/javascript/get-api-key</a> and copy your key. We'll use it in the next step.</p>
+                <p>To use the map element, you'll need to obtain an API key for the Google Maps API. Visit <a
+                    href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com/maps/documentation/javascript/get-api-key</a>
+                    and copy your key. We'll use it in the next step.</p>
 
                 <h2>Use the google-map element</h2>
 
@@ -165,7 +186,8 @@ $ bower install --save GoogleWebComponents/google-map
 </code></pre>
                     </li>
                     <li>
-                        Declare an instance of the element on the <code>ing-atms.html</code>'s template (replace the <code>h1</code> tag).
+                        Declare an instance of the element on the <code>ing-atms.html</code>'s template (replace the
+                        <code>h1</code> tag).
                         <pre>
 <code>
 &lt;google-map api-key="YOUR_KEY" disable-default-ui zoom="15"&gt;
@@ -176,7 +198,9 @@ $ bower install --save GoogleWebComponents/google-map
 
                 <h3>Style the map</h3>
 
-                <p>If you run the app right now, nothing will display. In order for the map to properly display itself, you need to set its container (in this case, <code>&lt;ing-atms&gt;</code>) to have a fixed height.</p>
+                <p>If you run the app right now, nothing will display. In order for the map to properly display itself,
+                    you need to set its container (in this case, <code>&lt;ing-atms&gt;</code>) to have a fixed height.
+                </p>
 
                 <p>For this we are going to use a component <code>iron-flex-layout</code></p>
 
@@ -208,9 +232,10 @@ $ bower install --save PolymerElements/iron-flex-layout
 
                 <h2>Run the app</h2>
 
-                <p>If you haven't already done so, refresh the page. At this point, you should see a map that takes up the entire viewport.</p>
+                <p>If you haven't already done so, refresh the page. At this point, you should see a map that takes up
+                    the entire viewport.</p>
             </google-codelab-step>
-            <google-codelab-step label="Using geolocation" duration="10">
+            <google-codelab-step label="Using geolocation" duration="8">
                 <p>The application will be useful if the map will be centered to our location.</p>
 
                 <h2>Install the geo-location element</h2>
@@ -242,7 +267,8 @@ $ bower install --save ebidel/geo-location
                 </ol>
 
                 <p>
-                    The <code>geo-location</code> component will provide the <code>latitude</code> and <code>longitude</code> every time our position changes.
+                    The <code>geo-location</code> component will provide the <code>latitude</code> and
+                    <code>longitude</code> every time our position changes.
                     We used two way binding to bind them to our <code>lat</code> and <code>lng</code> properties.
                 </p>
 
@@ -259,7 +285,8 @@ $ bower install --save ebidel/geo-location
 &lt;/google-map&gt;
 </code></pre>
 
-                <p>Refreshing the page will center the map to our position (a permission to use the location will be asked).</p>
+                <p>Refreshing the page will center the map to our position (a permission to use the location will be
+                    asked).</p>
 
                 <h2>Pin the location</h2>
 
@@ -267,14 +294,16 @@ $ bower install --save ebidel/geo-location
 
                 <h3>Using <code>google-map-marker</code></h3>
 
-                <p>The <code>google-map-marker</code> comes with the <code>google-map</code> component and it is used to display a marker on the map, but first we have to import the component.</p>
+                <p>The <code>google-map-marker</code> comes with the <code>google-map</code> component and it is used to
+                    display a marker on the map, but first we have to import the component.</p>
 
                 <pre>
 <code>
 &lt;link rel="import" href="../bower_components/google-map/google-map-marker.html"&gt;
 </code></pre>
 
-                <p>In order to use it we have to declare it inside the <code>google-map</code> component and use the same <code>lat</code> and <code>lng</code> properties for its position</p>
+                <p>In order to use it we have to declare it inside the <code>google-map</code> component and use the
+                    same <code>lat</code> and <code>lng</code> properties for its position</p>
 
                 <pre>
 <code>
@@ -291,7 +320,8 @@ $ bower install --save ebidel/geo-location
 
                 <h3>Style the marker</h3>
 
-                <p>At this point we have a default marker showing our position but we can change the icon and even add some content that shows up when we click the marker.</p>
+                <p>At this point we have a default marker showing our position but we can change the icon and even add
+                    some content that shows up when we click the marker.</p>
 
                 <ol type="1" start="1">
                     <li>
@@ -301,27 +331,482 @@ $ bower install --save ebidel/geo-location
                     <li>
                         Download the following image inside the <code>images</code> folder
                         <p style="display:flex; justify-content: center; align-items: center;">
-                            <img style="width:48px; height:48px" src="/images/labs/polymer-lego-for-the-web/my-location.png">
+                            <img style="width:48px; height:48px"
+                                 src="/images/labs/polymer-lego-for-the-web/my-location.png">
                         </p>
                         and update the <code>google-map-marker</code> by adding the attribute <code>icon="images/my-location.png"</code>
                     </li>
                 </ol>
             </google-codelab-step>
-            <google-codelab-step label="Adding ATMs" duration="8"></google-codelab-step>
-            <google-codelab-step label="Showing directions" duration="8"></google-codelab-step>
-            <google-codelab-step label="Switching travel mode" duration="8"></google-codelab-step>
-            <google-codelab-step label="Summary" duration="8"></google-codelab-step>
+            <google-codelab-step label="Adding ATMs" duration="8">
+                <h2>Obtaining ATM locations</h2>
+
+                <p>Navigate <a href="https://www.ing.ro/ing-in-romania/contact">here</a> and download the location.json
+                    by using the browser developer tools inside the <code>data</code> folder of your project</p>
+
+                <h2>Reading the <code>location.json</code> file</h2>
+
+                <p>To read the file we need to do an AJAX request and in Polymer there is the <code>iron-ajax</code>
+                    component for that</p>
+
+                <h3>Install the <code>iron-ajax</code> element</h3>
+
+                <pre>
+<code>
+$ bower bower install --save PolymerElements/iron-ajax
+</code></pre>
+
+                <h3>Declare the <code>iron-ajax</code> element</h3>
+
+                <pre>
+<code>
+&lt;iron-ajax auto url="../data/locations.json" on-response="handleResponse"&gt;&lt;/iron-ajax&gt;
+</code></pre>
+
+                <p>where</p>
+
+                <ul>
+                    <li>
+                        <code>auto</code> automatically performs the Ajax request.
+                    </li>
+                    <li>
+                        <code>url</code> the URL target of the request.
+                    </li>
+                    <li>
+                        <code>on-response</code> is the callback being called when the request finishes with success
+                    </li>
+                </ul>
+
+                <h3>Parsing the response</h3>
+
+                <p>The response will contain information in a format different than the one we need. It is an array of
+                    <code>cities</code>, each containing an array of <code>locations</code></p>
+                <p>What we need is just an array of <code>locations</code> and in order to obtain that we will going to
+                    use the <code>Array.reduce</code> function.</p>
+
+                <pre>
+<code>
+Polymer({
+    is: 'ing-atms',
+    handleResponse: function (evt, xhr) {
+        this.locations = xhr.response.city.reduce(function (locations, city) {
+            return locations.concat(city.location);
+        }, []);
+    }
+});
+</code></pre>
+
+                <h2>Displaying ATMs locations</h2>
+
+                <p>Now that we have the locations prepared let's show them on the map</p>
+
+                <p>For this we are going to use another Polymer construct, the <code>dom-repeat</code> template</p>
+
+                <p>Just after the location marker add</p>
+
+                <pre>
+<code>
+&lt;template is="dom-repeat" items="[[_oneWayBinding('locations')]]" as="atm"&gt;
+    &lt;google-map-marker
+        latitude="[[_oneWayBinding('atm.map.latitude')]]"
+        longitude="[[_oneWayBinding('atm.map.longitude')]]"&gt;
+    &lt;/google-map-marker&gt;
+&lt;/template&gt;
+</code></pre>
+
+                <h3>Exercise</h3>
+
+                <ul>
+                    <li>
+                        Show only ING ATMs by using the <code>filter</code> function of the <code>dom-repeat</code>
+                        tempplate
+                        <p><code>Hint:</code> make sure that atm type is not <code>ATM non-ING</code></p>
+                    </li>
+                    <li>Show a different pin.
+                        <p>You can use:</p>
+                        <p style="display:flex; justify-content: center; align-items: center;">
+                            <img style="width:22px; height:35px"
+                                 src="/images/labs/polymer-lego-for-the-web/pin.png">
+                        </p>
+                    </li>
+                    <li>
+                        Add information about the atm inside the marker (e.g. name and schedule)
+                    </li>
+                </ul>
+            </google-codelab-step>
+            <google-codelab-step label="Showing directions" duration="8">
+                <p>The <code>&lt;google-map-directions&gt;</code> element was installed alongside <code>&lt;google-map&gt;</code>.
+                    It provides driving direction information using the Google Maps API.</p>
+
+                <h2>Use the google-map-directions element</h2>
+
+                <p>To employ <code>&lt;google-map-directions&gt;</code>:</p>
+
+                <ol type="1" start="1">
+                    <li>Use an HTML Import to load it in <code>ing-atms.html</code>.</li>
+                    <li>Declare an instance of the element on the page.</li>
+                    <li>"Connect" it to the map.</li>
+                </ol>
+
+                <h3>ing-atms.html</h3>
+
+                <pre>
+<code>
+&lt;link rel="import" href="../bower_components/google-map/google-map-directions.html"&gt;
+</code></pre>
+
+                <p>Declare <code>&lt;google-map-directions&gt;</code> as a sibling of <code>&lt;google-map&gt;</code>.
+                </p>
+
+                <pre>
+<code>
+&lt;google-map-directions
+    api-key="YOUR_KEY"&gt;
+&lt;/google-map-directions&gt;
+
+&lt;google-map
+    api-key="YOUR_KEY"
+    latitude="[[_oneWayBinding('lat')]]" longitude="[[_oneWayBinding('lng')]]"
+    disable-default-ui zoom="15"&gt;
+    ...
+&lt;/google-map&gt;
+</code></pre>
+
+                <h2>Hooking up directions to the map</h2>
+
+                <p><code>&lt;google-map-directions&gt;</code> fetches directions, but it isn't that useful by itself.
+                    You need to connect the results from <code>&lt;google-map-directions&gt;</code> to <code>&lt;google-map&gt;</code>
+                    so the directions render on the map.</p>
+
+                <p>Both elements expose a <code>.map</code> property that allow users to access/set an underlying <code>Map</code>
+                    object (used by the Google Maps JavaScript API). To get these two elements talking, set them to use
+                    the same <code>Map</code> object.</p>
+
+                <h3>Exercise</h3>
+
+                <ul>
+                    <li>Make <code>api-key</code> a property of the <code>ing-atms</code> component and the bind it to
+                        both the <code>google-map</code> and <code>google-map-directions</code> component
+                    </li>
+                    <li>Bind both <code>google-map</code> and <code>google-map-directions</code> to the <code>map</code>
+                        property
+                    </li>
+                </ul>
+
+                <h2>Setting start and end addresses for the <code>google-map-directions</code> element</h2>
+
+                <h3>Start address</h3>
+
+                <p>The start address will be our current location. Create a computed property named
+                    <code>startAddress</code></p>
+
+                <pre>
+<code>
+Polymer({
+    is: 'ing-atms',
+    properties: {
+        ...
+        startAddress: {
+            type: Object,
+            computed: 'computeStartAddress(lat, lng)'
+        }
+    },
+    ...
+    computeStartAddress: function (lat, lng) {
+        return {lat: lat, lng: lng};
+    }
+});
+</code></pre>
+
+                <h3>End address</h3>
+
+                <p>The end address will be the ATM we want to go to location's</p>
+
+                <p>In order to compute the end address we need to add the following attributes on the ATM's <code>google-map-marker</code>,
+                    <code>click-events on-google-map-marker-click="computeEndAddress"</code></p>
+
+                <p>where</p>
+
+                <ul>
+                    <li>
+                        <code>click-events</code> when present, marker *click events are automatically registered.
+                    </li>
+                    <li>
+                        <code>on-google-map-marker-click</code> callback function for the marker's click event.
+                    </li>
+                </ul>
+
+                <p>and</p>
+
+                <pre>
+<code>
+computeEndAddress: function (event) {
+    this.endAddress = {lat: parseFloat(event.target.latitude), lng: parseFloat(event.target.longitude)};
+},
+</code></pre>
+
+                <h3>Exercise</h3>
+
+                <ul>
+                    <li>
+                        Bind the <code>startAddress</code> and <code>endAddress</code> properties to the <code>google-map-directions</code>
+                        element
+                    </li>
+                    <li>
+                        Remove the extra pins the <code>google-map-directions</code> adds by creating a <code>renderOptions</code>
+                        property
+                        <pre>
+<code>
+renderOptions: {
+    type: Object,
+    value: function () {
+        return {
+            suppressMarkers: true
+        };
+    }
+}
+</code></pre>
+                    </li>
+                </ul>
+            </google-codelab-step>
+            <google-codelab-step label="Switching travel mode" duration="14">
+                <h2>Install the components for this step</h2>
+
+                <pre>
+<code>
+$ bower install --save PolymerElements/iron-icons
+$ bower install --save PolymerElements/paper-tabs
+</code></pre>
+
+                <h2>Import the components for this step</h2>
+
+                <p>In <strong>ing-atms.html</strong>, add the following HTML Imports:</p>
+
+                <pre>
+<code>
+&lt;link rel="import" href="../bower_components/paper-tabs/paper-tabs.html"&gt;
+&lt;link rel="import" href="../bower_components/paper-tabs/paper-tab.html"&gt;
+&lt;link rel="import" href="../bower_components/iron-icons/maps-icons.html"&gt;
+&lt;link rel="import" href="../bower_components/iron-icon/iron-icon.html"&gt;
+</code></pre>
+
+                <p><strong>Note: </strong><code>maps-icons</code> is required to load Polymer's <a
+                    href="https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html"
+                    target="_blank">map iconset</a>. You'll use it later to render icons for the travel modes.</p>
+
+                <h2>Creating a travel mode selector</h2>
+
+                <p>We'll use <code>&lt;paper-tabs&gt;</code> to allow users to select their travel type. Each transit
+                    mode will also use an icon from the <code>maps</code> icon set instead of the default one. To use
+                    one of the other icon sets, the <code>icon</code> attribute takes the form: <code>&lt;iconset&gt;:&lt;name&gt;</code>,
+                    where <code>&lt;iconset&gt;</code> is the name of the icon set (e.g. "maps") and
+                    <code>&lt;name&gt;</code> is the name of the icon from that set.</p>
+
+                <p>As an example, the following code places the <code>directions-car</code> icon from the
+                    <code>maps</code> icon set:</p>
+
+                <pre>
+<code>
+&lt;iron-icon icon="maps:directions-car" item-icon&gt;&lt;/iron-icon&gt;
+</code></pre>
+
+                <p>The <code>&lt;google-map-directions&gt;</code> element contains a <code>travelMode</code> property
+                    for specifying the type of directions to render. It has four possible values:
+                    "<strong>DRIVING</strong>", "<strong>WALKING</strong>", "<strong>BICYCLING</strong>", and "<strong>TRANSIT</strong>".
+                </p>
+
+                <ol type="1" start="1">
+                    <li>In <strong>ing-atms.html </strong>after the <code>&lt;google-map&gt;</code> element, add a
+                        <code>&lt;paper-tabs&gt;</code> with the travel mode options.
+                    </li>
+                    <li>For each type of transit mode, add an <code>&lt;iron-icon&gt;</code> and
+                        <code>&lt;span&gt;</code> containing helper text.
+                    </li>
+                </ol>
+
+                <h3>ing-atms.html</h3>
+
+                <pre>
+<code>
+&lt;!-- selected="0" selects the first item in the tab list.
+     Change it to another index if you want a different default. --&gt;
+&lt;paper-tabs selected="0"&gt;
+    &lt;paper-tab label="DRIVING"&gt;
+        &lt;iron-icon icon="maps:directions-car"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;DRIVING&lt;/span&gt;
+    &lt;/paper-tab&gt;
+    &lt;paper-tab label="WALKING"&gt;
+        &lt;iron-icon icon="maps:directions-walk"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;WALKING&lt;/span&gt;
+    &lt;/paper-tab&gt;
+    &lt;paper-tab label="BICYCLING"&gt;
+        &lt;iron-icon icon="maps:directions-bike"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;BICYCLING&lt;/span&gt;
+    &lt;/paper-tab&gt;
+    &lt;paper-tab label="TRANSIT"&gt;
+        &lt;iron-icon icon="maps:directions-transit"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;TRANSIT&lt;/span&gt;
+    &lt;/paper-tab&gt;
+&lt;/paper-tabs&gt;
+</code></pre>
+
+                <h2>Styling the tab strip</h2>
+
+                <p><code>&lt;paper-tabs&gt;</code> is styled by default. It has a yellow material design ink effect and
+                    selection bar indication the selected tab. We can make it nicer!</p>
+
+                <p>Polymer uses <a
+                    href="https://www.polymer-project.org/1.0/docs/devguide/styling.html#xscope-styling-details"
+                    target="_blank">CSS custom properties</a> to expose styling hooks for internal parts of a
+                    component's Shady DOM. For example, <a
+                        href="https://elements.polymer-project.org/elements/paper-tabs" target="_blank">paper-tabs</a>
+                    exposes <code>--paper-tabs-selection-bar-color</code> to colorize the tab's selection bar.</p>
+
+                <h3>ing-atms.html</h3>
+
+                <pre>
+<code>
+&lt;dom-module id="ing-atms"&gt;
+    &lt;template&gt;
+        &lt;style&gt;
+            :host {
+                @apply --layout-fit;
+            }
+
+            paper-tabs {
+                @apply --layout-fixed-left;
+                --paper-tabs-selection-bar-color: #4271F4;
+                background: #ffffff;
+            }
+
+            paper-tab {
+                --paper-tab-ink: #BBDEFB;
+            }
+
+            paper-tab.iron-selected {
+                background: rgb(66, 113, 244);
+                color: #ffffff;
+            }
+
+            paper-tab iron-icon {
+                margin-right: 10px;
+            }
+        &lt;/style&gt;
+        ...
+&lt;/dom-module&gt;
+</code></pre>
+
+                <p>This bit of code will colorize the selection bar and ink ripple effect a nice <a
+                    href="https://www.google.com/design/spec/style/color.html#color-color-palette" target="_blank">material
+                    design blue</a>.</p>
+
+                <aside class="special">
+                    <p><strong>Note: </strong>you can read up on <a
+                        href="https://elements.polymer-project.org/elements/paper-tabs" target="_blank">paper-tabs</a>
+                        and <a href="https://elements.polymer-project.org/elements/paper-tabs?active=paper-tab"
+                               target="_blank">paper-tab</a> styling hooks in their element documentation pages.</p>
+                </aside>
+
+                <h2>Data-bind the travel mode selector ↔ directions element</h2>
+
+                <p>The last thing you need to do is data-bind the <code>travelMode</code> property of <code>&lt;google-map-directions&gt;</code>
+                    to <code>&lt;paper-tabs&gt;</code>'s <code>.selected</code> property. The tabs updates this property
+                    whenever a new child item is selected. By default, its set to the index of the selected item. We
+                    need to override this in order to bind to the string value of each direction type. The <code>attr-for-selected</code>
+                    property does just that.</p>
+
+                <p>Bind the direction's <code>travelMode</code> property to the tab's <code>selected</code> property:
+                </p>
+
+                <h3>ing-atms.html</h3>
+
+                <pre>
+<code>
+&lt;google-map-directions
+        map="[[_oneWayBinding('map')]]" api-key="[[_oneWayBinding('apiKey')]]"
+        start-address="[[_oneWayBinding('startAddress')]]" end-address="[[_oneWayBinding('endAddress')]]"
+        travel-mode="[[_oneWayBinding('travelMode')]]" renderer-options="[[_oneWayBinding('renderOptions')]]"&gt;
+&lt;/google-map-directions&gt;
+
+...
+
+&lt;paper-tabs attr-for-selected="label" selected="[[_twoWayBinding('travelMode')]]"&gt;
+    &lt;paper-tab label="DRIVING"&gt;
+        &lt;iron-icon icon="maps:directions-car"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;DRIVING&lt;/span&gt;
+    &lt;/paper-tab&gt;
+    &lt;paper-tab label="WALKING"&gt;
+        &lt;iron-icon icon="maps:directions-walk"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;WALKING&lt;/span&gt;
+    &lt;/paper-tab&gt;
+    &lt;paper-tab label="BICYCLING"&gt;
+        &lt;iron-icon icon="maps:directions-bike"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;BICYCLING&lt;/span&gt;
+    &lt;/paper-tab&gt;
+    &lt;paper-tab label="TRANSIT"&gt;
+        &lt;iron-icon icon="maps:directions-transit"&gt;&lt;/iron-icon&gt;
+        &lt;span&gt;TRANSIT&lt;/span&gt;
+    &lt;/paper-tab&gt;
+&lt;/paper-tabs&gt;
+</code></pre>
+
+                <aside class="special"><p><strong>Note: </strong>We've also stuck <code>label</code> attributes on each
+                    <code>&lt;paper-tab&gt;</code>. When a new item is selected, <code>&lt;paper-tabs&gt;</code> sets
+                    its <code>selected</code> property to the value of this attribute on the selected child. The name
+                    <code>label</code> is set in <code>attr-for-selected="label".</code></p>
+                </aside>
+
+                <h2>Run the app</h2>
+
+                <p>The map should automatically update to show different forms of travel:</p>
+
+                <p style="display:flex; justify-content: center; align-items: center;"><img
+                    src="/images/labs/polymer-lego-for-the-web/end-result.png"></p>
+            </google-codelab-step>
+            <google-codelab-step label="Summary" duration="1">
+                <p>You built an entire maps application complete with driving directions, ajax call and showing custom pins, and kept it under 150 lines of code</p>
+
+                <p><strong>Think about that for a second</strong>. This just goes to show you the power of web components. They're reusable and composable. Zest in Polymer's data-binding features and you can create an entire app using nothing but declarative markup.</p>
+
+                <h2>What you've learned</h2>
+
+                <ul>
+                    <li>How to start a new Polymer-based</li>
+                    <li>How to use elements in Polymer's iron, paper, and Google Web Component sets.</li>
+                    <li>How to use Polymer's styling system and CSS custom properties to style the internal styling hooks a component specifies.</li>
+                    <li>How to use Polymer's data binding features to reduce boilerplate code.</li>
+                </ul>
+
+                <h2>Learn More</h2>
+
+                <h3>Polymer</h3>
+
+                <ul>
+                    <li><a href="https://www.polymer-project.org/1.0/" target="_blank">polymer-project.org</a></li>
+                    <li><a href="https://elements.polymer-project.org/browse?package=iron-elements" target="_blank">Iron elements</a> documentation</li>
+                    <li><a href="https://elements.polymer-project.org/browse?package=paper-elements" target="_blank">Paper elements</a> documentation</li>
+                    <li><a href="https://www.webcomponents.org/element/GoogleWebComponents/google-map" target="_blank">Google map elements</a> documentation</li>
+                    <li><a href="http://stackoverflow.com/questions/tagged/polymer" target="_blank">Polymer tag</a> on Stack Overflow</li>
+                </ul>
+
+                <h3>Other</h3>
+
+                <ul>
+                    <li><a href="https://elements.polymer-project.org/browse?package=google-web-components" target="_blank">Google Web Components</a> documentation</li>
+                    <li><a href="http://webcomponents.org/" target="_blank">webcomponents.org</a></li>
+                </ul>
+            </google-codelab-step>
         </google-codelab>
     </template>
     <script>
         Polymer({
             is: 'codelab-polymer-lego-for-the-web',
 
-            _twoWayBinding: function(value){
+            _twoWayBinding: function (value) {
                 return '{{' + value + "}}";
             },
 
-            _oneWayBinding: function(value){
+            _oneWayBinding: function (value) {
                 return '[[' + value + "]]";
             }
         });
