@@ -1,0 +1,123 @@
+<html><head></head><body><dom-module id="codelab-todo-angularjs"><template><google-codelab title="ToDo App - AngularJs" feedback-link="https://github.com/raduenuca/dev-school-labs/issues" environment="web" last-updated="2017-03-29"><google-codelab-step label="Overview" duration="0"><p>In this code lab you will going to build the <em>Hello World</em> of the JavaScript frameworks, <code>ToDo MVC</code></p></google-codelab-step><google-codelab-step label="Set Up" duration="5"><h2>Application structure</h2><ul><li>Create a folder for the application</li><li>Create an index.html file with the minimum structure</li></ul><h2>Dependencies</h2><ul><li>Use <code>bower</code> to install the <code>angular dependency</code></li><li>Reference the non-minified <code>angular</code> dependency</li><li>JavaScript references should be placed at the bottom of the file, just before the <code>&lt;/body&gt;</code> tag, for performance reasons.</li></ul></google-codelab-step><google-codelab-step label="Application module" duration="5"><h2>Bootstrap AngularJs</h2><ul><li>Add the <code>ng-app</code> directive to the top element in the page</li><li>Add somewhere in the page an AngularJs expression (be creative but <code>1 + 1</code> will do)</li><li>Run the <code>index.html</code> in a browser and check the result. If you got back what you entered as an expression AngularJs is not bootstraped. Try again!</li></ul><h2>Create the ToDoApp module</h2><ul><li>Create a folder named <code>src</code> inside the project folder</li><li>Create a file <code>app.module.js</code> inside a newly created folder</li><li>Add the following text inside the file<pre><code language="JavaScript">
+(function(){
+    angular.module("toDoApp", []);
+}());</code></pre></li><li>Use the name of the module as the value for the <code>ng-app</code> directive</li><li>Make sure you reference the <code>app.module.js</code> file</li><li>Refresh the <code>index.html</code> and the result should be the same</li><li>Delete any expression that you have in the <code>body</code> to have a clean slate.</li></ul></google-codelab-step><google-codelab-step label="Application controller" duration="15"><h2>Create the ToDoCtrl controller</h2><ul><li>Create a file <code>app.controller.js</code> inside a newly created folder</li><li>Add the following text inside the file<pre><code language="JavaScript">
+(function (module) {
+
+    var ToDoCtrl = function () {
+        var vm = this;
+
+        vm.todo = {
+            user: "Radu"
+        };
+    };
+
+    module.controller("ToDoCtrl", ToDoCtrl);
+
+}(angular.module("toDoApp")));</code></pre></li><li>Add the <code>ng-controller</code> directive to the <code>body</code> tag and set its value to the controller's name.</li><li>Make sure you reference the <code>app.controller.js</code> file</li><li>Add an <code>h1</code> tag as the first element in the body and make sure it dispalys <code>Radu's To Do List</code></li></ul><h2>Display tasks</h2><ul><li>Add the following as an extra <code>items</code> property to the <code>vm.todo</code> variable:<pre><code language="JavaScript">
+[
+    {"action": "Make slides", "done": false},
+    {"action": "Travel to ING", "done": false},
+    {"action": "Prepare room", "done": false},
+    {"action": "Order pizza", "done": false}
+]
+</code></pre></li><li>Inside <code>index.html</code> add a table that will show our todos<pre><code>
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Description&lt;/th&gt;
+            &lt;th&gt;Done&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr ng-repeat="item in vm.todo.items"&gt;
+            &lt;!--remove te spaces from the expression.--&gt;
+            &lt;td&gt; { { item . action } }&lt;/td&gt;
+            &lt;td&gt;&lt;input type="checkbox" ng-model="item.done"&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre></li></ul><h2>Adding tasks</h2><ul><li>Add the following code to the <code>controller</code><pre><code language="JavaScript">
+vm.addNewItem = function (actionText) {
+    vm.todo.items.push({action: actionText, done: false});
+};
+</code></pre></li><li>Inside <code>index.html</code>, above the <code>table</code> add<pre><code>
+&lt;input ng-model="actionText"/&gt;
+&lt;span&gt;
+    &lt;button ng-click="vm.addNewItem(actionText)"&gt;Add&lt;/button&gt;
+&lt;/span&gt;</code></pre></li><li>Clicking the <code>Add</code> button should add items to the list</li></ul></google-codelab-step><google-codelab-step label="Styling" duration="10"><h2>Add <a href="http://getbootstrap.com/css/" title="Bootstrap">Bootstrap</a></h2><p>The application looks pretty bad and for sure by now some of you started to improve it :)</p><ul><li>Use <code>bower</code> to install and save the <code>bootstrap-css</code> dependency</li><li>Reference the <code>bootstrap.css</code> and <code>bootstrap-theme.css</code> files inside the <code>head</code> tag</li><li>Refresh the page and see the changes. It should already look better just by adding <code>Bootstrap</code></li></ul><h2>Adding classes and refactoring html</h2><ul><li>Add the <code>h1</code> inside a <code>div</code> with a <code>class</code> of <code>page-header</code></li><li>Wrap the rest of the content inside a <code>div</code> with a <code>class</code> of <code>panel</code>.</li><li>Wrap all items above the <code>table</code>, an <code>input</code> and a <code>span</code>, inside a <code>div</code> with a <code>class</code> of <code>input-control</code></li><li>Give the <code>input</code> a <code>class</code> of <code>form-control</code></li><li>Give the <code>span</code> a <code>class</code> of <code>input-group-btn</code></li><li>Give the <code>button</code> a <code>class</code> of <code>btn btn-default</code></li><li>Finally give the <code>table</code> a <code>class</code> of <code>table table-striped</code></li></ul></google-codelab-step><google-codelab-step label="Filtering &amp; Sorting" duration="10"><h2>Filter completed todos</h2><p>Change the <code>ng-repeat</code> directive to look like this:</p><pre>item in vm.todo.items | filter: {done: false}</pre><h2>Sorting</h2><p>Change the <code>ng-repeat</code> directive again by adding an <code>orderBy</code> filter:</p><pre>item in vm.todo.items | filter: {done: false} | orderBy: 'action'</pre><h2>Creating a custom filter</h2><p>Let's create a custom filter that will allow us to show completed todos</p><ul><li>Create a file <code>app.filter.js</code> inside the <code>src</code> folder</li><li>Use the following code to create the custom filter<pre><code language="JavaScript">
+(function (module) {
+
+    var checkedItems = function () {
+        return function (items, showComplete) {
+            var resultArr = [];
+            angular.forEach(items, function (item) {
+                if (item.done === false || showComplete === true) {
+                    resultArr.push(item);
+                }
+            });
+            return resultArr;
+        };
+    };
+
+    module.filter("checkedItems", checkedItems);
+}(angular.module("toDoApp")));
+</code></pre></li><li>Don't forget to reference the new file inside <code>index.html</code></li><li>Change again the <code>ng-repeat</code> directive to look like this<pre>item in vm.todo.items | checkedItems: showComplete | orderBy: 'action'</pre></li><li>After the <code>table</code> add the following <code>html</code> snippet<pre><code>
+&lt;div class="checkbox-inline"&gt;
+    &lt;label&gt;
+        &lt;input type="checkbox" ng-model="showComplete"&gt; Show Complete
+    &lt;/label&gt;
+&lt;/div&gt;</code></pre></li></ul><h2>Showing incomplete todos count</h2><p>It will be nice to see the number of todos left to complete with a warning color when we have too many pending</p><ul><li>At the end of <code>h1</code> tag<pre><code>
+&lt;span class="label label-default" ng-hide="vm.incompleteCount() === 0" ng-class="vm.warningLevel()"&gt;
+    &lt;!-- remove the spaces inside the expression --&gt;
+    { { vm.incompleteCount() } }
+&lt;/span&gt;</code></pre></li><li>Add the coresponding functions inside the <code>controller</code><pre><code language="JavaScript">
+vm.incompleteCount = function () {
+    var count = 0;
+    angular.forEach(vm.todo.items, function (item) {
+        if (!item.done) {
+            count++;
+        }
+    });
+    return count;
+};
+
+vm.warningLevel = function () {
+    return vm.incompleteCount() &lt; 3 ? "label-success" : "label-warning";
+};</code></pre></li></ul></google-codelab-step><google-codelab-step label="Services" duration="15"><h2>Creating services</h2><p>It is time to get rid of the <code>todos</code> from the controller and obtain them from a service</p><ul><li>Create a file named <code>app.service.js</code> inside the src folder</li><li>Use the following content for the file<pre><code language="JavaScript">(function (module) {
+
+    var toDoService = function () {
+
+        var getItems = function () {
+            return [
+                {"action": "Make slides", "done": false},
+                {"action": "Travel to ING", "done": false},
+                {"action": "Prepare room", "done": false},
+                {"action": "Order pizza", "done": false}
+            ];
+        };
+
+        return {
+            getItems: getItems
+        };
+    };
+
+    module.factory("toDoService", toDoService);
+}(angular.module("toDoApp")));</code></pre></li><li>Remove the <code>items</code> property from the <code>vm.todo</code> object inside the <code>controller</code></li><li>Add the <code>toDoService</code> as a dependency to the <code>controller</code>. It is just a parameter in the <code>controller</code> function</li><li>At the following line <code language="JavaScript">vm.todo.items = toDoService.getItems();</code> as the list line inside the <code>controller</code> function</li><li>Make sure you reference the <code>service</code> file (find the correct position) inside <code>index.html</code>.</li><li>Refresh the page and you should have the same functionality</li></ul><h2>Using AJAX</h2><p>Next, let's read the todo items from a <code>json</code> file using the <code>$http</code> service</p><p>The <code>$http</code> service is a core AngularJS service that facilitates communication with the remote HTTP servers via the browser's <code>XMLHttpRequest</code> object or via <code>JSONP</code>.</p><ul><li>Create a <code>data</code> folder in the project root folder</li><li>Create a <code>todos.json</code> file with the following content<pre><code language="JavaScript">
+[
+    {"action": "Make slides", "done": false},
+    {"action": "Travel to ING", "done": false},
+    {"action": "Prepare room", "done": false},
+    {"action": "Order pizza", "done": false}
+]
+</code></pre></li><li>Add the <code>$http</code> service as a dependency to the <code>toDoService</code></li><li>Change the <code>getItems</code> service<pre><code>
+var getItems = function () {
+    return $http.get("/data/todos.json");
+};
+</code></pre></li><li>The service returns a <code>prommise</code> now so we need to change something in the <code>controller</code></li><li>Replace the last line added with:<pre><code language="JavaScript">
+toDoService.getItems().then(function (response) {
+    vm.todo.items = response.data;
+});
+</code>
+                        </pre></li><li><p>Refreshing the page will not work now. We need serve the site from an web server</p><p>From <code>command line</code> start <code>live-server</code></p><pre>$ live-server
+Serving "..." at http://127.0.0.1:8080
+Ready for changes</pre><p></p></li><li>The site is now live at <code>http://127.0.0.1:8080</code></li></ul></google-codelab-step></google-codelab></template><script>Polymer({is:'codelab-todo-angularjs'});</script></dom-module></body></html>

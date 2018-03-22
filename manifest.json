@@ -1,0 +1,21 @@
+{
+    "name": "Dev{School} Code labs",
+    "short_name": "Code Labs",
+    "description": "Dev{School} Code labs",
+    "icons": [
+        {
+            "src": "images/manifest/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/manifest/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#fff",
+    "background_color": "#fff"
+}

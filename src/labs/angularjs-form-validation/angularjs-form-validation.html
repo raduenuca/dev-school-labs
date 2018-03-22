@@ -1,0 +1,110 @@
+<html><head></head><body><dom-module id="codelab-angularjs-form-validation"><template><google-codelab title="Form validations" feedback-link="https://github.com/raduenuca/dev-school-labs/issues" environment="web" last-updated="2017-03-28"><google-codelab-step label="Overview" duration="0"><p>In this code lab we will try different methods of form validations in <code>AngularJs</code>.</p></google-codelab-step><google-codelab-step label="Project Set Up" duration="2"><h2>Application structure</h2><ul><li>Create a folder for the application</li><li>Create an index.html file with the minimum structure</li></ul><h2>Dependencies</h2><h3>Add <a href="https://angularjs.org/" title="AngularJs">AngularJs</a></h3><ul><li>Use <code>bower</code> to install the <code>angular dependency</code></li><li>Reference the <code>angular</code> dependency</li><li>JavaScript references should be placed at the bottom of the file, just before the <code>&lt;/body&gt;</code> tag, for performance reasons.</li></ul><h3>Add <a href="http://getbootstrap.com/css/" title="Bootstrap">Bootstrap</a></h3><p>The application looks pretty bad and for sure by now some of you started to improve it :)</p><ul><li>Use <code>bower</code> to install and save the <code>bootstrap-css</code> dependency</li><li>Reference the <code>bootstrap.css</code> and <code>bootstrap-theme.css</code> files inside the <code>head</code> tag</li></ul></google-codelab-step><google-codelab-step label="Application Set Up" duration="8"><h2>Bootstrap AngularJs</h2><ul><li>Add the <code>ng-app</code> directive to the top element in the page</li><li>Add somewhere in the page an AngularJs expression (be creative but <code>[[_twoWayBinding('1 + 1')]]</code> will do)</li><li>Run the <code>index.html</code> in a browser and check the result. If you got back what you entered as an expression AngularJs is not bootstraped. Try again!</li></ul><h2>Create the <code>formValidationApp</code> module</h2><ul><li>Create a folder named <code>src</code> inside the project folder</li><li>Create a file <code>app.module.js</code> inside a newly created folder</li><li>Add the following text inside the file<pre><code language="JavaScript">
+(function(){
+    angular.module("formValidationApp", []);
+}());</code></pre></li><li>Use the name of the module as the value for the <code>ng-app</code> directive</li><li>Make sure you reference the <code>app.module.js</code> file</li><li>Refresh the <code>index.html</code> and the result should be the same</li><li>Delete any expression that you have in the <code>body</code> to have a clean slate.</li></ul><h2>Create the <code>FormValidationCtrl</code> controller</h2><ul><li>Create a file <code>app.controller.js</code> inside a newly created folder</li><li>Add the following text inside the file<pre><code language="JavaScript">
+(function (module) {
+
+    var FormValidationCtrl = function () {
+        var vm = this;
+    };
+
+    module.controller("FormValidationCtrl", FormValidationCtrl);
+
+}(angular.module("formValidationApp")));</code></pre></li><li>Add the <code>ng-controller</code> directive to the <code>body</code> tag and set its value to the controller's name. (use the <code>as</code> syntax).</li><li>Make sure you reference the <code>app.controller.js</code> file</li></ul></google-codelab-step><google-codelab-step label="Form Creation" duration="15"><h2>We will create a form for paying an amount of money to a friend</h2><p>The form will have the following fields:</p><ul><li><strong>Name</strong> - the name of the friend</li><li><strong>IBAN</strong> - the friend’s IBAN (only Romanian IBANs)</li><li><strong>Amount</strong> - how much money to send</li><li><strong>Email</strong> - your email</li></ul><p>The fields have the following rules</p><ul><li><code>All</code> fields are required</li><li>The <code>Name</code> field has a minimum of 5 characters and a maximum of 20</li><li>The <code>Amount</code> is a number (only integer amounts, without . or ,)</li><li>The <code>Email</code> is, well, an email</li></ul><p>Place the following <code>HTML</code> snippet inside the body tag</p><pre><code>
+&lt;div class="page-header"&gt;
+    &lt;h1&gt;Form Validation&lt;/h1&gt;
+&lt;/div&gt;
+&lt;form name="sendMoney" class="form-horizontal"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="name" class="col-sm-2 control-label"&gt;Friend's name:&lt;/label&gt;
+        &lt;div class="col-sm-9"&gt;
+            &lt;input class="form-control"
+                   type="input"
+                   id="name"
+                   name="name"
+                   ng-model="vm.model.name"/&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- TODO the rest of the fields --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;div class="col-sm-offset-2 col-sm-9"&gt;
+            &lt;!-- print errors --&gt;
+            &lt;pre&gt;sendMoney.name.$error = [[_twoWayBinding('sendMoney.name.$error | json')]]&lt;/pre&gt;
+            &lt;!-- TODO print errors for every field from the form --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre><h2>Exercise</h2><ol><li>Add all the fields with correct field types (<code>see</code> <a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/input">&lt;input&gt;</a>)</li><li>Add the correct validations to each field(<code>see</code> <a href="https://docs.angularjs.org/api/ng/directive/input">input directive</a>)</li><li>Print the errors for each field from the form</li><li>Observe when the errors appear by completing the fields with different values</li></ol></google-codelab-step><google-codelab-step label="Error messages" duration="35"><h2>Install the dependency</h2><ul><li>Use <code>bower</code> to install the <code>angular-messages</code> dependency</li><li>Reference the new dependency instead the <code>index.html</code> file (right after <code>angular</code>)</li><li>Load the module in your application by adding it as a dependent module:<pre><code>
+(function(){
+    angular.module("formValidationApp", ["ngMessages"]);
+}());
+</code></pre></li></ul><h2>Add the <code>ng-messages</code> directive</h2><p>Right after the <code>name</code> input tag add</p><pre><code>
+&lt;div ng-messages="sendMoney.name.$error" class="help-block"&gt;
+    &lt;div ng-message="required"&gt;This field is required&lt;/div&gt;
+    &lt;div ng-message="minlength"&gt;The field is too short&lt;/div&gt;
+    &lt;div ng-message="maxlength"&gt;The field is too long&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h2>Styling</h2><p>Add the following to the <code>form-group</code> that contains the <code>name</code> input tag</p><pre><code>ng-class="{'has-error': sendMoney.name.$invalid}"</code></pre><h2>Exercise</h2><p>Add validation messages and styling for all the other fields</p><p><code>Hint</code> not all the fields require all messages and some fields may require an extra message</p><h2>Fine tunning</h2><p>The validation messages should appear only when we touch the field or when we submit the form</p><ul><li>Replace the last <code>form-group</code> that prints the error messages with the following<pre><code>
+&lt;div class="form-group"&gt;
+    &lt;div class="col-sm-offset-2 col-sm-10"&gt;
+        &lt;button type="submit" class="btn btn-default"&gt;Confirm&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></li><li>Add the <code>novalidate</code> attribute to the <code>form</code> element to disable default browser validation</li><li>Change the <code>ng-class</code> expressions to (<code>adapt for each field</code>)<pre><code>
+ng-class="{'has-error': (sendMoney.$submitted || sendMoney.name.$touched) &amp;&amp; sendMoney.name.$invalid}"
+</code></pre></li><li>Adapt the <code>ng-messages</code> directive accordingly (<code>again, adapt for each field</code>)<pre><code>
+ng-messages="(sendMoney.$submitted || sendMoney.name.$touched) &amp;&amp; sendMoney.name.$error"
+</code></pre></li></ul></google-codelab-step><google-codelab-step label="Custom validation" duration="15"><h2>Validate the IBAN</h2><p>There is no default validation implemented in <code>AngularJs</code> for an IBAN structure, so we need to validate it in a custom way.</p><ul><li>Use the <code>ng-pattern</code> attribute directive and use this <code>regular expression</code> as value <code>/^RO[0-9]{2}[a-z]{4}[0-9a-z]{16}$/i</code></li><li>Make sure you add the corresponding <code>ng-message</code></li></ul><h2>Validate the Amount</h2><p>We only want to send to our friend maximum 100 RON</p><p>We can still use the <code>ng-pattern</code> directive to validate this but we can also create our own directive to validate that a number is less than a specified limit.</p><p>Create a new file <code>maxAmount.directive.js</code> inside the <code>src</code> folder</p><pre><code language="JavaScript">
+(function (module) {
+
+    var link = function (scope, element, attrs, ngModelCtrl) {
+        ngModelCtrl.$validators.maxAmount = function(value) {
+            // TODO make validation here - return true if the value from the field is less than the limit set in maxAmount param
+        };
+    };
+
+    var MaxAmount = function () {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            scope: {
+                maxAmount: '=maxAmount'
+            },
+            link: link
+        };
+    };
+
+    module.directive("maxAmount", MaxAmount);
+
+}(angular.module("formValidationApp")));
+</code></pre><h2>Exercise</h2><ul><li>Replace the <code>TODO</code> above with the correct expression</li><li>Add the <code>maxAmount</code> directive to the <code>Amount</code> field with the correct value</li><li>Add the corespondent <code>ng-message</code></li></ul></google-codelab-step><google-codelab-step label="Async validation" duration="15"><p>Sometimes a validation needs some data from the backend; for example, if we want to be sure that the IBAN really exists, we could get the valid IBANs from the backend and check if the one introduced by the user is on the list of valid IBANs.</p><ul><li>Create a JSON file with some dummy valid IBANs - data/validIbans.json:<pre><code language="JavaScript">
+{
+ "John Smith": "RO56INGB2345678435672345",
+ "Peter Smith": "RO56INGB2345678435672346"
+}
+</code></pre></li><li>Create a new <code>directive</code>, <code>ibanValidator.directive.js</code> in <code>src</code> folder<pre><code>
+(function (module) {
+    var ibanValidator = function ($q, $http) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModelCtrl) {
+                ngModelCtrl.$asyncValidators.ibanValidator = function (value) {
+                    return $http.get('data/validIbans.json').then(function successCallback(response) {
+                        var ibans = Object.keys(response.data).map(function (user) {
+                            return response.data[user];
+                        });
+                        if (ibans.indexOf(value) === -1) {
+                            return $q.reject();
+                        }
+                        return $q.resolve();
+                    });
+                };
+            }
+        };
+    };
+
+    module.directive("ibanValidator", ibanValidator);
+
+}(angular.module("formValidationApp")));
+</code></pre></li></ul><h2>Exercise</h2><p>Make sure an invalid error message is shown when the IBAN entered is not part of the valid-ibans list</p></google-codelab-step></google-codelab></template><script>Polymer({is:'codelab-angularjs-form-validation',_twoWayBinding:function(a){return'{{'+a+'}}'},_oneWayBinding:function(a){return'[['+a+']]'}});</script></dom-module></body></html>

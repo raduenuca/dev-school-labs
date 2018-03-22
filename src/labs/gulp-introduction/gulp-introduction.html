@@ -1,0 +1,242 @@
+<html><head></head><body><dom-module id="codelab-gulp-introduction"><template><google-codelab title="Gulp Introduction" feedback-link="https://github.com/raduenuca/dev-school-labs/issues" environment="web" last-updated="2017-03-29"><google-codelab-step label="Overview" duration="0"><p>Gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something.</p><p><strong>For this code lab use the project from the <a href="/codelabs/todo-angularjs">ToDo App - AngularJs</a> codelab</strong></p></google-codelab-step><google-codelab-step label="Installation" duration="5"><h2>Install globally</h2><pre>$ npm install gulp-cli -g</pre><h2>Install locally</h2><pre>$ npm install gulp --save-dev</pre><h2>Install gulp plugin loader</h2><pre>$ npm install gulp-load-plugins --save-dev</pre><p>This is not required but it will help to write less code</p></google-codelab-step><google-codelab-step label="Hello Task" duration="5"><h2>Create the gulp file inside the root folder</h2><pre>$ touch gulpfile.js</pre><h2>Require the gulp plugin</h2><pre><code language="JavaScript">var gulp = require('gulp');</code></pre><h2>Create a task</h2><pre><code language="JavaScript">
+gulp.task('hello-task', function(){
+    console.log('Our first gulp task');
+});
+</code></pre><h2>Run the task</h2><pre>$ gulp hello-task</pre></google-codelab-step><google-codelab-step label="Code Analysis" duration="30"><h2>JSHint</h2><p>JSHint is a program that flags suspicious usage in programs written in JavaScript. The core project consists of a library itself as well as a CLI program distributed as a Node module.</p><h3>Installation</h3><pre>$ npm install jshint gulp-jshint --save-dev</pre><h3>Configuration</h3><ol><li>Create a file named <code>.jshintrc</code></li><li><pre><code language="JavaScript">
+{
+  // JSHint Default Configuration File (as on JSHint website)
+  // See http://jshint.com/docs/ for more details
+
+  "maxerr"        : 50,       // {int} Maximum error before stopping
+
+  // Enforcing
+  "bitwise"       : true,     // true: Prohibit bitwise operators (&amp;, |, ^, etc.)
+  "camelcase"     : false,    // true: Identifiers must be in camelCase
+  "curly"         : true,     // true: Require {} for every new block or scope
+  "eqeqeq"        : true,     // true: Require triple equals (===) for comparison
+  "forin"         : true,     // true: Require filtering for..in loops with obj.hasOwnProperty()
+  "freeze"        : true,     // true: prohibits overwriting prototypes of native objects such as Array, Date etc.
+  "immed"         : false,    // true: Require immediate invocations to be wrapped in parens e.g. `(function () { } ());`
+  "latedef"       : false,    // true: Require variables/functions to be defined before being used
+  "newcap"        : false,    // true: Require capitalization of all constructor functions e.g. `new F()`
+  "noarg"         : true,     // true: Prohibit use of `arguments.caller` and `arguments.callee`
+  "noempty"       : true,     // true: Prohibit use of empty blocks
+  "nonbsp"        : true,     // true: Prohibit "non-breaking whitespace" characters.
+  "nonew"         : false,    // true: Prohibit use of constructors for side-effects (without assignment)
+  "plusplus"      : false,    // true: Prohibit use of `++` and `--`
+  "quotmark"      : false,    // Quotation mark consistency:
+  //   false    : do nothing (default)
+  //   true     : ensure whatever is used is consistent
+  //   "single" : require single quotes
+  //   "double" : require double quotes
+  "undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
+  "unused"        : true,     // Unused variables:
+  //   true     : all variables, last function parameter
+  //   "vars"   : all variables only
+  //   "strict" : all variables, all function parameters
+  "strict"        : true,     // true: Requires all functions run in ES5 Strict Mode
+  "maxparams"     : false,    // {int} Max number of formal params allowed per function
+  "maxdepth"      : false,    // {int} Max depth of nested blocks (within functions)
+  "maxstatements" : false,    // {int} Max number statements per function
+  "maxcomplexity" : false,    // {int} Max cyclomatic complexity per function
+  "maxlen"        : false,    // {int} Max number of characters per line
+  "varstmt"       : false,    // true: Disallow any var statements. Only `let` and `const` are allowed.
+
+  // Relaxing
+  "asi"           : false,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
+  "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
+  "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
+  "eqnull"        : false,     // true: Tolerate use of `== null`
+  "esversion"     : 5,         // {int} Specify the ECMAScript version to which the code must adhere.
+  "moz"           : false,     // true: Allow Mozilla specific syntax (extends and overrides esnext features)
+  // (ex: `for each`, multiple try/catch, function expression…)
+  "evil"          : false,     // true: Tolerate use of `eval` and `new Function()`
+  "expr"          : false,     // true: Tolerate `ExpressionStatement` as Programs
+  "funcscope"     : false,     // true: Tolerate defining variables inside control statements
+  "globalstrict"  : false,     // true: Allow global "use strict" (also enables 'strict')
+  "iterator"      : false,     // true: Tolerate using the `__iterator__` property
+  "lastsemic"     : false,     // true: Tolerate omitting a semicolon for the last statement of a 1-line block
+  "laxbreak"      : false,     // true: Tolerate possibly unsafe line breakings
+  "laxcomma"      : false,     // true: Tolerate comma-first style coding
+  "loopfunc"      : false,     // true: Tolerate functions being defined in loops
+  "multistr"      : false,     // true: Tolerate multi-line strings
+  "noyield"       : false,     // true: Tolerate generator functions with no yield statement in them.
+  "notypeof"      : false,     // true: Tolerate invalid typeof operator values
+  "proto"         : false,     // true: Tolerate using the `__proto__` property
+  "scripturl"     : false,     // true: Tolerate script-targeted URLs
+  "shadow"        : false,     // true: Allows re-define variables later in code e.g. `var x=1; x=2;`
+  "sub"           : false,     // true: Tolerate using `[]` notation when it can still be expressed in dot notation
+  "supernew"      : false,     // true: Tolerate `new function () { ... };` and `new Object;`
+  "validthis"     : false,     // true: Tolerate using this in a non-constructor function
+
+  // Environments
+  "browser"       : true,     // Web Browser (window, document, etc)
+
+  // Custom Globals
+  "globals"       : {}        // additional predefined global variables
+}
+
+</code></pre></li></ol><h2>JSCS</h2><p>JSCS is a code style linter and formatter for your style guide</p><pre>$ npm install gulp-jscs --save-dev</pre><h3>Configuration</h3><ol><li>Create a file named <code>.jscsrc</code></li><li><pre><code language="JavaScript">
+{
+  "requireCurlyBraces": [ "if", "else", "for", "while", "do" ],
+  "requireSpaceAfterKeywords": [ "if", "else", "for", "while", "do", "switch", "return" ],
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "disallowSpacesInFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
+  "requireMultipleVarDecl": true,
+  "requireSpacesInsideObjectBrackets": "all",
+  "requireSpacesInsideArrayBrackets": "all",
+  "requireSpaceBeforeBinaryOperators": ["+", "-", "/", "*", "=", "==", "===", "!=", "!=="],
+  "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-"],
+  "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
+  "disallowKeywords": [ "with" ],
+  "disallowMultipleLineBreaks": true,
+  "disallowKeywordsOnNewLine": [ "else" ],
+  "requireLineFeedAtFileEnd": true,
+  "disallowSpaceAfterObjectKeys": true,
+  "validateLineBreaks": "CRLF"
+}
+</code></pre></li></ol><h2>Create the analyze task</h2><ol><li>Remove the <code>hello-task</code> task</li><li>Require the <code>gulp plugin loader</code><pre><code language="JavaScript">var $ = require('gulp-load-plugins')();</code></pre></li><li>Create the <code>analyze</code> task<pre><code>
+gulp.task('analyze', function(){
+    gulp.src(['src/**/*.js', 'gulpfile.js', '!src/bower_components/**/*.js'])
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('default'))
+        .pipe($.jshint.reporter('fail'))
+        .pipe($.jscs())
+        .pipe($.jscs.reporter())
+        .pipe($.jscs.reporter('fail'));
+});
+</code></pre></li><li>Run the task<pre>$ gulp analyze</pre></li></ol><h2>Fixing the errors</h2><p>More than sure you have a lot of errors. Here is a hint to fix some of them</p><ol><li>In <code>.jshintrc</code> in the <code>Enviroment section</code> add<pre><code language="JavaScript">"node" : true, // Node.js</code></pre></li><li>In <code>.jshintrc</code> in the <code>globals</code> object add<pre><code language="JavaScript">
+  "globals"       : {         // additional predefined global variables
+    "angular"     : true
+  }
+</code></pre></li><li><strong>Fix the rest as an exercise</strong></li></ol></google-codelab-step><google-codelab-step label="HTML Injection" duration="25"><h2>Install dependencies</h2><pre>$ npm install wiredep gulp-inject gulp-angular-filesort --save-dev</pre><h2>Add injection rules in html</h2><p>Inside <code>index.html</code></p><ol><li>Replace the <code>css</code> references with<pre><code>
+&lt;!-- bower:css --&gt;
+&lt;!-- endbower --&gt;
+
+&lt;!-- inject:css --&gt;
+&lt;!-- endinject --&gt;
+</code></pre></li><li>Replace the <code>javascript</code> references with<pre><code>
+&lt;!-- bower:js --&gt;
+&lt;!-- endbower --&gt;
+
+&lt;!-- inject:js --&gt;
+&lt;!-- endinject --&gt;
+</code></pre></li></ol><h2>Create the <code>inject</code> task</h2><p>Inside <code>gulpfile.js</code></p><ol><li>Require <code>wiredep</code><pre><code language="JavaScript">var wiredep = require('wiredep').stream;</code></pre></li><li>Add the task<pre><code language="JavaScript">
+gulp.task('inject', function(){
+    return gulp.src('index.html')
+           .pipe(wiredep({exclude: [/jQuery/, /\/bootstrap-css\/.*\.js$/]}))
+           .pipe($.inject(gulp.src('src/**/*.js')))
+           .pipe($.inject(gulp.src('src/**/*.css')))
+           .pipe(gulp.dest(''));
+});
+</code></pre></li><li>Run the <code>task</code><pre>$ gulp inject</pre></li><li>Refresh the application. Does it still work?</li><li>Have a look inside the <code>index.html</code> and try to see what is wrong</li></ol><h2>Make the application great again</h2><p>There are 2 problems</p><ol><li>The angular dependencies are out of order</li><li>Only one <code>css</code> dependency is referenced</li></ol><h3>Sort angular files</h3><p>Change the <code>inject</code> task</p><pre><code language="JavaScript">
+gulp.task('inject', function(){
+    var injectCss = gulp.src('src/*.css'),
+        injectJs = gulp.src('src/**/*.js')
+        .pipe($.angularFilesort());
+
+    return gulp.src('index.html')
+        .pipe(wiredep({exclude: [/jQuery/, /\/bootstrap-css\/.*\.js$/]}))
+        .pipe($.inject(injectJs, {relative: true}))
+        .pipe($.inject(injectCss, {relative: true}))
+        .pipe(gulp.dest(''));
+});
+</code></pre><p>Refresh the page and the application should work</p><h3>Reference <code>bower</code> dependencies correctly</h3><p>Some <code>bower</code> dependencies are not written correctly and they need a little correction inside the <code>bower.json</code> file</p><p>Just after the <code>dependencies</code> block, add</p><pre><code language="JavaScript">
+"overrides": {
+    "bootstrap-css": {
+        "main": ["css/bootstrap.css", "css/bootstrap-theme.css"]
+    }
+}
+</code></pre></google-codelab-step><google-codelab-step label="Live reload" duration="25"><p>Having <code>live-server</code> is nice but it doesn't run our <code>gulp</code> tasks when the code changes.</p><p>In order to achieve this we have to create another task</p><h2>Install dependencies</h2><pre>$ npm install gulp-server-livereload --save-dev</pre><h2>Restructure the application</h2><p>Before doing anything else, restructure the application by doing the following</p><ol><li>Create a folder <code>app</code> inside the <code>src</code> folder</li><li>Move all the files from <code>src</code> to <code>app</code></li><li>Move the <code>data</code> folder inside the <code>src</code> folder</li><li>Move the <code>index.html</code> file inside the <code>src</code> folder</li><li>Create a <code>.bowerrc</code> file<pre><code language="JavaScript">
+{
+  "directory": "src/vendor"
+}
+</code></pre></li><li>Delete the <code>bower_components</code> folder and run<pre>$ bower install</pre></li><li>Make sure you reflect the changes inside the <code>gulpfile.js</code> file<pre><code language="JavaScript">
+"use strict";
+
+var gulp = require('gulp'),
+    wiredep = require('wiredep').stream,
+    $ = require('gulp-load-plugins')();
+
+gulp.task('analyze', function() {
+    gulp.src([ 'src/**/*.js', 'gulpfile.js', '!src/vendor/**/*.js' ])
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('default'))
+        .pipe($.jshint.reporter('fail'))
+        .pipe($.jscs())
+        .pipe($.jscs.reporter())
+        .pipe($.jscs.reporter('fail'));
+});
+
+gulp.task('inject', function() {
+    var injectCss = gulp.src('src/*.css'),
+        injectJs = gulp.src('src/app/**/*.js')
+        .pipe($.angularFilesort());
+
+    return gulp.src('src/index.html'    )
+        .pipe(wiredep({ exclude: [ /jQuery/, /\/bootstrap-css\/.*\.js$/ ] }))
+        .pipe($.inject(injectJs, { relative: true }))
+        .pipe($.inject(injectCss, { relative: true }))
+        .pipe(gulp.dest('src'));
+});
+</code></pre></li></ol><h2>Create the <code>serve</code> task</h2><pre><code language="JavaScript">
+gulp.task('serve', [ 'analyze', 'inject' ] , function() {
+    gulp.src('src')
+        .pipe($.serverLivereload({
+            livereload: true,
+            open: true
+        }));
+});
+</code></pre><h2>Run the task</h2><pre>$ gulp serve</pre><p>As an exercise add a file named <code>app.css</code> inside the <code>src</code> folder</p><pre><code>
+h1 {
+    color:red;
+}
+</code></pre><p>Add more rules and watch what happens in the browser</p></google-codelab-step><google-codelab-step label="Build" duration="30"><h2>Concatenate files</h2><h3>Install dependencies</h3><pre>$ npm install gulp-useref del --save-dev</pre><h3>Create the <code>build</code> task</h3><pre><code language="JavaScript">
+gulp.task('build', ['inject', 'analyze'], function(){
+    return gulp.src('src/index.html')
+        .pipe($.useref())
+        .pipe(gulp.dest('build'));
+});
+</code></pre><h3>Create build templates</h3><p>Adapt the inject templates from <code>index.html</code> by wrapping them in build templates</p><pre><code>
+&lt;!-- build:css css/vendor.css --&gt;
+&lt;!-- bower:css --&gt;
+&lt;!-- endbower --&gt;
+&lt;!-- endbuild --&gt;
+
+&lt;!-- build:css css/app.css --&gt;
+&lt;!-- inject:css --&gt;
+&lt;!-- endinject --&gt;
+&lt;!-- endbuild --&gt;
+
+&lt;!-- build:js js/vendor.js --&gt;
+&lt;!-- bower:js --&gt;
+&lt;!-- endbower --&gt;
+&lt;!-- endbuild --&gt;
+
+&lt;!-- build:js js/app.js --&gt;
+&lt;!-- inject:js --&gt;
+&lt;!-- endinject --&gt;
+&lt;!-- endbuild --&gt;
+</code></pre><h3>Create a task to copy the data folder</h3><pre><code language="JavaScript">
+gulp.task('other', function() {
+    var fileFilter = $.filter(function (file) {
+        return file.stat.isFile();
+    });
+
+    return gulp.src([ 'src/**/*', '!src/**/*.{html,css,js}' ])
+        .pipe(fileFilter)
+        .pipe(gulp.dest('build'));
+});
+</code></pre><h3>Exercise</h3><ol><li>The <code>other</code> task depends on <code>gulp-filter</code> package. Make sure it is present</li><li>You need to call the <code>other</code> task from the <code>build</code> task.</li><li>After the <code>build</code> is done test the result.</li></ol><h2>Minifying</h2><h3>Install dependencies</h3><p>We need <code>gulp-if</code>, <code>gulp-uglify</code> and <code>gulp-clean-css</code></p><h3>Modify the <code>build</code> task</h3><pre><code language="JavaScript">
+gulp.task('build', ['inject', 'analyze'], function(){
+    return gulp.src('src/index.html')
+        .pipe($.useref())
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.css', $.cleanCss()))
+        .pipe(gulp.dest('build'));
+});
+</code></pre><p>Observe the result. Is the app still working?</p><h2>Angular Dependency Injection</h2><h3>Exercise</h3><ol><li>Install <code>gulp-ng-annotate</code></li><li>Add inside the <code>build</code> task<pre><code language="JavaScript">.pipe($.if('*.js', $.ngAnnotate()))</code></pre>Can you guess where?</li><li>Build an retry</li><li>Create a task that allows you to <code>serve</code> the application from the build folder</li></ol></google-codelab-step></google-codelab></template><script>Polymer({is:'codelab-gulp-introduction'});</script></dom-module></body></html>
