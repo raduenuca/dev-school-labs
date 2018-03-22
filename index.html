@@ -68,7 +68,11 @@
              * to indicate the path from which you'll be serving, including leading
              * and trailing slashes (e.g., `/my-app/`).
              */
-            window.Polymer = {rootPath: document.getElementsByTagName('base')[0].getAttribute('href')};
+            window.Polymer = {
+                rootPath: document.getElementsByTagName('base')[0].getAttribute('href'),
+                lazyRegister: true,
+                dom: 'shadow'
+            };
 
             // Load and register pre-caching Service Worker
             if ('serviceWorker' in navigator) {
@@ -79,9 +83,6 @@
                 });
             }
         </script>
-
-        <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
-        <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
         <link rel="import" href="src/dev-school-labs-app.html">
 
@@ -95,7 +96,7 @@
                 min-height: 100vh;
             }
 
-            /*!* styling for render while resources are loading *!*/
+            /* styling for render while resources are loading */
             dev-school-labs-app[unresolved] {
                 display: block;
                 min-height: 101vh;
@@ -190,12 +191,26 @@
     <body>
         <dev-school-labs-app unresolved>
             <div id="loaderwrap">
-                <div>Dev{School} Labs</div>
                 <div class="loader"></div>
             </div>
         </dev-school-labs-app>
         <noscript>
             Please enable JavaScript to view this website.
         </noscript>
+
+        <script>
+            (function () {
+                if ('registerElement' in document
+                    && 'import' in document.createElement('link')
+                    && 'content' in document.createElement('template')) {
+                    // platform is good!
+                } else {
+                    // polyfill the platform!
+                    let e = document.createElement('script');
+                    e.src = 'bower_components/webcomponentsjs/webcomponents-lite.min.js';
+                    document.body.appendChild(e);
+                }
+            })();
+        </script>
     </body>
 </html>
