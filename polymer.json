@@ -29,7 +29,8 @@
     "builds": [
         {
             "preset": "es5-bundled",
-            "basePath": "/dev-school-labs/"
+            "basePath": "/dev-school-labs/",
+            "addServiceWorker": true
         }
     ]
 }
