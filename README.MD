@@ -2,5 +2,5 @@
 
 Code labs for Dev{School}
 
-Hosted [here](https://dev-school-labs.firebaseapp.com//)
+Hosted [here](https://raduenuca.github.io/dev-school-labs/)
 
