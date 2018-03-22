@@ -1,0 +1,1397 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/codelab-components/google-codelab-elements.html">
+
+<dom-module id="codelab-web-components-basics">
+    <template>
+        <google-codelab title="Web Components Basics"
+                        feedback-link="https://github.com/raduenuca/dev-school-labs/issues"
+                        environment="web"
+                        last-updated="2017-10-29">
+            <google-codelab-step label="Introduction" duration="1">
+                <h2><strong>Web Components</strong></h2>
+
+                <p>
+                    Web components are a set of web platform APIs that allow you to create new custom, reusable,
+                    encapsulated HTML tags to use in web pages and web apps. Custom components and widgets build on the
+                    Web Component standards, will work across modern browsers, and can be used with any JavaScript
+                    library or framework that works with HTML.
+                </p>
+
+                <p>
+                    Web components are based on existing web standards. Features to support web components are currently
+                    being added to the HTML and DOM specs, letting web developers easily extend HTML with new elements
+                    with encapsulated styling and custom behavior.
+                </p>
+
+                <h2><strong>What Are We Building</strong></h2>
+
+                <p>
+                    We will build a random-greeter component that will output a random greet at a specific interval.
+                </p>
+
+                <h2><strong>What You'll Learn</strong></h2>
+
+                <ul class="checklist">
+                    <li>Using ES2015 class syntax to build a web component</li>
+                    <li>Changes in Custom Elements V1 and Shadow DOM V1</li>
+                    <li>Providing a styling API for a web component</li>
+                    <li>Making a well behaved custom element by applying best practices</li>
+                </ul>
+
+                <h2><strong>What you'll need</strong></h2>
+
+                <ul>
+                    <li>Chrome 52 or above</li>
+                    <li>Your favorite text editor</li>
+                    <li>Basic knowledge of HTML, CSS, JavaScript, and Chrome DevTools</li>
+                </ul>
+            </google-codelab-step>
+            <google-codelab-step label="Getting set up" duration="5">
+                <!--<h2><strong>Install Tools</strong></h2>-->
+
+                <!--<h2><strong>Project Set Up</strong></h2>-->
+
+                <p>
+                    Fire up a code editor, and create two files <code>index.html</code> and
+                    <code>random-greeter.html</code>.
+                </p>
+
+                <h3>index.html</h3>
+
+                <pre>
+<code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+        &lt;title>Web Component Basics&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+                <h3>random-greeter.html</h3>
+
+                <pre>
+<code>
+&lt;script&gt;
+    // Extend HTMLElement base class
+    class RandomGreeter extends HTMLElement {
+
+      static get is() { return 'random-greeter' }
+
+      connectedCallback() {
+        console.log('random-greeter element added to the DOM!');
+      }
+    }
+
+    // Register custom element definition using standard platform API
+    customElements.define(RandomGreeter.is, RandomGreeter);
+&lt;/script&gt;
+</code></pre>
+
+                <h3>Using the <code>random-greeter</code> component</h3>
+
+                <p>To employ <code>&lt;random-greeter&gt;</code>, you need to:</p>
+
+                <ol type="1" start="1">
+                    <li>Use an <a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/" target="_blank">HTML
+                        Import</a> to load it in <code>index.html</code>.
+                    </li>
+                    <li>Declare an instance of the element inside the <code>body</code>.</li>
+                </ol>
+
+                <pre>
+<code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+        &lt;title>Web Component Basics&lt;/title&gt;
+        &lt;link rel="import" href="random-greeter.html">
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;random-greeter&gt;&lt;/random-greeter&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+                <h3>Preview the component</h3>
+
+                <p>
+                    Just open the <code>index.html</code> page in the browser, open the developer tools a look at the
+                    <code>Console</code> tab where you should see:
+                </p>
+
+                <p style="display:flex; justify-content: center; align-items: center;">
+                    <img src="[[rootPath]]images/labs/web-components-basics/console-log.png"></p>
+            </google-codelab-step>
+            <google-codelab-step label="Introducing Custom Elements" duration="5">
+                <h2>Defining a Custom Element</h2>
+
+                <p>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements"
+                       target="_blank">Custom Elements</a> allow you to define behavior for custom HTML tags. You can
+                    define custom elements by extending a <code>class</code> from <code>HTMLElement</code>. For example,
+                    let's look at the JavaScript of <code>random-greeter.html</code>:</p>
+
+                <pre>
+<code>
+// Extend HTMLElement base class
+class RandomGreeter extends HTMLElement {
+
+  static get is() { return 'random-greeter' }
+
+  connectedCallback() {
+    console.log('random-greeter element added to the DOM!');
+  }
+}
+
+// Register custom element definition using standard platform API
+customElements.define(RandomGreeter.is, RandomGreeter);
+</code></pre>
+
+                <p>
+                    The static <code>is</code> getter is where you should define the name of your element.
+                    By convention, we use the dash-separated version of the class name.
+                </p>
+
+                <p>
+                    The Custom Elements V1 specification includes a set of callbacks that run at various points in the
+                    element's lifecycle.
+                </p>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td colspan="1" rowspan="1">
+                                <p><strong>Callback</strong></p>
+                            </td>
+                            <td colspan="1" rowspan="1">
+                                <p><strong>Description</strong></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" rowspan="1">
+                                <p><code>constructor</code></p>
+                            </td>
+                            <td colspan="1" rowspan="1">
+                                <p>
+                                    Called when an instance of the element is created or
+                                    <a href="https://developers.google.com/web/fundamentals/web-components/customelements#upgrades">
+                                        upgraded</a>.
+                                    Useful for initializing state, settings up event
+                                    listeners, or
+                                    <a href="https://developers.google.com/web/fundamentals/web-components/customelements#shadowdom">
+                                        creating shadow dom</a>.
+                                </p>
+                                <p>Always call <code>super()</code> first in the <code>constructor</code>.</p>
+                                <p>
+                                    <strong>Note</strong>: See the
+                                    <a href="https://html.spec.whatwg.org/multipage/scripting.html#custom-element-conformance">
+                                        V1 Custom Elements spec</a> for restrictions on what you can do in the
+                                    <code><span>constructor</span></code>.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" rowspan="1">
+                                <p><code>connectedCallback</code></p>
+                            </td>
+                            <td colspan="1" rowspan="1">
+                                <p>
+                                    Called every time the element is inserted into the DOM. Useful for running setup
+                                    code, such as fetching resources or rendering.
+                                </p>
+                                <p>
+                                    <strong>Note</strong>: Generally, you should try to delay work until this time.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" rowspan="1">
+                                <p><code>disconnectedCallback</code></p>
+                            </td>
+                            <td colspan="1" rowspan="1">
+                                <p>
+                                    Called every time the element is removed from the DOM. Useful for running clean up
+                                    code (removing event listeners, etc.).
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" rowspan="1">
+                                <p><code>attributeChangedCallback(attrName, oldVal, newVal)</code></p>
+                            </td>
+                            <td colspan="1" rowspan="1">
+                                <p>
+                                    An attribute was added, removed, updated, or replaced. Also called for initial
+                                    values when an element is created by the parser, or
+                                    <a href="https://developers.google.com/web/fundamentals/web-components/customelements#upgrades">
+                                        upgraded</a>.
+                                </p>
+                                <p>
+                                    <strong>Note</strong>: Only attributes listed in the
+                                    <code><span>observedAttributes</span></code> property will receive this callback.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    The browser calls the <code>attributeChangedCallback()</code> for any attributes whitelisted in the
+                    observedAttributes array. Essentially, this is a performance optimization. When users change a
+                    common attribute like style or class, you don't want to be spammed with tons of callbacks.
+                </p>
+
+                <pre>
+<code>
+// Extend HTMLElement base class
+class RandomGreeter extends HTMLElement {
+    ...
+
+    static get observedAttributes() {
+        return ['attr1', 'attr2'];
+    }
+
+    attributeChangedCallback(attrName, oldValue, newValue) {
+        console.log('Attribute Changed!', attrName, oldValue, newValue);
+    }
+
+    ...
+}
+
+// Register custom element definition using standard platform API
+customElements.define(RandomGreeter.is, RandomGreeter);
+</code></pre>
+
+                <h2>Exercise</h2>
+
+                <p>
+                    Implement all the lifecycle callbacks for the <code>random-greeter</code> element and observe them
+                    in the Chrome DevTools' console tab
+                </p>
+
+                <aside class="tip">
+                    <p>
+                        <strong>Hint</strong>
+                    </p>
+                    <ul>
+                        <li><code>let $ce = document.createElement('random-greeter');</code></li>
+                        <li><code>document.body.appendChild($ce);</code></li>
+                        <li>
+                            <code>$ce.setAttribute('interval', 1000);</code>
+                        </li>
+                        <li><code>$ce.remove();</code></li>
+                    </ul>
+                </aside>
+            </google-codelab-step>
+            <google-codelab-step label="Introducing HTML Templates" duration="5">
+                <aside class="callout">
+                    <p>
+                        <strong>template</strong> (n) - A document or file having a preset format, used as a starting
+                        point for aparticular application so that the format does not have to be recreated each time it
+                        is used.
+                    </p>
+                </aside>
+
+                <h2><strong>Declaring template content</strong></h2>
+
+                <p>
+                    The HTML <code>&lt;template&gt;</code> element represents a template in your markup. It contains
+                    "template contents"; essentially <strong>inert chunks of cloneable DOM</strong>. Think of
+                    templates as pieces of scaffolding that you can use (and reuse) throughout the lifetime of your
+                    app.
+                </p>
+
+                <p>
+                    To create a templated content, declare some markup and wrap it in the <code>&lt;template&gt;</code>
+                    element:
+                </p>
+
+                <pre>
+<code>
+&lt;template id="mytemplate"&gt;
+    &lt;img src="" alt="great image"&gt;
+    &lt;div class="comment"&gt;&lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+                <h2><strong>The pillars</strong></h2>
+
+                <p>
+                    Wrapping content in a <code>&lt;template&gt;</code> gives us few important
+                    properties:
+                </p>
+
+                <ol>
+                    <li>
+                        <p>Its <strong>content is effectively inert until activated</strong>. Essentially,
+                            your markup is hidden DOM and does not render.</p>
+                    </li>
+                    <li>
+                        <p>Any content within a template won't have side effects. <strong>Script doesn't run,
+                            images don't load, audio doesn't play</strong>,...until the template is used.</p>
+                    </li>
+                    <li>
+                        <p><strong>Content is considered not to be in the document</strong>. Using
+                            <code>document.getElementById()</code> or <code>querySelector()</code> in the main page
+                            won't return
+                            child nodes of a template.</p>
+                    </li>
+                    <li>
+                        <p>
+                            Templates <strong>can</strong> be placed anywhere inside of <code>&lt;head&gt;</code>,
+                            <code>&lt;body&gt;</code>, or <code>&lt;frameset&gt;</code> and can contain any type of
+                            content which is allowed in those elements. Note that "anywhere" means that <code>&lt;template&gt;</code>
+                            can safely be used in places that the HTML parser disallows...all but
+                            <a href="http://www.w3.org/TR/html5-diff/#content-model">content model</a> children. It
+                            can also be placed as a child of <code>&lt;table&gt;</code> or <code>&lt;select&gt;</code>
+                        </p>
+                    </li>
+                </ol>
+
+                <h2>Activating a template</h2>
+
+                <p>
+                    To use a template, you need to activate it. Otherwise its content will never render.
+                    The simplest way to do this is by creating a deep copy of its <code>.content</code> using
+                    <code>document.importNode()</code>. The <code>.content</code> property is a read-only
+                    <code>DocumentFragment</code> containing the guts of the template.
+                </p>
+
+                <pre>
+<code>
+var t = document.querySelector('#mytemplate');
+// Populate the src at runtime.
+t.content.querySelector('img').src = 'logo.png';
+
+var clone = document.importNode(t.content, true);
+document.body.appendChild(clone);
+</code></pre>
+
+                <h2>Adding a template to <code>random-greeeter</code></h2>
+
+                <p>Add the following template at the top of the <code>random-greeter.html</code> file</p>
+
+                <pre>
+<code>
+&lt;template&gt;
+    &lt;style&gt;
+        .greeter-frame {
+            background-color: #FF6600;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            padding: 0;
+            margin: 0;
+            color: #ffffff;
+        }
+    &lt;/style&gt;
+    &lt;div class="greeter-frame"&gt;
+        &lt;h1 id="greet"&gt;Hello, World!&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+                <p>And activate it</p>
+
+                <pre>
+<code>
+// Returns the top-level document object of the &lt;script&gt; element whose script is currently being processed.
+const $owner = (document._currentScript || document.currentScript).ownerDocument;
+const $template = $owner.querySelector('template');
+// Extend HTMLElement base class
+class RandomGreeter extends HTMLElement {
+    ...
+
+    connectedCallback() {
+        console.log('random-greeter element added to the DOM!');
+        // Performs a deep import
+        const $content = document.importNode($template.content, true);
+        this.appendChild($content);
+    }
+
+    ...
+}
+
+// Register custom element definition using standard platform API
+customElements.define(RandomGreeter.is, RandomGreeter);
+</code></pre>
+
+                <p>Refresh the browser and you will be greeted.</p>
+
+                <h2>Putting the <code>random</code> in <code>random-greeter</code></h2>
+
+                <p>
+                    The <code>random-greeter</code> should cycle through some greets at a specific interval.
+                    Basically what we want is to replace the content of the <code>greet</code> H1 tag with a random text
+                    each x seconds.
+                </p>
+
+                    <p>Inside the <code>constructor</code> set up some hardcoded greets</p>
+
+                <pre>
+<code>
+constructor() {
+    ...
+
+    this._greets = [
+        "Hello, World!",
+        "Hi, Solar System!",
+        "Yo, Galaxy!",
+        "Hey, Universe!"
+    ];
+    this._$greet = null;
+}
+</code></pre>
+
+                <p>
+                    Inside the <code>connectedCallback</code> function set the <code>_$greet</code> property and start a
+                    timer that calls the <code>_render</code> function each 2s.
+                </p>
+
+                <pre>
+<code>
+connectedCallback() {
+    ...
+
+    this._$greet = this.querySelector("#greet");
+    this._timer = setInterval(() => this._render(), 2000);
+}
+
+_render() {
+    if (this._$greet !== null) {
+        const index = Math.floor(Math.random() * this._greets.length);
+        this._$greet.innerHTML = this._greets[index];
+    }
+}
+</code></pre>
+
+                <h2>Exercise</h2>
+
+                <ol>
+                    <li>
+                        Remove the hardcoded "Hello, World!" from the <code>greet</code> h1 tag. Now when the browser
+                        is refreshed there is no greeting shown. Make sure we see a value without hardcoding it.
+                    </li>
+                    <li>
+                        Cancel the timer created by the <code>setInterval</code> function when the component is removed
+                        from the DOM
+                    </li>
+                </ol>
+
+                <aside class="tip">
+                    <p>
+                        <strong>Hint:</strong>
+                        <a
+                                href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval"
+                                target="_blank">setInterval()</a>
+                    </p>
+                </aside>
+            </google-codelab-step>
+            <google-codelab-step label="Attributes and Properties" duration="5">
+                <h2><strong>Properties vs Attributes</strong></h2>
+
+                <p>
+                    The difference between properties and attributes can be confusing. Properties are available on a DOM
+                    node when being manipulated by JavaScript:
+                </p>
+
+                <pre>
+<code>
+const myElem = document.querySelector('.my-elem');
+
+myElem.className; // className is a property
+</code></pre>
+
+                <p>
+                    And attributes are provided in the HTML itself. Here <code>alt</code>, <code>width</code> and
+                    <code>height</code> are all attributes:
+                </p>
+
+                <pre>
+<code>
+&lt;img src="/path/to/img.svg" alt="My Image" width="150" height="250"&gt;
+</code></pre>
+
+                <aside class="note">
+                    <p>
+                        Attributes should only be used for scalar values like strings, numbers and boolean values.
+                        Properties, on the other hand, are perfectly suited to also hold values that are objects or
+                        arrays.
+                    </p>
+                </aside>
+
+                <h2><strong>Reflecting Properties to Attributes</strong></h2>
+
+                <p>
+                    Most properties reflect their values as attributes, meaning that if the property is changed using
+                    JavaScript, the corresponding attribute is also changed at the same time to reflect the new value.
+                    This is useful for accessibility and to allow CSS selectors to work as intended.
+                </p>
+
+                <p>
+                    You can try it out yourself for a concrete example. Just select, say, an image element in your
+                    browser’s developer tools, and then change one of its properties:
+                </p>
+
+                <pre>
+<code>
+const fancyImage = document.querySelector('.fancy-image');
+
+fancyImage.width = 666;
+</code></pre>
+
+                <p>
+                    Notice how the <code>with</code> attribute in the DOM representation is automatically changed to
+                    the new value. The same is true if you change the value for the attribute manually in the DOM
+                    inspector, you’ll see that the property will now hold the new value.
+                </p>
+
+                <h3>
+                    Reflecting properties to attributes in Custom Elements
+                </h3>
+
+                <p>
+                    Your own Custom Elements should also follow this practice of reflecting properties to attributes.
+                    Luckily, it’s quite easy to do using getters and setters.
+                </p>
+
+                <p>
+                    For example, if you have a custom element that has a <code>value</code> property that should be
+                    reflected as an attribute, here’s how you would use a getter and a setter to get the value of the
+                    attribute when doing property access and setting the new value for the attribute when the property
+                    is changed:
+                </p>
+
+                <pre>
+<code>
+get value() {
+  return this.getAttribute('value');
+}
+
+set value(newValue) {
+  this.setAttribute('value', newValue);
+}
+</code></pre>
+                <p>
+                    Or, if you have a boolean property, like, say <code>hidden</code>:
+                </p>
+
+                <pre>
+<code>
+get hidden() {
+  return this.hasAttribute('hidden');
+}
+
+set hidden(isHidden) {
+  if (isHidden) {
+    this.setAttribute('hidden', '');
+  } else {
+    this.removeAttribute('hidden');
+  }
+}
+</code></pre>
+
+                <h2><strong>Listening for Changed Attributes</strong></h2>
+
+                <p>
+                    With Custom Elements, you can listen for attribute changes using the
+                    <code>attributeChangedCallback</code> method. This makes it easy to trigger actions when attributes
+                    are changed. To help with performance, only attributes defined with an
+                    <code>observedAttributes</code> getter that returns an array of observed attribute names will be
+                    observed.
+                </p>
+
+                <p>
+                    The <code>attributeChangedCallback</code> is defined with three parameters, the name of the
+                    attribute, the old value and the new value. In this example, we observe the <code>value</code> and
+                    <code>max</code> attributes:
+                </p>
+
+                <pre>
+<code>
+static get observedAttributes() {
+  return ['value', 'max'];
+}
+
+attributeChangedCallback(name, oldValue, newValue) {
+  switch (name) {
+    case 'value':
+      console.log(`Value changed from ${oldValue} to ${newValue}`);
+      break;
+    case 'max':
+      console.log(`You won't max-out any time soon, with ${newValue}!`);
+      break;
+  }
+}
+</code></pre>
+                <aside class="note">
+                    <p>
+                        Notice also that the <code>observedAttributes</code> getter is a static method on the class.
+                        Static methods are often used as utility methods for the class itself because they are
+                        unavailable on class instances.
+                    </p>
+                </aside>
+
+                <h2><strong>Putting it All Together</strong></h2>
+
+                <p>
+                    Let’s put all these concepts together and update the <code>random-greeter</code> component.
+                </p>
+
+                <pre>
+<code>
+// Returns the top-level document object of the &lt;script&gt; element whose script is currently being processed.
+const $owner = (document._currentScript || document.currentScript).ownerDocument;
+const $template = $owner.querySelector('template');
+// Extend HTMLElement base class
+class RandomGreeter extends HTMLElement {
+
+    static get is() {
+        return 'random-greeter'
+    }
+
+    constructor() {
+        super();
+        console.log('random-greeter element constructed!');
+
+        this._greets = [
+            "Hello, World!",
+            "Hi, Solar System!",
+            "Yo, Galaxy!",
+            "Hey, Universe!"
+        ];
+        this._$greet = null;
+        this._timer = null;
+    }
+
+    connectedCallback() {
+        console.log('random-greeter element added to the DOM!');
+        // Performs a deep import
+        const $content = document.importNode($template.content, true);
+        this.appendChild($content);
+
+        this._$greet = this.querySelector("#greet");
+
+        if (!this.hasAttribute('interval')) {
+            this.interval = 2000;
+        }
+
+        this._render();
+    }
+
+    disconnectedCallback() {
+        console.log('random-greeter element removed from the DOM!');
+        clearInterval(this._timer);
+    }
+
+    static get observedAttributes() {
+        return ['interval'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log('Attribute Changed!', name, oldValue, newValue);
+
+        if (this._timer !== null) {
+            clearInterval(this._timer);
+        }
+        if (newValue > 0) {
+            this._timer = setInterval(() => this._render(), newValue);
+        }
+    }
+
+    get interval() {
+        return this.getAttribute('interval');
+    }
+
+    set interval(newValue) {
+        this.setAttribute('interval', newValue);
+    }
+
+    set greets(greets) {
+        if (this._greets === greets) return;
+        this._greets = greets;
+        this._render();
+    }
+
+    get greets() {
+        return this._greets;
+    }
+
+    _render() {
+        if (this._$greet !== null) {
+            const index = Math.floor(Math.random() * this._greets.length);
+            this.setAttribute("current-index", index);
+            this._$greet.innerHTML = this._greets[index];
+        }
+    }
+}
+
+// Register custom element definition using standard platform API
+customElements.define(RandomGreeter.is, RandomGreeter);
+</code></pre>
+
+                <h2><strong>Exercise</strong></h2>
+
+                <p>Play with the element in Chrome Developer Tools and try to understand the differences.</p>
+            </google-codelab-step>
+            <google-codelab-step label="Introducing Shadow DOM" duration="6">
+                <h2><strong>Introduction</strong></h2>
+
+                <p>
+                    Shadow DOM removes the brittleness of building web apps. The brittleness comes from the global
+                    nature of HTML, CSS, and JS. For example, when you use a new HTML id/class, there's no telling if
+                    it will conflict with an existing name used by the page. Subtle bugs creep up, CSS specificity
+                    becomes a huge issue (!important all the things!), style selectors grow out of control, and
+                    performance can suffer.
+                </p>
+
+                <p>
+                    <strong>Shadow DOM fixes CSS and DOM</strong>. It introduces <strong>scoped styles</strong> to the
+                    web platform. Without tools or naming conventions, you can <strong>bundle CSS with markup</strong>,
+                    hide implementation details, and <strong>author self-contained components</strong> in vanilla
+                    JavaScript.
+                </p>
+
+                <p>
+                    Shadow DOM is designed as a tool for building component-based apps. Therefore, it brings solutions
+                    for common problems in web development:
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Isolated DOM</strong>: A component's DOM is self-contained (e.g.
+                        document.querySelector() won't return
+                        nodes in the component's shadow DOM).
+                    </li>
+                    <li>
+                        <strong>Scoped CSS</strong>: CSS defined inside shadow DOM is scoped to it. Style rules don't
+                        leak out and page styles don't bleed in.
+                    </li>
+                    <li>
+                        <strong>Composition</strong>: Design a declarative, markup-based API for your component.
+                    </li>
+                    <li>
+                        <strong>Simplifies CSS</strong>: Scoped DOM means you can use simple CSS selectors, more generic
+                        id/class names, and not worry about naming conflicts.
+                    </li>
+                    <li>
+                        <strong>Productivity</strong>: Think of apps in chunks of DOM rather than one large (global)
+                        page.
+                    </li>
+                </ul>
+
+
+                <h2><strong>What is shadow DOM</strong></h2>
+
+                <p>
+                    Shadow DOM is just normal DOM with two differences:
+                </p>
+
+                <ol>
+                    <li>how it's created/used and</li>
+                    <li>how it behaves in relation to the rest of the page.</li>
+                </ol>
+
+                <p>
+                    Normally, DOM nodes are created and appended as children of another element. With shadow DOM, a
+                    create a scoped DOM tree that's attached to the element, but separate from its actual children. This
+                    scoped subtree (named shadow tree) is created. The element it's attached to its shadow host.
+                    Anything added in the shadow tree becomes local to the hosting element, including
+                    <code>&lt;style&gt;</code>. This is how shadow DOM achieves CSS style scoping.
+                </p>
+
+                <h2><strong>Creating shadow DOM</strong></h2>
+
+                <p>
+                    A <strong>shadow root</strong> is a document fragment that gets attached to a “host” element. The
+                    act of attaching a shadow root is how the element gains its shadow DOM. To create shadow DOM for an
+                    element, call <code>element.attachShadow()</code>:
+                </p>
+
+                <pre>
+<code>
+const header = document.createElement('header');
+const shadowRoot = header.attachShadow({mode: 'open'});
+shadowRoot.innerHTML = '&lt;h1&gt;Hello Shadow DOM&lt;/h1&gt;'; // Could also use appendChild().
+
+// header.shadowRoot === shadowRoot
+// shadowRoot.host === header
+</code></pre>
+
+                <p>
+                    Shadow DOM is particularly useful when creating custom elements. Use shadow DOM to compartmentalize
+                    an element's HTML, CSS, and JS, thus producing a "web component".
+                </p>
+
+                <p>A custom element attaches shadow DOM to itself, encapsulating its DOM/CSS <code>this.attachShadow({mode:
+                    'open'});</code></p>
+
+                <h3>Applying to <code>random-greeter</code></h3>
+
+                <p>
+                    Before creating a shadow root for the <code>random-greeter</code> component let's simulate possible
+                    conflicts.
+                </p>
+
+                <p>
+                    Inside the <code>index.html</code> file add the following <code>style</code> block:
+                </p>
+
+                <pre>
+<code>
+&lt;style&gt;
+    h1 {
+        color: #ff6600 !important;
+    }
+&lt;/style&gt;
+</code></pre>
+
+                <p>
+                    and refresh the browser. Is this something that could happen? Of course, it is. Now let's fix it by
+                    creating a <code>shadow root</code>
+                </p>
+
+                <pre>
+<code>
+...
+constructor() {
+    ...
+
+    this._root = this.attachShadow({"mode": "open"});
+}
+
+connectedCallback() {
+    ...
+    //this.appendChild($content);
+    this._root.appendChild($content);
+
+    //this._$greet = this.querySelector("#greet");
+    this._$greet = this._root.querySelector("#greet");
+
+    ...
+}
+</code></pre>
+
+                <h2><strong>Composition and slots</strong></h2>
+
+                <p>
+                    Shadow DOM composes different DOM trees together using the <code>&lt;slot&gt;</code> element. Slots
+                    are placeholders inside your component that users can fill with their own markup. By defining one or
+                    more slots, you invite outside markup to render in your component's shadow DOM. Essentially, you're
+                    saying "Render the user's markup over here".
+                </p>
+
+                <aside class="callout">
+                    <p>
+                        <strong>Note</strong>: Slots are a way of creating a "declarative API" for a web component.
+                        They mix-in the user's DOM to help render the overall component, thus, composing different DOM
+                        trees together.
+                    </p>
+                </aside>
+
+                <p>
+                    Elements are allowed to "cross" the shadow DOM boundary when a &lt;slot&gt; invites them in. These
+                    elements are called <strong>distributed nodes</strong>. Conceptually, distributed nodes can seem a
+                    bit bizarre. Slots don't physically move DOM; they render it at another location inside the shadow
+                    DOM.
+                </p>
+
+                <p>
+                    A component can define zero or more slots in its shadow DOM. Slots can be empty or provide fallback
+                    content. If the user doesn't provide light DOM content, the slot renders its fallback content.
+                </p>
+
+                <p>
+                    You can also create named slots. Named slots are specific holes in your shadow DOM that users
+                    reference by name.
+                </p>
+
+                <pre>
+<code>
+&lt;!-- Default slot. If there's more than one default slot, the first is used. --&gt;
+&lt;slot&gt;&lt;/slot&gt;
+
+&lt;slot&gt;fallback content&lt;/slot&gt; &lt;!-- default slot with fallback content --&gt;
+
+&lt;slot&gt; &lt;!-- default slot entire DOM tree as fallback --&gt;
+  &lt;h2&gt;Title&lt;/h2&gt;
+    &lt;summary&gt;Description text&lt;/summary&gt;
+&lt;/slot&gt;
+
+&lt;!-- Named slot use slot="title" when referencing--&gt;
+&lt;slot name="title"&gt;&lt;/slot&gt;
+</code></pre>
+
+                <h3>Applying to <code>random-greeter</code></h3>
+
+                <p>Let's add two slots to the <code>random-greeter</code> component, a named and a default one</p>
+
+                <pre>
+<code>
+&lt;div class="greeter-frame"&gt;
+    &lt;slot name="top"&gt;&lt;/slot&gt;
+    &lt;h1 id="greet">&lt;/h1>
+    &lt;slot class="bottom"&gt;&lt;/slot&gt;
+&lt;/div&gt;
+</code></pre>
+
+                <p>Now in <code>index.html</code></p>
+
+                <pre>
+<code>
+&lt;random-greeter&gt;
+    &lt;marquee behavior="alternate" direction="right" slot="top"&gt;#BBConf rulz!!!&lt;/marquee&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Something&lt;/li&gt;
+        &lt;li&gt;More something&lt;/li&gt;
+        &lt;li&gt;About&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/random-greeter&gt;
+</code></pre>
+
+                <h2><strong>Exercise</strong></h2>
+
+                <p>Experiment with <code>slots</code></p>
+            </google-codelab-step>
+            <google-codelab-step label="Styling Web Components" duration="6">
+                <aside class="note">
+                    <p>
+                        Thanks to Shadow DOM, it’s very easy to style your Web Components using simple CSS selectors. In
+                        this step we’ll cover a few extra styling options available to us to style custom elements. On
+                        top of that, we’ll see how to allow the creation of styling hooks that make it easy for a custom
+                        element’s user to customize the style from the outside.
+                    </p>
+                </aside>
+
+                <h2><strong>Styling a Custom Element With <code>:host</code></strong></h2>
+
+                <p>
+                    The <code>:host</code> selector makes it easy to select and style the custom element itself, meaning
+                    the shell of the element. Let’s add some styles to our <code>random-greeter</code> element:
+                </p>
+
+                <pre>
+<code>
+:host {
+    all: initial;
+    display: block;
+    contain: content;
+    text-align: center;
+    padding: 20px;
+    background-color: #FF6600;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 8px;
+    transition: transform .2s ease-out;
+}
+:host([hidden]) {
+    display: none;
+}
+:host(:hover) {
+    transform: scale(1.1);
+}
+</code></pre>
+
+                <aside class="callout">
+                    <p>
+                        Remove the outer <code>div</code> with the <code>greeter-frame</code> class and its associated
+                        styling.
+                    </p>
+                </aside>
+
+                <ul>
+                    <li>
+                        We set <code>all: initial</code> to reset all global style values so that they don’t affect our
+                        element’s styles. Note that this should be the first property that you set in your CSS rule,
+                        otherwise what follows could be reset too.
+                    </li>
+                    <li>
+                        By default, custom elements are set to <code>display: inline</code>, so here we specify that it
+                        should be <code>display: block</code> instead.
+                    </li>
+                    <li>
+                        As you can see, the <code>:host</code> selector can also be used as a function to select only
+                        the element if it matches the provided selector. We use that here to set <code>display:
+                        none</code> on the element if has the hidden attribute.
+                    </li>
+                    <li>
+                        We also use a new CSS property, <code>contain</code>, to hint to the CSS engine that the styles
+                        are contained
+                        and independent. This can help with layout performance in the browsers that support it.
+                    </li>
+                </ul>
+
+                <p>
+                    <strong>Note</strong> that if a custom element is styled externally by the user of the element with
+                    something like this…
+                </p>
+
+                <pre>
+<code>
+random-greeter {
+  background: none;
+}
+</code></pre>
+
+                <p>
+                    …the external styles will always win if they collide with the ones provided with <code>:host</code>.
+                    So in that case, our element wouldn’t have its background color anymore.
+                </p>
+
+                <h2><strong>Theming Using <code>:host-context</code></strong></h2>
+
+                <p>
+                    We can also use a <code>:host-context()</code> selector that will select our custom element only if
+                    it or any of its ancestors match the provided selector. This makes it really easy to style your
+                    element differently if, say, the element has the <code>dark</code> or <code>light</code> class:
+                </p>
+
+                <pre>
+<code>
+:host-context(.dark) {
+    background-color: #e65c00;
+}
+
+:host-context(.light) {
+    background-color: #e65c00;
+}
+</code></pre>
+
+                <h2><strong>Style Hooks</strong></h2>
+
+                <p>
+                    So far we’ve seen how we can easily style a custom element from within, but what if we want to let
+                    the user of the element customize the styles without having to modify the element? This is where
+                    <code>CSS custom properties come</code> in.
+                </p>
+
+                <p>
+                    In <code>random-greeter</code>' element’s style definition, you’d use the custom properties like
+                    this:
+                </p>
+
+                <pre>
+<code>
+:host {
+    ...
+    background-color: var(--var-bg-color, #FF6600);
+    ...
+}
+
+...
+
+h1 {
+    ...
+    color: var(--var-color, #ffffff);
+
+    @apply --greeter-styles;
+}
+</code></pre>
+
+                <p>
+                    With this in place, our default colors will be used if variables are not defined, and now the colors
+                    can be customized in page’s style using something like this:
+                </p>
+
+                <pre>
+<code>
+random-greeter {
+    --var-bg-color: navy;
+    --var-color: green;
+
+    --greeter-styles: {
+        font-family: "Bauhaus 93";
+        font-size: 40px;
+        border: dotted 5px yellow;
+    }
+}
+</code></pre>
+
+                <h2><strong>Styling distributed nodes</strong></h2>
+
+                <p>
+                    <code>::slotted(&lt;compound-selector&gt;)</code> matches nodes that are distributed into a
+                    &lt;slot&gt;.
+                </p>
+
+                <pre>
+<code>
+::slotted(marquee) {
+    color: yellow;
+    font-size: 20px;
+}
+
+.bottom::slotted(*) {
+    text-align: left;
+    color: #ffffff;
+}
+</code></pre>
+            </google-codelab-step>
+            <google-codelab-step label="Polyfills and Transpiling" duration="6">
+                <aside class="note">
+                    <p>
+                        We covered the basics of creating custom elements using Web Component specs, but our simple
+                        custom element is not yet production-ready because of the use of new JavaScript features and the
+                        fact that <strong>Custom Elements</strong> and <strong>Shadow DOM</strong> are not supported in
+                        all popular browsers yet.
+                    </p>
+                </aside>
+
+                <p>
+                    In this step, we’ll quickly go over the steps to transpile our custom element code to be compatible
+                    with ES5 and to include the necessary Web Components polyfills.
+                </p>
+
+                <h2><strong>Transpiling</strong></h2>
+
+                <p>
+                    <code>random-greeter</code> element code contains ES6 classes and string literals and arrow
+                    functions. These features are great to use at author-time, but the code has to be transpiled using a
+                    tool like Babel so that it can run in browsers that only understand ES5 code. We’ll go ahead and use
+                    babel-cli and the babel-preset-es2015 preset do to just that.
+                </p>
+
+                <p>
+                    If your project doesn’t have a <code>package.json</code> file just yet, go ahead an create one using
+                    either <code>npm</code> or <code>Yarn</code>. This will allow you to install the necessary
+                    packages:
+                </p>
+
+                <pre>
+<code>
+$ npm init
+
+# or, using Yarn
+$ yarn init
+</code></pre>
+
+                <p>
+                    Once this is done, you can go ahead and install the necessary packages:
+                </p>
+
+                <pre>
+<code>
+$ npm install babel-cli babel-preset-es2015 crisper vulcanize rimraf --save-dev
+
+# or, using Yarn
+$ yarn add babel-cli babel-preset-es2015 crisper vulcanize rimraf --dev
+</code></pre>
+
+                <p>
+                    We’ll output our transpiled code into a <code>dist</code> folder, so you can go ahead and create
+                    that folder at the root of your project. Now you can some scripts script to the
+                    <strong>package.json</strong> file that runs Babel with the es2015 preset and outputs the result in
+                    the <strong>dist</strong> folder:
+                </p>
+
+                <pre>
+<code>
+{
+    ...
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean -s && mkdir dist",
+    "build:vulcanize": "vulcanize random-greeter.html --inline-script --inline-css | crisper -h dist/random-greeter.html -j dist/random-greeter.js",
+    "build": "npm run build:vulcanize && babel --presets es2015 dist/random-greeter.js --out-file dist/random-greeter.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "crisper": "^2.1.1",
+    "rimraf": "^2.6.2",
+    "vulcanize": "^1.16.0"
+  }
+}
+</code></pre>
+
+                <p>
+                    Now you can go ahead and run the transpiling:
+                </p>
+
+                <pre>
+<code>
+$ npm run build
+
+# or, using Yarn
+$ yarn build
+</code></pre>
+
+                <h2><strong>Polyfills</strong></h2>
+
+                <p>
+                    Polyfills are small plugins that implement a feature to replace a missing native implementation for
+                    browsers that don’t have support yet. For Web Components, we’ll need polyfills for Custom Elements,
+                    Shadow DOM and the template element.
+                </p>
+
+                <p>
+                    There’s also a loader available, <code>webcomponents-loader.js</code>, that will perform some
+                    feature detection and include the necessary polyfills on the fly. Using the loader is probably the
+                    simplest way to get everything working, and this is what we’ll use here for our example.
+                </p>
+
+                <p>
+                    Custom elements need to be defined using ES6 classes that extend <code>HTMLElement</code>, but now
+                    we’re using transpiled code that has the class syntax stripped away. We’ll need to use a file called
+                    <code>custom-elements-es5-adapter.js</code> to fix that for us.
+                </p>
+
+                <p>
+                    Simply install the <code>@webcomponents/webcomponentsjs</code> package into your project using
+                    <code>npm</code> or <code>yarn</code>. This will install the necessary files in the node_modules
+                    folder:
+                </p>
+
+                <pre>
+<code>
+$ npm install @webcomponents/webcomponentsjs --save
+
+# or, using Yarn
+$ yarn add npm install @webcomponents/webcomponentsjs
+</code></pre>
+
+                <p>
+                    Now, in your page’s head, include <code>custom-elements-es5-adapter.js</code> and
+                    <code>webcomponents-loader.js</code>:
+                </p>
+
+                <pre>
+<code>
+&lt;script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"&gt;&lt;/script&gt;
+&lt;script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"&gt;&lt;/script&gt;
+</code></pre>
+
+                <p>
+                    The final step is only include the script for your transpiled custom element when the <code>WebComponentsReady</code>
+                    event fires. That’s a custom event that gets fired by the loader when the necessary polyfills have
+                    been loaded. We’ll simply create a <code>link</code> element, set its <code>rel</code> and <strong>src</strong>
+                    property to the path of our transpiled custom element code and append it to the document’s head:
+                </p>
+
+                <pre>
+<code>
+window.addEventListener('WebComponentsReady', function () {
+    var randomGreeterImport = document.createElement('link');
+    randomGreeterImport.rel = 'import';
+    randomGreeterImport.href = 'dist/random-greeter.html';
+    document.head.appendChild(randomGreeterImport);
+});
+</code></pre>
+
+                <p>
+                    Here’s how our final <code>index.html</code> file looks like:
+                </p>
+
+                <pre>
+<code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+        &lt;title&gt;Web Component Basics&lt;/title&gt;
+
+        &lt;script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"&gt;&lt;/script&gt;
+        &lt;script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"&gt;&lt;/script&gt;
+        &lt;style&gt;
+            h1 {
+                color: #ff6600 !important;
+            }
+
+            random-greeter {
+                --var-bg-color: navy;
+                --var-color: green;
+
+                --greeter-styles: {
+                    font-family: "Bauhaus 93";
+                    font-size: 40px;
+                    border: dotted 5px yellow;
+                }
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;random-greeter class="light"&gt;&lt;/random-greeter&gt;
+        &lt;random-greeter class="dark"&gt;&lt;/random-greeter&gt;
+        &lt;random-greeter&gt;
+            &lt;marquee behavior="alternate" direction="right" slot="top"&gt;#BBConf rulz!!!&lt;/marquee&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Something&lt;/li&gt;
+                &lt;li&gt;More something&lt;/li&gt;
+                &lt;li&gt;About&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/random-greeter&gt;
+
+        &lt;script&gt;
+            window.addEventListener('WebComponentsReady', function () {
+                var randomGreeterImport = document.createElement('link');
+                randomGreeterImport.rel = 'import';
+                randomGreeterImport.href = 'dist/random-greeter.html';
+                document.head.appendChild(randomGreeterImport);
+            });
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+            </google-codelab-step>
+            <google-codelab-step label="Summary" duration="1">
+                <p>
+                    Custom elements allow you to extend HTML and define your own tags. They're an incredibly powerful
+                    feature, but they're also low-level, which means it's not always clear how best to implement your
+                    own element
+                </p>
+
+                <p>
+                    Here is a checklist which breaks down the things we applied to create a well behaved custom element.
+                </p>
+
+                <ul class="checklist">
+                    <li>Create a shadow root to encapsulate styles.</li>
+                    <li>Create your shadow root in the constructor.</li>
+                    <li>Place any children the element creates into its shadow root.</li>
+                    <li>
+                        Set a :host display style (e.g. block, inline-block, flex) unless you prefer the default of
+                        inline.
+                    </li>
+                    <li>Add a :host display style that respects the hidden attribute.</li>
+                    <li>
+                        Always accept primitive data (strings, numbers, booleans) as either attributes or properties.
+                    </li>
+                    <li>
+                        Aim to keep primitive data attributes and properties in sync, reflecting from property to
+                        attribute, and vice versa.
+                    </li>
+                    <li>Aim to only accept rich data (objects, arrays) as properties.</li>
+                    <li>Do not reflect rich data properties to attributes.</li>
+                </ul>
+            </google-codelab-step>
+        </google-codelab>
+    </template>
+    <script>
+        Polymer({
+            is: 'codelab-web-components-basics',
+
+            _twoWayBinding: function(value) {
+                return '{{' + value + '}}';
+            },
+
+            _oneWayBinding: function(value) {
+                return '[[' + value + ']]';
+            }
+        });
+    </script>
+</dom-module>

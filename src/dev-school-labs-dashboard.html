@@ -260,12 +260,12 @@
             /*}*/
         </style>
 
-        <iron-ajax auto url="/data/codelabs.json" last-response="{{_codeLabs}}"></iron-ajax>
+        <iron-ajax auto url="[[rootPath]]data/codelabs.json" last-response="{{_codeLabs}}"></iron-ajax>
 
         <app-drawer-layout fullbleed force-narrow>
-            <app-drawer swipe-open>
-                drawer-content
-            </app-drawer>
+            <!--<app-drawer swipe-open>-->
+            <!--drawer-content-->
+            <!--</app-drawer>-->
             <app-header-layout fullbleed has-scrolling-region>
                 <app-header fixed>
                     <app-toolbar id="mainToolbar">
@@ -285,12 +285,9 @@
                         <h2>Welcome to Codelabs!</h2>
                         <p>
                             Dev{School} Codelabs provide a guided, tutorial, hands-on coding experience. Most
-                            codelabs
-                            will step you through the process of building a small application, or adding a new
-                            feature
-                            to an existing application. They cover a wide range of topics such as HTML, CSS,
-                            JavaScript,
-                            AngularJs and Polymer.
+                            codelabs will step you through the process of building a small application, or
+                            adding a new feature to an existing application. They cover a wide range of topics
+                            such as HTML, CSS, JavaScript, AngularJs and Polymer.
                         </p>
                     </div>
                 </header>
@@ -315,6 +312,7 @@
                                 <paper-item category="javascript">JavaScript</paper-item>
                                 <paper-item category="angularjs">AngularJs</paper-item>
                                 <paper-item category="polymer">Polymer</paper-item>
+                                <paper-item category="web-components">Web Components</paper-item>
                             </paper-listbox>
                         </paper-dropdown-menu>
                     </div>
@@ -324,7 +322,7 @@
                                   sort="[[_sort(_sortOrder)]]"
                                   filter="[[_filter(_currentCategory)]]">
                             <dev-school-labs-card
-                                url="/codelabs/[[codeLab.slug]]"
+                                url="[[rootPath]]codelabs/[[codeLab.slug]]"
                                 category="[[codeLab.category]]"
                                 title="[[codeLab.title]]"
                                 updated="[[codeLab.updated]]"
@@ -348,15 +346,8 @@
         Polymer({
             is: 'dev-school-labs-dashboard',
 
-            properties: {
-//                _sortOrder: {
-//                    type: String,
-//                    value: 'alphabetical'
-//                }
-            },
-
-            _filter: function (category) {
-                return function (codeLab) {
+            _filter: function(category) {
+                return function(codeLab) {
                     if (!category) {
                         return true;
                     }
@@ -369,43 +360,35 @@
                 };
             },
 
-            _sort: function (sortOrder) {
-                //TODO: Improve this
-                var sortFunction;
-                switch (sortOrder) {
-                    case 'alphabetical':
-                        sortFunction = function (a, b) {
-                            if (a.title === b.title) {
-                                return 0;
-                            }
+            _sort: function(sortOrder) {
+                // TODO: Improve this
+                const sortFunctions = {
+                    alphabetical: (a, b) => {
+                        if (a.title === b.title) {
+                            return 0;
+                        }
 
-                            return a.title < b.title ? -1 : 1;
-                        };
-                        break;
-                    case 'recent':
-                        sortFunction = function (a, b) {
-                            var aDate = +new Date(a.updated);
-                            var bDate = +new Date(b.updated);
+                        return a.title < b.title ? -1 : 1;
+                    },
+                    recent: (a, b) => {
+                        const aDate = +new Date(a.updated);
+                        const bDate = +new Date(b.updated);
 
-                            if (aDate === bDate) {
-                                return 0;
-                            }
+                        if (aDate === bDate) {
+                            return 0;
+                        }
 
-                            return aDate > bDate ? -1 : 1;
-                        };
-                        break;
-                    case 'duration':
-                        sortFunction = function (a, b) {
-                            if (a.duration === b.duration) {
-                                return 0;
-                            }
+                        return aDate > bDate ? -1 : 1;
+                    },
+                    duration: (a, b) => {
+                        if (a.duration === b.duration) {
+                            return 0;
+                        }
+                        return a.duration < b.duration ? -1 : 1;
+                    },
+                };
 
-                            return a.duration < b.duration ? -1 : 1;
-                        };
-                        break;
-                }
-
-                return sortFunction;
+                return sortFunctions[sortOrder];
             }
         });
     </script>

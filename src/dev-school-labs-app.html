@@ -9,7 +9,7 @@
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
 <link rel="import" href="dev-school-labs-dashboard.html">
-<link rel="import" href="dev-school-labs-detail.html">
+<link rel="import" href="dev-school-labs-codelabs.html">
 
 <dom-module id="dev-school-labs-app">
     <template>
@@ -19,17 +19,31 @@
             api-key="AIzaSyDZYKDF1nTRl4gq-zLZ7qa_m1Yy2-Lrutk">
         </firebase-app>
 
-        <app-location route="{{route}}"></app-location>
+        <app-location
+            route="{{route}}"
+            url-space-regex="^[[rootPath]]">
+        </app-location>
+
         <app-route
             route="{{route}}"
-            pattern="/:page"
+            pattern="[[rootPath]]:page"
             data="{{routeData}}"
-            tail="{{subRoute}}">
+            tail="{{subroute}}">
         </app-route>
 
-        <iron-pages selected=[[page]] attr-for-selected="name">
-            <dev-school-labs-dashboard name="dashboard" route="{{subRoute}}"></dev-school-labs-dashboard>
-            <dev-school-labs-detail name="codelabs" route="{{subRoute}}"></dev-school-labs-detail>
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="dashboard"
+            role="main">
+            <dev-school-labs-dashboard
+                name="dashboard"
+                route="{{subroute}}">
+            </dev-school-labs-dashboard>
+            <dev-school-labs-codelabs
+                name="codelabs"
+                route="{{subroute}}">
+            </dev-school-labs-codelabs>
         </iron-pages>
     </template>
     <script>
@@ -39,20 +53,41 @@
             properties: {
                 page: {
                     type: String,
-                    reflectToAttribute: true
-                }
+                    reflectToAttribute: true,
+                    observer: '_pageChanged'
+                },
+                routeData: Object,
+                subroute: String,
+                // This shouldn't be neccessary, but the Analyzer isn't
+                // picking up Polymer.Element#rootPath
+                rootPath: String
             },
 
             observers: [
                 '_routePageChanged(routeData.page)'
             ],
 
-            created: function () {
+            created: function() {
                 this.removeAttribute('unresolved');
             },
 
-            _routePageChanged: function (page) {
+            _routePageChanged: function(page) {
+                // If no page was found in the route data, page will be an
+                // empty string.
+                // Default to 'dashboard' in that case.
                 this.page = page || 'dashboard';
+            },
+
+            _pageChanged: function(page) {
+                // Load page import on demand. Show 404 page if fails
+                const prefix = 'dev-school-labs-';
+                const resolvedPageUrl = this.resolveUrl(`${prefix}${page}.html`);
+                this.importHref(
+                    resolvedPageUrl,
+                    null,
+                    () => this.page = 'dashboard',
+                    true
+                );
             }
         });
     </script>

@@ -21,11 +21,6 @@
                 max-width: 330px;
             }
 
-            /*Not sure if this works from inside here*/
-            /*:host:nth-of-type(3n) {*/
-            /*margin-right: 0;*/
-            /*}*/
-
             /*Change with iron-icon*/
             img {
                 margin-right: 4px;
@@ -120,12 +115,6 @@
                     margin: 0;
                 }
             }
-
-            /*@media (min-width: 768px) {*/
-            /*:host {*/
-            /*min-height: 250px;*/
-            /*}*/
-            /*}*/
 
             @media (min-width: 768px) {
                 :host {
@@ -230,6 +219,22 @@
             .polymer-icon {
                 background-image: url("../images/categories/polymer.png");
             }
+
+            .web-components-bg {
+                background-color: #F16529;
+            }
+
+            .web-components-bg ~ .card-footer paper-button {
+                color: #F16529;
+            }
+
+            .web-components-bg ~ .card-footer paper-button:hover, .web-components-bg ~ .card-footer paper-button[focused] {
+                background: rgba(241, 101, 41, 0.1);
+            }
+
+            .web-components-icon {
+                background-image: url("../images/categories/web-components.svg");
+            }
         </style>
         <div class$="card-header [[_toLowerCase(category)]]-bg">
             <div id="icon" class$="category-icon [[_toLowerCase(category)]]-icon"></div>
@@ -282,14 +287,18 @@
                 }
             },
 
-            _getDateUpdated: function (date) {
-                var dateUpdated = new Date(date);
+            _getDateUpdated: function(date) {
+                const dateUpdated = new Date(date);
 
-                var formatOptions = {year: 'numeric', month: 'short', day: 'numeric'};
+                const formatOptions = {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                };
                 return dateUpdated.toLocaleDateString('en-US', formatOptions);
             },
 
-            _toLowerCase: function (value) {
+            _toLowerCase: function(value) {
                 return value.toLocaleLowerCase();
             }
         });

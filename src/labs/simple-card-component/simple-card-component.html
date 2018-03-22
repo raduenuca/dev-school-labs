@@ -1,0 +1,862 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/codelab-components/google-codelab-elements.html">
+
+<dom-module id="codelab-simple-card-component">
+    <template>
+        <google-codelab title="Simple Card Component"
+                        feedback-link="https://github.com/raduenuca/dev-school-labs/issues"
+                        environment="web"
+                        last-updated="2017-11-05">
+            <google-codelab-step label="Introduction" duration="1">
+                <h2><strong>Simple card component</strong></h2>
+
+                <p>
+                    For our next exercise we start with creating a small very basic component that can be the basis of
+                    several end-customer components. When we have created this basic component we are going to extend it.
+                </p>
+
+                <p>
+                    The basic component we are going to create is a card-component. It is commonly used on websites as a
+                    small panel with a summary of another page and a link to that page. It often has a header and an image.
+                </p>
+
+                <h2><strong>What You'll Learn</strong></h2>
+
+                <ul class="checklist">
+                    <li>Using ES2015 class syntax to build a web component</li>
+                    <li>Using Lit-Html to create templates using template literals</li>
+                    <li>Extend a component</li>
+                    <li>Add extra styling and functionality to a extended component</li>
+                </ul>
+
+                <h2><strong>What you'll need</strong></h2>
+
+                <ul>
+                    <li>Chrome 52 or above</li>
+                    <li>Your favorite text editor</li>
+                    <li>Basic knowledge of HTML, CSS, JavaScript, and Chrome DevTools</li>
+                </ul>
+            </google-codelab-step>
+            <google-codelab-step label="Getting set up" duration="5">
+                <h2><strong>Project Set Up</strong></h2>
+
+                <p>
+                  Fire up a code editor, and create five files <code>simple-card.html</code>,
+                  <code>simple-card.js</code>, <code>demo/index.html</code>,
+                  <code>bower.json</code> and a <code>package.json</code>.
+                </p>
+
+                <h3>simple-card.html</h3>
+
+                <pre>
+<code>
+&lt;link rel="import" href="../bbconf2017-lithtml/bbconf2017-lit-element.html"&gt;
+&lt;script src="simple-card.js"&gt;&lt;/script&gt;
+
+</code></pre>
+                <h3>simple-card.js</h3>
+
+                <pre>
+<code>
+class SimpleCard extends HTMLElement {
+    connectedCallback() {
+        console.log('simple-card element added to the DOM!');
+      }
+    }
+customElements.define('simple-card',SimpleCard);
+
+</code></pre>
+              <h3>demo/index.html</h3>
+
+              <pre>
+<code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0"&gt;
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+        &lt;title&gt;Simple card component&lt;/title&gt;
+
+        &lt;style&gt;
+          body {
+            width: 90%;
+            max-width: 980px;
+            background-color: #f5f5f5;
+            margin: 0 auto 32px;
+          }
+        &lt;/style&gt;
+
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;Example page of the simple-card&lt;/h1&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+              <h3>package.json</h3>
+
+              <pre>
+<code>
+{
+  "name": "simple-card",
+  "version": "0.0.1",
+  "description": "",
+  "main": "simple-card.html",
+  "devDependencies": {
+    "polyserve": "0.23.0"
+  },
+  "scripts": {
+    "start": "polyserve -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/The-Guide/bbconf2017-simple-card-component.git"
+  },
+  "engines": {
+    "node": ">=6.0"
+  }
+}
+</code></pre>
+
+              <h3>bower.json</h3>
+
+              <pre>
+<code>
+{
+  "name": "simple-card",
+  "main": "simple-card.html",
+  "dependencies": {
+    "bbconf2017-lithtml": "https://github.com/The-Guide/bbconf2017-lithtml.git"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
+}
+</code></pre>
+                <p>
+                  Install the needed dependencies as follows:
+                  <ul>
+                    <li>Run <code>npm install</code> to install the node dependencies.</li>
+                    <li>Run <code>bower install</code> to install the bower dependencies.</li>
+                  </ul>
+                </p>
+
+                <h3>Using the <code>simple-card</code> component</h3>
+
+                <p>To employ <code>&lt;simple-card&gt;</code>, you need to:</p>
+
+                <ol type="1" start="1">
+                    <li>Use an <a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/" target="_blank">HTML
+                        Import</a> to load it in <code>demo/index.html</code>.
+                    </li>
+                    <li>Declare an instance of the element inside the <code>body</code>.</li>
+                </ol>
+
+                <pre>
+<code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,minimum-scale=1.0"&gt;
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+        &lt;title>Simple-card-component&lt;/title&gt;
+        &lt;link rel="import" href="../simple-card.html"&gt;
+
+        &lt;style&gt;
+          body {
+            width: 90%;
+            max-width: 980px;
+            background-color: #f5f5f5;
+            margin: 0 auto 32px;
+          }
+        &lt;/style&gt;
+
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;Example page of the simple-card&lt;/h1&gt;
+      &lt;h2&gt;An basic example&lt;/h2&gt;
+
+      &lt;simple-card&gt;&lt;/simple-card&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+                <h3>Preview the component</h3>
+
+                <p>
+                  Run <code>npm start</code> to run your component in the browser.
+                  Just open the <code>demo/index.html</code> page in the browser, open the developer tools a look at the
+                  <code>Console</code> tab where you should see:
+
+                  <div style="padding: 10px; text-align: center; background-color: #f5f5f5;">
+                    "simple-card element added to the DOM!"
+                  </div>
+                </p>
+            </google-codelab-step>
+            <google-codelab-step label="Introducing Custom Elements" duration="5">
+                <h2>Adding litHTML</h2>
+
+                <p>
+                    <a href="https://github.com/PolymerLabs/lit-html"
+                       target="_blank">Lit-HTML</a>
+                    lets you write HTML templates with JavaScript template literals, and efficiently render and re-render those templates to DOM.
+                    lit-html provides two main exports:
+                    <ul>
+                        <li>html: A JavaScript template tag used to produce a TemplateResult, which is a container for a template, and the values that should populate the template.</li>
+                        <li>render(): A function that renders a TemplateResult to a DOM container, such as an element or shadow root.</li>
+                    </ul>
+                    We prepared a Lit-HTML component that we can use.
+                <pre>
+<code>
+class SimpleCard extends Bbconf2017LitElement {
+
+
+  connectedCallback() {
+    console.log('simple-card element added to the DOM!');
+  }
+}
+
+// Register custom element definition using standard platform API
+customElements.define('simple-card', SimpleCard);
+</code></pre>
+                <h3>bower.json</h3>
+                <p>
+                  Now that we use the Bbconf-lit-Element to extend we have to set this element as
+                  a dependency. Let's create a bower.json containing it.
+                </p>
+
+                <pre>
+<code>
+{
+  "name": "simple-card",
+  "main": "simple-card.html",
+  "dependencies": {
+    "bbconf2017-lithtml": "https://github.com/The-Guide/bbconf2017-lithtml.git"
+  }
+}
+</code></pre>
+            </google-codelab-step>
+            <google-codelab-step label="Creating HTML Templates with Lit-HTML" duration="5">
+                <aside class="callout">
+                  <p>
+                    <strong>Lit-HTML</strong> has 4 main goals:
+                    <ol>
+                      <li>Efficient updates of previously rendered DOM.</li>
+                      <li>Expressiveness and easy access to the JavaScript state that needs to be injected into DOM.</li>
+                      <li>Standard JavaScript without required build steps, understandable by standards-compliant tools.</li>
+                      <li>Very small size.</li>
+                    </ol>
+                  </p>
+                </aside>
+
+                <h2><strong>How it works</strong></h2>
+
+                <p>
+                    <code>lit-html</code> utilizes some unique properties of HTML <code>&lt;template&gt;</code> elements and JavaScript template literals. So it's helpful to understand them first.
+                </p>
+                   <h3>Tagged Template Literals</h3>
+                <p>
+                    A JavaScript template literal is a string literal that can have other JavaScript expressions embedded in it:
+                </p>
+               <code>
+                   `My name is ${name}.`
+               </code>
+                <p>A tagged template literal is prefixed with a special template tag function:</p>
+              <code>
+                  let name = 'Monica';
+                  tag`My name is ${name}.`
+              </code>
+
+                <p>
+                    Tags are functions of the: <code>tag(strings, ...values)</code>, and <code>strings</code> is an immutable array of the literal parts, and values are the results of the embedded expressions.
+                    In the preceding example, <code>strings</code> would be <code>['My name is ', '.']</code>, and values would be <code>['Monica']</code>.
+                </p>
+
+                <pre>
+<code>
+&lt;template id="mytemplate"&gt;
+    &lt;img src="" alt="great image"&gt;
+    &lt;div class="comment"&gt;&lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+                <h2><strong>HTML<code>&lt;template&gt;</code> Elements</strong></h2>
+
+                <p>
+                    A <code>&lt;template&gt;</code> element is an inert tree of DOM (script don't run, images don't load,
+                    custom elements aren't upgraded, etc) that can be efficiently cloned. It's usually used to tell the
+                    HTML parser that a section of the document must not be instantiated when parsed,
+                    but by code at a later time, but it can also be created imperatively with <code>createElement</code> and <code>innerHTML</code>.
+                </p>
+
+                <h3>Template Creation</h3>
+
+                <p>
+                    The first time <code>html</code> is called on a particular template literal
+                    it does one-time setup work to create the template. It joins all the string parts
+                    with a special placeholder, <code>"[[_twoWayBinding('')]]"</code>, then creates a <code>&lt;template&gt;</code>
+                    and sets its <code>innerHTML</code> to the result. Then it walks the template's DOM and
+                    extracts the placeholder and remembers their location.
+                </p>
+                <p>
+                    Every call to <code>html</code> returns a <code>TemplateResult</code> which contains
+                    the template created on the first call, and the expression values for the current call.
+                </p>
+
+                <h3>Template rendering</h3>
+
+                <p>
+                    <code>render()</code> takes a <code>TemplateResult</code> and renders it to a DOM container.
+                    On the initial render it clones the template, then walks it using the remembered placeholder positions, to create <code>Part</code>s.
+                </p>
+                <p>
+                    A<code>Part</code> is a "hole" in the DOM where values can be injected.
+                    <code>lit-html</code> includes two type of parts by default: <code>NodePart</code> and <code>AttributePart</code>,
+                    which let you set text content and attribute values respectively.
+                    The <code>Part</code>s, container, and template they were created from are
+                    grouped together in an object called a <code>TemplateInstance</code>.
+                </p>
+                <p>
+                    Rendering can be customized by providing alternate <code>render()</code>
+                    implementations which create different kinds of <code>TemplateInstances</code> and <code>Part</code>s,
+                    like <code>PropertyPart</code> and <code>EventPart</code> included in <code>lib/lit-extended.ts</code> which
+                    let templates set properties and event handlers on elements.
+                </p>
+                <h2>What are we creating</h2>
+
+                <p>
+                    We are going to make a simple card webcomponent. It should have a header,
+                    body and a footer. Let's start with the header. It should be a template with a slot.
+               </p>
+         <pre>
+<code>
+class SimpleCard extends Bbconf2017LitElement {
+
+  get headerTemplate() {
+    return html`
+      &lt;header id="header"&gt;
+        &lt;slot name="header" id="headerslot"&gt;&lt;/slot&gt;
+      &lt;/header&gt;
+  `}
+  connectedCallback() {
+    console.log('simple-card element added to the DOM!');
+  }
+}
+
+// Register custom element definition using standard platform API
+customElements.define('simple-card', SimpleCard);
+</code></pre>
+              <p>
+                Let's also create a body and footer template in the same way.
+              </p>
+              <pre>
+<code>
+class SimpleCard extends Bbconf2017LitElement {
+
+  get headerTemplate() {
+    return html`
+      &lt;header id="header"&gt;
+        &lt;slot name="header" id="headerslot"&gt;&lt;/slot&gt;
+      &lt;/header&gt;
+  `;
+  }
+  get bodyTemplate() {
+    return html`
+      &lt;div id="body"&gt;
+        &lt;slot id="bodyslot"&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+  `;
+  }
+  get footerTemplate() {
+    return html`
+      &lt;footer id="footer"&gt;
+        &lt;slot name="footer" id="footerslot"&gt;&lt;/slot&gt;
+      &lt;/footer&gt;
+  `;
+  }
+}
+
+// Register custom element definition using standard platform API
+customElements.define('simple-card', SimpleCard);
+</code></pre>
+              <h3>Show it in the component</h3>
+
+              <p>
+                We want to see if our templates work. Let's put some content in the card.
+              </p>
+              <pre>
+<code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,minimum-scale=1.0"&gt;
+        &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+        &lt;title>Simple-card-component&lt;/title&gt;
+        &lt;link rel="import" href="../simple-card.html">
+
+        &lt;style&gt;
+          body {
+            width: 90%;
+            max-width: 980px;
+            background-color: #f5f5f5;
+            margin: 0 auto 32px;
+          }
+        &lt;/style&gt;
+
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;Example page of the simple-card&lt;/h1&gt;
+      &lt;h2&gt;An basic example&lt;/h2&gt;
+
+      &lt;simple-card&gt;
+       &lt;h3 slot="header"&gt;Title&lt;/h3&gt;
+        &lt;div&gt;
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam.
+        &lt;/div&gt;
+        &lt;div slot="footer"&gt;Footer&lt;/div&gt;
+      &lt;/simple-card&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+            </google-codelab-step>
+            <google-codelab-step label="Rendering and styling" duration="5">
+              <h2>Render the templates</h2>
+
+              <p>
+                Out lit-element provides a <code>render()</code> to render the templates. Let's add them in the component.
+              </p>
+              <pre>
+<code>
+class SimpleCard extends Bbconf2017LitElement {
+  get headerTemplate() {
+    return html`
+      &lt;header id="header"&gt;
+        &lt;slot name="header" id="headerslot"&gt;&lt;/slot&gt;
+      &lt;/header&gt;
+  `;
+  }
+  get bodyTemplate() {
+    return html`
+      &lt;div id="body"&gt;
+        &lt;slot id="bodyslot"&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+  `;
+  }
+  get footerTemplate() {
+    return html`
+      &lt;footer id="footer"&gt;
+        &lt;slot name="footer" id="footerslot"&gt;&lt;/slot&gt;
+      &lt;/footer&gt;
+  `;
+  }
+  render() {
+    return html`
+      ${this.headerTemplate}
+      ${this.bodyTemplate}
+      ${this.footerTemplate}
+    `;
+  }
+}
+
+// Register custom element definition using standard platform API
+customElements.define('simple-card', SimpleCard);
+</code></pre>
+
+                <h2>Styling template</h2>
+
+                <p>
+                  Our card shows the content but is still unstyled. Let's add some styling. In your <code>simple-card</code>
+                  add a styling template the same way you created the other templates.
+                  It should contain a style tag and some basic styling on the <code>:host</code> element.
+
+                <pre>
+<code>
+class SimpleCard extends Bbconf2017LitElement {
+ get styleTemplate() {
+    return html`
+     &lt;style&gt;
+        :host {
+          width: 100%;
+          position: relative;
+          display: block;
+          background: #ffffff;
+          border-radius: 4px;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                      0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                      0 3px 1px -2px rgba(0, 0, 0, 0.2);
+          box-sizing: border-box;
+          line-height: 1.5;
+          font-weight: normal;
+        }
+      &lt;/style&gt;
+    `;
+  }
+
+ ...
+
+  render() {
+    return html`
+      ${this.styleTemplate}
+      ${this.headerTemplate}
+      ${this.bodyTemplate}
+      ${this.footerTemplate}
+    `;
+  }
+}
+
+// Register custom element definition using standard platform API
+customElements.define('simple-card', SimpleCard);
+</code></pre>
+
+                <p>
+                    Add now some styling on the header, body and footer:
+                </p>
+<pre><code>
+get styleTemplate() {
+ return html`
+     &lt;style&gt;
+
+    ...
+
+    #header ::slotted(*),
+    #body ::slotted(*),
+    #footer ::slotted(*) {
+      padding: 24px 24px;
+    }
+    #header {
+      color: inherit;
+    }
+    #header ::slotted(h1),
+    #header ::slotted(h2),
+    #header ::slotted(h3),
+    #header ::slotted(h4),
+    #header ::slotted(h5),
+    #header ::slotted(h6) {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    ...
+
+  &lt;/style&gt;
+`;
+</code></pre>
+              <p>
+                Check the differences in the browser.
+              </p>
+            </google-codelab-step>
+            <google-codelab-step label="Extending simple-card" duration="8">
+                <h2><strong>Extending</strong></h2>
+
+                <p>
+                  We have a very simple card component. It has some very generic features. Imagine that we
+                  want a specific card with a custom footer. How can we create that from the simple-card?
+                  It is easy, we can <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends" target="_blank">extend</a> the simple card.
+                </p>
+
+                <p>
+                  We are now creating a new component, the extended-card. Create <code>extended-card.html</code> and <code>extended-card.js</code>.
+                </p>
+                <h3>extended-card.html</h3>
+
+                <pre>
+<code>
+&lt;link rel="import" href="../simple-card/simple-card.html"&gt;
+&lt;script src="extended-card.js"&gt;&lt;/script&gt;
+</code></pre>
+              <h3>extended-card.js</h3>
+              <pre>
+<code>
+class ExtendedCard extends SimpleCard {
+ }
+
+customElements.define('extended-card', ExtendedCard);
+</code></pre>
+                <aside class="note">
+                  <p>
+                    Also create a <code>package.json</code> and a <code>bower.json</code> just like
+                    we did in the <code>simple-card</code>, and install all dependencies. This time
+                    we can use the
+                    <a href="https://github.com/The-Guide/bbconf2017-simple-card-component.git">
+                      <code>simple-card</code>
+                    </a> as a bower dependency.
+                  </p>
+                </aside>
+                <p>
+                  First, we want to extend some of the styling of the simple-card:
+                  <ul>
+                    <li>Change the heading text to orangered</li>
+                    <li>increase the fontsize</li>
+                    <li>Make use of the Roboto font</li>
+                  </ul>
+                  We want to keep all the rest of the styling from <code>simple-card</code>.
+                </p>
+
+              <h3>extended-card.js</h3>
+<pre>
+<code>
+  class ExtendedCard extends SimpleCard {
+    get styleTemplate() {
+      return html`
+        ${super.styleTemplate}
+        &lt;style&gt;
+          :host {
+            font-family: Roboto;
+          }
+
+          #header {
+            color: orangered;
+            font-size: 1.4em;
+          }
+        &lt;/style&gt;
+      `;
+    }
+  }
+
+  customElements.define('extended-card', ExtendedCard);
+</code></pre>
+
+                <p>
+                  Create a <code>demo/index.html</code> to view the component, just like we did in
+                  the <code>simple-dialog</code>.
+                </p>
+
+                <h3>demo/index.html</h3>
+                <pre>
+<code>
+&lt;!doctype html&gt;
+
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+  &lt;title&gt;Extended-card Demo&lt;/title&gt;
+
+  &lt;link rel="import" href="../extended-card.html"&gt;
+
+   &lt;style&gt;
+    body {
+      width: 90%;
+      max-width: 980px;
+      background-color: #f5f5f5;
+      margin: 0 auto 32px;
+    }
+   &lt;/style&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Example page of the extended-card&lt;/h1&gt;
+
+  &lt;h2&gt;An basic example&lt;/h2&gt;
+
+  &lt;extended-card last-updated="6"&gt;
+    &lt;h3 slot="header"&gt;Title&lt;/h3&gt;
+    &lt;div&gt;
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam. Praesent gravida urna id
+      nunc luctus, nec varius tortor tristique. Mauris non sem vel magna consectetur sodales. Aenean ut urna
+      sodales, auctor elit condimentum, cursus neque. Sed quam mauris, ultricies ac congue ut, volutpat
+      volutpat dui. Quisque sagittis diam et justo fringilla condimentum. Cras ut dignissim dolor, nec
+      efficitur mi. Praesent vitae consectetur odio. Donec lectus nulla, tristique eget lacinia consequat,
+      porttitor in arcu. Fusce mattis nec leo nec vulputate. In hac habitasse platea dictumst.
+    &lt;/div&gt;
+  &lt;/extended-card&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+            </google-codelab-step>
+            <google-codelab-step label="Create custom footer" duration="10">
+
+
+                <h2><strong>Create a custom footer</strong></h2>
+
+                <p>
+                  This card element we are creating should have a fixed footer like <a href="https://v4-alpha.getbootstrap.com/components/card/#header-and-footer" target="_blank">this (scroll down to the footer example)</a> bootstrapped card footer.
+                  The background color should be light orange and the text should be centered. Please create a new <code>footerTemplate</code> with the text "Last updated 5 minutes ago" and add styles too. Please add this styles:
+                <pre>
+<code>
+  #footer {
+    border-top: 1px solid #d5d5d5;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #ffeedd;
+    font-size: 1em;
+    text-align: center;
+    color: grey;
+    padding: 4px 24px;
+  }
+</code>
+            </pre>
+                <p>And add the following template:</p>
+                <pre>
+<code>
+  get footerTemplate() {
+    return html`
+    &lt;footer id="footer"&gt;
+      Last updated 5 mins ago.
+    &lt;/footer&gt;
+    `;}
+  }
+</code></pre>
+              <p>Now we see fancy footers with the info that it is updated 5 minutes ago. But of course it would be nice to set this dynamically.</p>
+
+              <h2>Update the footer dynamically</h2>
+
+              <p>First of all we need a property list with one property <code>lastUpdated</code>, which we can add to the <code>extended-card</code></p>
+              <pre>
+<code>
+static get properties() {
+  return {
+    lastUpdated: {
+      type: String,
+      value: '',
+      reflectToAttribute: 'last-updated',
+    }
+  };
+}
+</code>
+              </pre>
+
+              <aside class="note">
+                <p>Be aware that we created a new property list. If the simple-card had a property-list we would override it. If you want to extend use it like this:
+                  <pre>
+<code>
+  return Object.assign(super.properties, {
+    myNewProperty: {
+      type: String,
+      value: 'default'
+    }
+  });
+</code>
+                  </pre>
+                </p>
+              </aside>
+
+              <p>The next step is to make use of this property, so we change our <code>footerTemplate</code> with the following codesnippet:</p>
+
+              <pre>
+<code>
+  get footerTemplate() {
+   return html`
+   &lt;footer id="footer"&gt;
+    Last updated ${this.lastUpdated} mins ago.
+   &lt;/footer&gt;
+   `;}
+  }
+</code>
+              </pre>
+
+              <p>And of course we need to add this feature to the <code>demo/index.html</code>.</p>
+
+              <pre>
+<code>
+  &lt;extended-card last-updated="6"&gt;
+    ...
+  &lt;/extended-card&gt;
+</code>
+              </pre>
+
+              <h2>Create a fallback</h2>
+              <p>
+                We also need a fallback if no <code>lastUpdated</code> attribute is set. First we
+                create a second <code>extended-card</code> in our <code>demo/index.html</code> file.
+              </p>
+
+              <pre>
+<code>
+  &lt;h2&gt;An example without last-updated time stamp&lt;/h2&gt;
+  &lt;extended-card&gt;
+    &lt;p&gt;
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis varius quam quam. Praesent
+      gravida urna id nunc luctus, nec varius tortor tristique. Mauris non sem vel magna consectetur
+      sodales. Aenean ut urna sodales, auctor elit condimentum, cursus neque. Sed quam mauris,
+      ultricies ac congue ut, volutpat  volutpat dui. Quisque sagittis diam et justo fringilla
+      condimentum. Cras ut dignissim dolor, nec efficitur mi. Praesent vitae consectetur odio.
+      Donec lectus nulla, tristique eget lacinia consequat, porttitor in arcu. Fusce mattis nec leo
+      nec vulputate. In hac habitasse platea dictumst.
+    &lt;/p&gt;
+  &lt;/extended-card&gt;
+</code>
+              </pre>
+
+              <p>This will give a wrong message without a time.</p>
+
+              <p>We need to create a backup message if no last-updated time is provided.</p>
+
+              <pre>
+<code>
+  get footerTemplate() {
+    if (this.lastUpdated) {
+    return html`
+    &lt;footer id="footer"&gt;
+      Last updated ${this.lastUpdated} mins ago.
+    &lt;/footer&gt;
+    `;}
+    else {
+      return html`
+      &lt;footer id="footer"&gt;
+      Not updated recently!
+      &lt;/footer&gt;
+      `;
+    }
+  }
+</code>
+              </pre>
+
+              <p>Check the demo again to see the second <code>extended-card</code> be rendered correctly.</p>
+
+            </google-codelab-step>
+
+            <google-codelab-step label="Summary" duration="1">
+              <p>
+                In this codelab we first created a basic component, with hardly any styling and
+                functionality. After that we created a more specific card based on the basic
+                element. For all kind of use cases different components could be made based on the
+                basic element, or even extensions of an extended-card.
+              </p>
+
+              <p>
+                We can have very simple, small, basic components which have only all basic functions
+                covered. Every custom desire can be an extension of the basic element. Not only
+                styling or properties can be added, but basically everything can be added.
+              </p>
+
+              <h2>Extra assignment</h2>
+              <p>
+                Go to <a href="https://ing.nl">ing.nl</a>, <a href="https://ing.be">ing.be</a> and
+                <a href="https://ing.de">ing.de</a> and take a look at all different types cards.
+                Each page already exists out of different type of cards. Some are having differ more
+                than other, but in general they all have the same basis.
+              </p>
+              <p>
+                Try to create two, three or four extensions of the <code>simple-card</code> or some
+                more extended card. Which can match these different cards.
+              </p>
+            </google-codelab-step>
+        </google-codelab>
+    </template>
+    <script>
+        Polymer({
+            is: 'codelab-simple-card-component',
+
+            _twoWayBinding: function(value) {
+                return '{{' + value + '}}';
+            },
+
+            _oneWayBinding: function(value) {
+                return '[[' + value + ']]';
+            }
+        });
+    </script>
+</dom-module>

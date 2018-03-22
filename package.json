@@ -1,6 +1,7 @@
 {
     "name": "dev-school-labs",
-    "version": "0.0.15",
+    "license": "BSD-3-Clause",
+    "version": "0.1.0",
     "description": "Code labs project for DevSchool",
     "main": "index.html",
     "homepage": "https://github.com/raduenuca/dev-school-labs#readme",
@@ -8,15 +9,21 @@
     "keywords": [
         "polymer"
     ],
-    "scripts": {
-        "start": "polymer serve -o",
-        "deploy": "polymer build --bundle && firebase deploy"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/raduenuca/dev-school-labs.git"
     },
     "bugs": {
         "url": "https://github.com/raduenuca/dev-school-labs/issues"
+    },
+    "scripts": {
+        "start": "polymer serve -o",
+        "deploy": "polymer build --bundle && firebase deploy"
+    },
+    "devDependencies": {
+        "eslint": "^3.19.0",
+        "eslint-config-google": "^0.7.0",
+        "eslint-plugin-html": "^2.0.0",
+        "gh-pages": "^1.0.0"
     }
 }
