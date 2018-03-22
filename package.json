@@ -18,7 +18,13 @@
     },
     "scripts": {
         "start": "polymer serve -o",
-        "deploy": "polymer build --bundle && firebase deploy"
+        "build": "polymer build",
+        "deploy:firbase": "npm run build && firebase deploy",
+        "deploy": "npm run build && gh-pages -d build/es5-bundled",
+        "lint": "npm run lint:javascript && polymer lint",
+        "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
+        "test": "polymer test",
+        "test:integration": "polymer build # test that psk builds without error with the CLI"
     },
     "devDependencies": {
         "eslint": "^3.19.0",
