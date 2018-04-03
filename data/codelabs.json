@@ -71,5 +71,13 @@
         "updated": "2017-10-29T19:00:00Z",
         "author": "Frederik en Gerjan",
         "duration": 40
+    },
+    {
+        "category": "css",
+        "slug": "css-grid",
+        "title": "Introduction to CSS Grid",
+        "updated": "2018-03-31T23:00:00Z",
+        "author": "Ovidiu Olea",
+        "duration": 40
     }
 ]
