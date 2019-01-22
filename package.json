@@ -1,7 +1,7 @@
 {
     "name": "dev-school-labs",
     "license": "BSD-3-Clause",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "description": "Code labs project for DevSchool",
     "main": "index.html",
     "homepage": "https://github.com/raduenuca/dev-school-labs#readme",
@@ -27,9 +27,9 @@
         "test:integration": "polymer build # test that psk builds without error with the CLI"
     },
     "devDependencies": {
-        "eslint": "^3.19.0",
-        "eslint-config-google": "^0.7.0",
-        "eslint-plugin-html": "^2.0.0",
-        "gh-pages": "^1.0.0"
+        "eslint": "^5.2.0",
+        "eslint-config-google": "^0.11.0",
+        "eslint-plugin-html": "^4.0.5",
+        "gh-pages": "^2.0.1"
     }
 }

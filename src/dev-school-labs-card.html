@@ -4,6 +4,7 @@
 
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 
 <dom-module id="dev-school-labs-card">
     <template>
@@ -256,7 +257,7 @@
             <div id="icon" class$="category-icon [[_toLowerCase(category)]]-icon"></div>
             <template is="dom-if" if="[[duration]]">
                 <div class="card-duration">
-                    <img src="https://codelabs.developers.google.com/images/schedule.svg">
+                    <iron-icon icon="schedule"></iron-icon>
                     <span>[[duration]] min</span>
                 </div>
             </template>

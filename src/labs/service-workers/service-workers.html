@@ -1,0 +1,145 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/codelab-components/google-codelab-elements.html">
+
+<dom-module id="codelab-service-workers">
+    <template>
+        <google-codelab title="Service Workers" feedback-link="" environment="web" last-updated="2018-03-31">
+            <google-codelab-step label="Introduction" duration="1">
+                <h2>
+                    <strong>CSS Grid Layout </strong>
+                </h2>
+
+                <p>
+                    CSS Grid Layout excels at dividing a page into major regions, or defining the relationship in terms
+                    of size, position, and layer, between parts of a control built from HTML primitives.
+                </p>
+
+                <p>
+                    Like tables, grid layout enables an author to align elements into columns and rows. However, many
+                    more layouts are either possible or easier with CSS grid than they were with tables. For example, a
+                    grid container's child elements could position themselves so they actually overlap and layer,
+                    similar to CSS positioned elements.
+                </p>
+
+                <h2>
+                    <strong>What You'll Learn</strong>
+                </h2>
+
+                <ul class="checklist">
+                    <li>How to create responsive layout using Css Grid.</li>
+                    <li>Implement Grid template areas.</li>
+                    <li>How to use media queries.</li>
+                </ul>
+
+                <h2>
+                    <strong>What you'll need</strong>
+                </h2>
+
+                <ul>
+                    <li>Firefox 54, Chrome 58, Edge 16, Safari 10.1, Opera 44 or above</li>
+                    <li>Your favorite text editor</li>
+                    <li>Basic knowledge of HTML, CSS</li>
+                </ul>
+            </google-codelab-step>
+            <google-codelab-step label="Getting set up" duration="3">
+                <h2>
+                    <strong>Project Set Up</strong>
+                </h2>
+
+                <p>
+                    Fire up a code editor, and create two files <code>index.html</code> and <code>style.css</code>
+                </p>
+
+                <h3>index.html</h3>
+
+                <pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;link rel="stylesheet" href="style.css" /&gt;
+    &lt;title&gt;Css Grid&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h3&gt; Css Grid &lt;/h3&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                <h3>style.css</h3>
+                <pre>
+<code>
+  * { box-sizing: border-box; }
+
+  .grid-container {
+      max-width: 1024px;
+      margin: 0 auto;
+      font: 1.2em Helvetica, arial, sans-serif;
+  }
+
+  .grid-container > * {
+      border: 2px solid #f08c00;
+      background-color: #ffec99;
+      border-radius: 5px;
+      padding: 10px;
+  }
+
+  nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul {
+      flex-direction: column;
+  }
+</code></pre>
+
+                <h3>Optional</h3>
+
+                <p>To avoid manual refresh install <code>live-server</code></p>
+
+                <pre>
+<code>
+$ npm install -g live-server
+</code></pre>
+                <p>To run it just type <code>live-server</code> from the folder where you created
+                    <code>index.html</code> and <code>style.css</code> files.</p>
+            </google-codelab-step>
+            <google-codelab-step label="Service Worker Events" duration="10">
+            </google-codelab-step>
+            <google-codelab-step label="The Service Worker Lifecycle" duration="10">
+            </google-codelab-step>
+            <google-codelab-step label="App Install Banner" duration="10">
+            </google-codelab-step>
+            <google-codelab-step label="Service Worker Caching" duration="30">
+            </google-codelab-step>
+            <google-codelab-step label="Caching Strategies" duration="15">
+            </google-codelab-step>
+            <google-codelab-step label="Dynamic Data" duration="30">
+            </google-codelab-step>
+            <google-codelab-step label="Background Sync" duration="30">
+            </google-codelab-step>
+            <google-codelab-step label="Wrap Up" duration="1">
+            </google-codelab-step>
+        </google-codelab>
+    </template>
+    <script>
+        Polymer({
+            is: 'codelab-service-workers',
+
+            _twoWayBinding: function(value) {
+                return '{{' + value + '}}';
+            },
+
+            _oneWayBinding: function(value) {
+                return '[[' + value + ']]';
+            }
+        });
+    </script>
+</dom-module>
