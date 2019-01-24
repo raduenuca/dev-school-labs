@@ -79,5 +79,69 @@
         "updated": "2018-03-31T23:00:00Z",
         "author": "Ovidiu Olea",
         "duration": 35
+    },
+    {
+        "category": "HTML",
+        "slug": "app-manifest",
+        "title": "Understanding the App Manifest",
+        "updated": "2019-01-22T08:35:00Z",
+        "author": "Radu Enuca",
+        "duration": 25
+    },
+    {
+        "category": "JavaScript",
+        "slug": "service-workers",
+        "title": "Service Workers",
+        "updated": "2019-01-22T08:39:00Z",
+        "author": "Radu Enuca",
+        "duration": 60
+    },
+    {
+        "category": "JavaScript",
+        "slug": "fetch-api",
+        "title": "Fetch API Basics",
+        "updated": "2019-01-22T08:40:00Z",
+        "author": "Radu Enuca",
+        "duration": 15
+    },
+    {
+        "category": "JavaScript",
+        "slug": "promises",
+        "title": "Promise API Basics",
+        "updated": "2019-01-24T19:00:00Z",
+        "author": "Radu Enuca",
+        "duration": 30
+    },
+    {
+        "category": "JavaScript",
+        "slug": "index-db",
+        "title": "IndexDB Basics",
+        "updated": "2019-01-22T08:44:00Z",
+        "author": "Radu Enuca",
+        "duration": 15
+    },
+    {
+        "category": "JavaScript",
+        "slug": "web-push",
+        "title": "Web Push Notifications",
+        "updated": "2019-01-22T08:45:00Z",
+        "author": "Radu Enuca",
+        "duration": 45
+    },
+    {
+        "category": "JavaScript",
+        "slug": "work-box",
+        "title": "Service Worker Management with WorkBox",
+        "updated": "2019-01-22T08:45:00Z",
+        "author": "Radu Enuca",
+        "duration": 30
+    },
+    {
+        "category": "About",
+        "slug": "about-pwas",
+        "title": "About Progressive Web Applications",
+        "updated": "2019-01-22T08:53:00Z",
+        "author": "Radu Enuca",
+        "duration": 5
     }
 ]
