@@ -6,6 +6,8 @@
         "src/dev-school-labs-codelabs.html",
         "src/labs/about/about.html",
         "src/labs/angularjs-form-validation/angularjs-form-validation.html",
+        "src/labs/css-grid/css-grid.html",
+        "src/labs/fetch-api/fetch-api.html",
         "src/labs/front-end-foundations/front-end-foundations.html",
         "src/labs/gulp-introduction/gulp-introduction.html",
         "src/labs/package-managers/package-managers.html",
