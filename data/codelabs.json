@@ -114,11 +114,11 @@
     },
     {
         "category": "JavaScript",
-        "slug": "index-db",
-        "title": "IndexDB Basics",
+        "slug": "indexed-db",
+        "title": "IndexedDB Basics",
         "updated": "2019-01-22T08:44:00Z",
         "author": "Radu Enuca",
-        "duration": 15
+        "duration": 30
     },
     {
         "category": "JavaScript",
