@@ -10,6 +10,7 @@
         "src/labs/fetch-api/fetch-api.html",
         "src/labs/front-end-foundations/front-end-foundations.html",
         "src/labs/gulp-introduction/gulp-introduction.html",
+        "src/labs/indexed-db/indexed-db.html",
         "src/labs/package-managers/package-managers.html",
         "src/labs/polymer-lego-for-the-web/polymer-lego-for-the-web.html",
         "src/labs/promises/promises.html",
