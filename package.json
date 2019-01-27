@@ -1,7 +1,7 @@
 {
     "name": "dev-school-labs",
     "license": "BSD-3-Clause",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "description": "Code labs project for DevSchool",
     "main": "index.html",
     "homepage": "https://github.com/raduenuca/dev-school-labs#readme",

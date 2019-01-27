@@ -18,7 +18,8 @@
         "src/labs/service-workers/service-workers.html",
         "src/labs/simple-card-component/simple-card-component.html",
         "src/labs/todo-angularjs/todo-angularjs.html",
-        "src/labs/web-components-basics/web-components-basics.html"
+        "src/labs/web-components-basics/web-components-basics.html",
+        "src/labs/workbox/workbox.html"
     ],
     "sources": [
         "src/**/*",
