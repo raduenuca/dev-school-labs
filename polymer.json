@@ -6,6 +6,7 @@
         "src/dev-school-labs-codelabs.html",
         "src/labs/about/about.html",
         "src/labs/angularjs-form-validation/angularjs-form-validation.html",
+        "src/labs/app-manifest/app-manifest.html",
         "src/labs/css-grid/css-grid.html",
         "src/labs/fetch-api/fetch-api.html",
         "src/labs/front-end-foundations/front-end-foundations.html",
@@ -14,6 +15,7 @@
         "src/labs/package-managers/package-managers.html",
         "src/labs/polymer-lego-for-the-web/polymer-lego-for-the-web.html",
         "src/labs/promises/promises.html",
+        "src/labs/service-workers/service-workers.html",
         "src/labs/simple-card-component/simple-card-component.html",
         "src/labs/todo-angularjs/todo-angularjs.html",
         "src/labs/web-components-basics/web-components-basics.html"
