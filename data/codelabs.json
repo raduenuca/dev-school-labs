@@ -86,15 +86,15 @@
         "title": "Understanding the App Manifest",
         "updated": "2019-01-22T08:35:00Z",
         "author": "Radu Enuca",
-        "duration": 30
+        "duration": 40
     },
     {
         "category": "JavaScript",
         "slug": "service-workers",
-        "title": "Service Workers",
+        "title": "Service Workers Basics",
         "updated": "2019-01-22T08:39:00Z",
         "author": "Radu Enuca",
-        "duration": 60
+        "duration": 70
     },
     {
         "category": "JavaScript",
