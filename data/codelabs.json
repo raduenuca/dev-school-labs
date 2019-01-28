@@ -98,6 +98,14 @@
     },
     {
         "category": "JavaScript",
+        "slug": "service-workers-advanced",
+        "title": "Service Workers - Keeping your data synchronized",
+        "updated": "2019-01-28T12:21:00Z",
+        "author": "Radu Enuca",
+        "duration": 50
+    },
+    {
+        "category": "JavaScript",
         "slug": "fetch-api",
         "title": "Fetch API Basics",
         "updated": "2019-01-24T21:24:00Z",
